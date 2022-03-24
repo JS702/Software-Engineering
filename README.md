@@ -2,8 +2,8 @@
 HAW - Media Systems
 
 Gruppe:
-Soliman Anwari 
-Felix Schubert
-Stefan Le
-Vinzent Pilz
+Soliman Anwari, 
+Felix Schubert,
+Stefan Le,
+Vinzent Pilz,
 Jon Steinkamp
