@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class HaseMovement : Movement
 {
+    Hase hase;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,6 +30,14 @@ public class HaseMovement : Movement
             {
                 rb.MoveRotation(Quaternion.Euler(-transform.up * rotationSpeed * Time.deltaTime) * transform.rotation);
             }
+        }
+    }
+
+    private void flüchten()
+    {
+        if (hase.isFleeing)
+        {
+
         }
     }
 }

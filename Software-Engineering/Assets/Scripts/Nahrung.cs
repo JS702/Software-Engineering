@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Nahrung
+public class Nahrung : ScriptableObject
 {
     public int nährwert;
 
