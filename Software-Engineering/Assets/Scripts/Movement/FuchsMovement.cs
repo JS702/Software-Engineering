@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FuchsMovement : Movement
 {
+    public Fuchs fuchs;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -31,6 +32,16 @@ public class FuchsMovement : Movement
             {
                 rb.MoveRotation(Quaternion.Euler(-transform.up * rotationSpeed * Time.deltaTime) * transform.rotation);
             }
+        }
+    }
+
+    public Collider col;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Beute")
+        {
+            Debug.Log("penis");
         }
     }
 }
