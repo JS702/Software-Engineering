@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class FuchsMovement : Movement
 {
-    public Fuchs fuchs;
+    private Fuchs fuchs;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         movementSpeed = 10;
         rotationSpeed = 500;
+        fuchs = GetComponent<Fuchs>();
     }
 
     private void Update()
