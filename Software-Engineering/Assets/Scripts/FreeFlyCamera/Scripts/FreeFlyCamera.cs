@@ -10,6 +10,34 @@ public class FreeFlyCamera : MonoBehaviour
 {
     #region UI
 
+  
+    [SerializeField]
+    [Tooltip("Movement Region")]
+    private float _xMin = 1f;
+    
+    [SerializeField]
+    [Tooltip("Movement Region")]
+    private float _xMax = 1f;
+    
+    [SerializeField]
+    [Tooltip("Movement Region")]
+    private float _yMin = 4f;
+    
+    [SerializeField]
+    [Tooltip("Movement Region")]
+    private float _yMax = 30f;
+    
+    [SerializeField]
+    [Tooltip("Movement Region")]
+    private float _zMin = 1;
+    
+    [SerializeField]
+    [Tooltip("Movement Region")]
+    private float _zMax = 1;
+    
+
+
+
     [Space]
 
     [SerializeField]
@@ -30,11 +58,11 @@ public class FreeFlyCamera : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Camera zooming in/out by 'Mouse Scroll Wheel' is active")]
-    private bool _enableTranslation = true;
+    private bool _enableTranslation = false;
 
     [SerializeField]
     [Tooltip("Velocity of camera zooming in/out")]
-    private float _translationSpeed = 55f;
+    private float _translationSpeed = 1f;
 
     [Space]
 
@@ -66,7 +94,7 @@ public class FreeFlyCamera : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Acceleration at camera movement is active")]
-    private bool _enableSpeedAcceleration = true;
+    private bool _enableSpeedAcceleration = false;
 
     [SerializeField]
     [Tooltip("Rate which is applied during camera movement")]
@@ -145,6 +173,28 @@ public class FreeFlyCamera : MonoBehaviour
 
     private void Update()
     {
+
+         if(gameObject.transform.position.x <= _xMin){
+           transform.position = new Vector3(_xMin, gameObject.transform.position.y, gameObject.transform.position.z);
+        }
+         if(gameObject.transform.position.x >= _xMax){
+           transform.position = new Vector3( _xMax, gameObject.transform.position.y, gameObject.transform.position.z);
+        }
+        if(gameObject.transform.position.y <= _yMin){
+           transform.position = new Vector3(gameObject.transform.position.x, _yMin , gameObject.transform.position.z);
+        }
+         if(gameObject.transform.position.y >= _yMax){
+           transform.position = new Vector3(gameObject.transform.position.x, _yMax , gameObject.transform.position.z);
+        }
+        if(gameObject.transform.position.z <= _zMin){
+           transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y,_zMin);
+        }
+         if(gameObject.transform.position.z >= _zMax){
+           transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _zMax);
+        }
+
+
+        
         if (!_active)
             return;
 
