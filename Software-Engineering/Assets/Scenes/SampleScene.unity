@@ -13740,8 +13740,6 @@ GameObject:
   - component: {fileID: 792298244}
   - component: {fileID: 792298243}
   - component: {fileID: 792298242}
-  - component: {fileID: 792298241}
-  - component: {fileID: 792298240}
   m_Layer: 0
   m_Name: WorldEdges
   m_TagString: Untagged
@@ -13749,32 +13747,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &792298240
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792298239}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 110, y: 2, z: 1000}
-  m_Center: {x: 47, y: 80.4, z: 500}
---- !u!65 &792298241
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792298239}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 110, y: 1, z: 1000}
-  m_Center: {x: 47, y: 10, z: 500}
 --- !u!65 &792298242
 BoxCollider:
   m_ObjectHideFlags: 0
