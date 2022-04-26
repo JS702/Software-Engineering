@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FuchsMovement : Movement
+public class foxMovement : Movement
 {
-    private Fuchs fuchs;
+    private Fox fox;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         movementSpeed = 10;
         rotationSpeed = 500;
-        fuchs = GetComponent<Fuchs>();
+        fox = GetComponent<Fox>();
     }
 
     private void Update()
@@ -40,7 +40,7 @@ public class FuchsMovement : Movement
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Beute")
+        if (other.tag == "Prey")
         {
             Debug.Log("penis");
         }

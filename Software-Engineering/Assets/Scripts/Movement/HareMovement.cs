@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class HaseMovement : Movement
+public class HareMovement : Movement
 {
-    Hase hase;
+    Hare hare;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,9 +33,9 @@ public class HaseMovement : Movement
         }
     }
 
-    private void flüchten()
+    private void escape()
     {
-        if (hase.isFleeing)
+        if (hare.isFleeing)
         {
 
         }

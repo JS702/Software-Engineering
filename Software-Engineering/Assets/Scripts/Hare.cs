@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fuchs : Tier
+public class Hare : Animal
 {
-    
+    public bool isFleeing = false;
 }

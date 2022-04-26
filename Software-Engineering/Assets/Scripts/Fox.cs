@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pflanze : Nahrung
+public class Fox : Animal
 {
     
 }
