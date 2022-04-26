@@ -8,6 +8,7 @@ public class HareMovement : Movement
         rb = GetComponent<Rigidbody>();
         movementSpeed = 10;
         rotationSpeed = 500;
+        hare = GetComponent<Hare>();
     }
 
     private void Update()

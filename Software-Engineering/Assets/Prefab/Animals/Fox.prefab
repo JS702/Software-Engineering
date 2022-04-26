@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6189034732971714832}
   - component: {fileID: 2561002331606475387}
   - component: {fileID: 8369554179233211061}
-  - component: {fileID: 991304399140149160}
   - component: {fileID: 2029111411068400692}
-  - component: {fileID: 6189034732971714837}
+  - component: {fileID: 6702265670465999294}
+  - component: {fileID: 6692212185936851493}
   m_Layer: 0
   m_Name: Fox
   m_TagString: Untagged
@@ -63,19 +63,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &991304399140149160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6189034732971714835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb6830e60867a73498999ef5bd8a676d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  col: {fileID: 8369554179233211061}
 --- !u!54 &2029111411068400692
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -92,7 +79,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &6189034732971714837
+--- !u!114 &6702265670465999294
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,15 +88,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 6189034732971714835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3ffb643f82d5f745a9e84ff4774607e, type: 3}
+  m_Script: {fileID: 11500000, guid: 54b0034982702a94a9b3a6e3a9c7fbc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "n\xE4hrwert": 0
-  durst: 100
+  nutritionalValue: 0
+  thirst: 100
   hunger: 100
-  fortpflanzungsTrieb: 0
-  geschwindigkeit: 10
-  leben: 1
+  reproductionDrive: 0
+  speed: 0
+  health: 0
+--- !u!114 &6692212185936851493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189034732971714835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa83990e18fa8049af8e7356612863d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  col: {fileID: 0}
 --- !u!1001 &6189034732161476060
 PrefabInstance:
   m_ObjectHideFlags: 0
