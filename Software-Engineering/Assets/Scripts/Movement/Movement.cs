@@ -15,9 +15,9 @@ public class Movement : MonoBehaviour
 
     protected IEnumerator Wander()
     {
-        int rotationTime = Random.Range(1, 3);
+        float rotationTime = Random.Range(0.5f, 1.5f);
         int rotateWait = Random.Range(1, 2);
-        int rotateDirection = Random.Range(1, 2);
+        int rotateDirection = Random.Range(1, 3);
         int walkWait = Random.Range(1, 3);
         int walkTime = Random.Range(1, 7);
 

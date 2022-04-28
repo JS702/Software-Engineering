@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8369554179233211061}
   - component: {fileID: 2029111411068400692}
   - component: {fileID: 6702265670465999294}
-  - component: {fileID: 6692212185936851493}
   m_Layer: 0
   m_Name: Fox
   m_TagString: Untagged
@@ -91,25 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b0034982702a94a9b3a6e3a9c7fbc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nutritionalValue: 0
-  thirst: 100
   hunger: 100
-  reproductionDrive: 0
-  speed: 0
-  health: 0
---- !u!114 &6692212185936851493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6189034732971714835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fa83990e18fa8049af8e7356612863d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  col: {fileID: 0}
+  currentHunger: 0
+  hungerBar: {fileID: 0}
 --- !u!1001 &6189034732161476060
 PrefabInstance:
   m_ObjectHideFlags: 0

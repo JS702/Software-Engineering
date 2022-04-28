@@ -31,7 +31,7 @@ public class foxMovement : Movement
             }
             else if (isRotatingRight)
             {
-                rb.MoveRotation(Quaternion.Euler(-transform.up * rotationSpeed * Time.deltaTime) * transform.rotation);
+                rb.MoveRotation(Quaternion.Euler(transform.up * -rotationSpeed * Time.deltaTime ) * transform.rotation);
             }
         }
     }
