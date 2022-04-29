@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18557,24 +18557,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 470440, guid: 8ed1fa325ca228645ad26dd6eff14768, type: 3}
   m_PrefabInstance: {fileID: 1035746267}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1043743494 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6189034732971714835, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
-  m_PrefabInstance: {fileID: 795342249}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1043743496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043743494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fa83990e18fa8049af8e7356612863d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  col: {fileID: 0}
 --- !u!4 &1043743502 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6189034732971714832, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
@@ -25190,58 +25172,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1373819698 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9048144527607135404, guid: c78c90439d2616e43872a65746e81ec3, type: 3}
-  m_PrefabInstance: {fileID: 4661841017150908267}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1373819701
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373819698}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1373819706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373819698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e768873b5ca4c984b875015ef4cc6a8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1373819707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373819698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9a04e32cd824ba4a976b0837b9100df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nutritionalValue: 0
-  thirst: 100
-  hunger: 100
-  reproductionDrive: 0
-  speed: 0
-  health: 0
-  isFleeing: 0
 --- !u!4 &1376380465 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8903058273634951509, guid: f1fc5bb90ac285e4486771552d63bcb8, type: 3}
