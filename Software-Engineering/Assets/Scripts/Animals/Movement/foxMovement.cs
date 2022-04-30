@@ -29,7 +29,7 @@ public class foxMovement : Movement
             if (isWalking && isGrounded) {
                 if (time > 0.05)
                 {
-                    rb.MovePosition(transform.position + (transform.forward * movementSpeed * Time.deltaTime) + (transform.up * jumpHeight * Time.deltaTime));
+                    rb.MovePosition(transform.position + (transform.forward * movementSpeed * Time.deltaTime));
                     time = 0;
                 }
                 else
