@@ -18,7 +18,8 @@ public class Escape : MonoBehaviour
     
     
      
-     public void start() {
+     public void start() 
+     {
         hare = GetComponent<Hare>();
         _agent = GetComponent<NavMeshAgent>();
      }
@@ -26,6 +27,8 @@ public class Escape : MonoBehaviour
      
      private void OnTriggerEnter(Collider col)
     {
+
+        //if a fox enters the Sight of the hare, the hare add this Fox to his list of Foxes nearby
         if(col.tag == "Fox")
         {
             Fox = col.gameObject;
@@ -36,36 +39,45 @@ public class Escape : MonoBehaviour
 
     private void OnTriggerExit(Collider col)
     {
+        
          if(col.gameObject.tag == "Fox")
          {
-            
             foxList.Remove(col.gameObject);
 
-            //isFleeing erst auf false setzen wenn das array mit fuechsen leer ist
+            //set isFleeing to false when there is no fox around
             if(foxList.Count == 0){
                 isFleeing = false;
             }
             
         }
     }
-     public void Update() {
+     public void Update() 
+     {
 
         if(isFleeing){
             escape(); 
         } 
      }
 
-    
-
     private void escape()
     {
+        // reset Distance back to 100 to find the new nearest Fox
         lowestDistance = 100;
 
         Vector3 harePosition = transform.position;
         Vector3 foxPosition = foxList[0].transform.position;
 
-        if(foxList.Count > 1){
+        _distanceToFox = Vector3.Distance(harePosition, foxPosition);
 
+        if(_distanceToFox < lowestDistance)
+        {
+                //the nearest fox will be the Fox gameObject which the hare flee from
+                Fox = foxList[0];
+                lowestDistance = _distanceToFox;
+        }
+
+        if(foxList.Count > 1)
+        {
             // find the closest Fox
             foreach(GameObject fox in foxList)
             {
@@ -81,15 +93,9 @@ public class Escape : MonoBehaviour
                 }
             }
 
-           
-            _distanceToFox = Vector3.Distance(harePosition, foxPosition);
-            if(_distanceToFox < lowestDistance){
-
-                //Der Fox der am dichtesten ist wird zum gameObject Fox vor dem der Hase wegrennt
-                Fox = foxList[0];
-                lowestDistance = _distanceToFox;
-            }
+     
             
+            //Look for nearest Fox
             Vector3 dirToFox = transform.position - Fox.transform.position;
             Debug.DrawLine(transform.position, Fox.transform.position, Color.red );
             
@@ -100,8 +106,8 @@ public class Escape : MonoBehaviour
             //Tell Agent where to go  
             _agent.SetDestination(_direction);
             
-        }else{ // If there is only one Fox
-        
+        }else
+        { // If there is only one Fox
             Vector3 dirToFox = transform.position - Fox.transform.position;
             Debug.DrawLine(transform.position, Fox.transform.position, Color.red );
             

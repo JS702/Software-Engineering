@@ -224,9 +224,10 @@ GameObject:
   - component: {fileID: 4132814682747188821}
   - component: {fileID: 4861671670232834315}
   - component: {fileID: 6737490690126160846}
+  - component: {fileID: 6094298513528744798}
   m_Layer: 0
   m_Name: bunny7
-  m_TagString: Untagged
+  m_TagString: Prey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -313,4 +314,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 6435164666967379445}
   Fox: {fileID: 0}
+  foxList: []
+  _direction: {x: 0, y: 0, z: 0}
   isFleeing: 0
+--- !u!65 &6094298513528744798
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7366081109373987059}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.35908362, y: 0.6599444, z: 1}
+  m_Center: {x: 0, y: 0.3245986, z: 0}
