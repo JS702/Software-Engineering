@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class foxMovement : Movement
 {
-    float time;
-    float jumpHeight;
-    bool isGrounded;
     private Fox fox;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         movementSpeed = 10;
         rotationSpeed = 500;
-        jumpHeight = 200;
         fox = GetComponent<Fox>();
     }
 
@@ -25,20 +21,7 @@ public class foxMovement : Movement
         }
         else
         {
-
-            if (isWalking && isGrounded) {
-                if (time > 0.05)
-                {
-                    rb.MovePosition(transform.position + (transform.forward * movementSpeed * Time.deltaTime));
-                    time = 0;
-                }
-                else
-                {
-                    rb.MovePosition(transform.position + transform.forward * movementSpeed * Time.deltaTime);
-                }
-            }
-
-            else if (isWalking)
+           if (isWalking)
             {
                 rb.MovePosition(transform.position + transform.forward * movementSpeed * Time.deltaTime);
             }
@@ -51,8 +34,6 @@ public class foxMovement : Movement
                 rb.MoveRotation(Quaternion.Euler(transform.up * -rotationSpeed * Time.deltaTime ) * transform.rotation);
             }
         }
-
-        time = time + Time.deltaTime;
     }
 
     public Collider col;
@@ -63,23 +44,5 @@ public class foxMovement : Movement
         {
             Debug.Log("penis");
         }
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if(other.collider.tag == "Environment")
-        {
-            isGrounded = true;
-        }
-        Debug.Log("isGrounded" + isGrounded);
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        if(other.collider.tag == "Environment")
-        {
-            isGrounded = false;
-        }
-        Debug.Log("isGrounded" + isGrounded);
     }
 }
