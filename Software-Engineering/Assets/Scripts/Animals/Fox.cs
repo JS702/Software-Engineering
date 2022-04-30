@@ -12,7 +12,7 @@ public class Fox : MonoBehaviour
     void Start()
     {
         currentHunger=hunger;
-        hungerBar.setMaxHunger(hunger);
+        //hungerBar.setMaxHunger(hunger);
     }
 
     void Update(){

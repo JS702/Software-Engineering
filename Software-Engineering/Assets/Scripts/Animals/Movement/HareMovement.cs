@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class HareMovement : Movement
 {
-    Hare hare;
+
+    Bunny bunny;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         movementSpeed = 10;
         rotationSpeed = 500;
-        hare = GetComponent<Hare>();
+        bunny = GetComponent<Bunny>();
     }
 
     private void Update()
@@ -32,13 +33,11 @@ public class HareMovement : Movement
                 rb.MoveRotation(Quaternion.Euler(-transform.up * rotationSpeed * Time.deltaTime) * transform.rotation);
             }
         }
+
+        
     }
 
-    private void escape()
-    {
-        if (hare.isFleeing)
-        {
 
-        }
-    }
+
+    
 }

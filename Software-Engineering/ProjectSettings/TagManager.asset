@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Environment
   - Beute
+  - Fox
   layers:
   - Default
   - TransparentFX

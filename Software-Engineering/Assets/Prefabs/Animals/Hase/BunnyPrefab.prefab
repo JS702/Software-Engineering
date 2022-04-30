@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 6450530198030314050}
   - component: {fileID: 4711538118961088837}
   - component: {fileID: 4830062778506743798}
-  - component: {fileID: 6466972552062145969}
   - component: {fileID: -4088219341636579631}
+  - component: {fileID: 510021547474508239}
+  - component: {fileID: 64653540640084665}
+  - component: {fileID: 7203152372939119739}
   m_Layer: 0
   m_Name: BunnyPrefab
   m_TagString: Untagged
@@ -65,25 +67,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &6466972552062145969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9048144527607135404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9a04e32cd824ba4a976b0837b9100df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nutritionalValue: 0
-  thirst: 100
-  hunger: 100
-  reproductionDrive: 0
-  speed: 0
-  health: 0
-  isFleeing: 0
 --- !u!114 &-4088219341636579631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +79,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e768873b5ca4c984b875015ef4cc6a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &510021547474508239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9048144527607135404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b47dbc94757074aa5812230db95ec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &64653540640084665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9048144527607135404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d4867028ce92746bc59c4fede2630a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 7203152372939119739}
+  Fox: {fileID: 0}
+  isFleeing: 0
+--- !u!195 &7203152372939119739
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9048144527607135404}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &4661841018588532891
 PrefabInstance:
   m_ObjectHideFlags: 0
