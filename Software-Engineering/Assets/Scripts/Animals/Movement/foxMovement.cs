@@ -45,4 +45,9 @@ public class foxMovement : Movement
             Debug.Log("penis");
         }
     }
+
+    public bool getIsWalking()
+    {
+        return isWalking;
+    }
 }
