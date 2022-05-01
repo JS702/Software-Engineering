@@ -37,7 +37,9 @@ public class HareMovement : Movement
         
     }
 
+    public bool getIsWalking()
+    {
+        return isWalking;
+    }
 
-
-    
 }
