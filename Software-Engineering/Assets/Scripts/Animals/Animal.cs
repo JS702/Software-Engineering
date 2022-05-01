@@ -6,9 +6,11 @@ public class Animal : Food
 {
     public int thirst = 100;
     public int hunger = 100;
-    public int reproductionDrive = 0;
+    public int reproductionDrive = 100;
+
+    public int health=100;
     public int speed;
-    public int health;
+    
 
 
     public void eat(int food)
