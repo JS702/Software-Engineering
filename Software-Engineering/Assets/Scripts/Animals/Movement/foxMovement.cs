@@ -22,36 +22,18 @@ public class foxMovement : Movement
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        movementSpeed = 10;
-        rotationSpeed = 500;
         fox = GetComponent<Fox>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
-        /*
-        if (!isWandering)
-        {
-            StartCoroutine(Wander());
-        }
-        else
-        {
-           if (isWalking)
-            {
-                rb.MovePosition(transform.position + transform.forward * movementSpeed * Time.deltaTime);
-            }
-            else if (isRotatingLeft)
-            {
-                rb.MoveRotation(Quaternion.Euler(transform.up * rotationSpeed * Time.deltaTime) * transform.rotation);
-            }
-            else if (isRotatingRight)
-            {
-                rb.MoveRotation(Quaternion.Euler(transform.up * -rotationSpeed * Time.deltaTime ) * transform.rotation);
-            }
-        }
-        */
-        if(isHunting){
+        if (isHunting){
             hunt();
+        }
+        else if (!isWandering && !isHunting)
+        {
+            StartCoroutine(setWanderDestination());
         }
     }
 
@@ -62,6 +44,7 @@ public class foxMovement : Movement
          //if a fox enters the Sight of the hare, the hare add this Fox to his list of Foxes nearby
         if(col.tag == "Prey")
         {
+            isWandering = false;
             Hare = col.gameObject;
             preyList.Add(Hare);
             isHunting = true;

@@ -1,54 +1,31 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Movement : MonoBehaviour
 {
-    protected int movementSpeed; // für jedes Tier anders
-    protected int rotationSpeed; // für jedes Tier anders
+    public float range = 10.0f;
 
     protected bool isWandering = false;
     protected bool isRotatingLeft = false;
     protected bool isRotatingRight = false;
     protected bool isWalking = false;
+    protected NavMeshAgent agent;
 
     protected Rigidbody rb;
 
-    protected IEnumerator Wander()
+
+    public IEnumerator setWanderDestination()
     {
-        float rotationTime = Random.Range(0.5f, 1.5f);
-        int rotateWait = Random.Range(1, 2);
-        int rotateDirection = Random.Range(1, 3);
-        int walkWait = Random.Range(1, 3);
-        int walkTime = Random.Range(1, 7);
-
         isWandering = true;
-
-        yield return new WaitForSeconds(walkWait);
-
-        isWalking = true;
-
-        yield return new WaitForSeconds(walkTime);
-
-        isWalking = false;
-
-        yield return new WaitForSeconds(rotateWait);
-
-        if(rotateDirection == 1)
+        Vector3 randomPoint = transform.position + Random.insideUnitSphere * range;
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
         {
-            isRotatingLeft = true;
-            yield return new WaitForSeconds(rotationTime);
-            isRotatingLeft = false;
+            Debug.Log(hit.position);
+            agent.destination = hit.position;
+            yield return new WaitForSeconds(3f);
         }
-        else if(rotateDirection == 2)
-        {
-            isRotatingRight = true;
-            yield return new WaitForSeconds(rotationTime);
-            isRotatingRight = false;
-        }
-
         isWandering = false;
     }
-
-
-
 }

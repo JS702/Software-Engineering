@@ -209,7 +209,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 4.43
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3421249330488713915
 GameObject:
@@ -254,7 +254,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3421249330488713915}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 4f9190f897085d544a475844c14fcf7a, type: 2}
   m_CullingMode: 0
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3421249330488713915}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d63b3bff55ba0a428451ed7d2f50783, type: 3}
   m_Name: 
@@ -290,7 +290,6 @@ GameObject:
   - component: {fileID: 6435164666967379445}
   - component: {fileID: 4132814682747188821}
   - component: {fileID: 4861671670232834315}
-  - component: {fileID: 6737490690126160846}
   - component: {fileID: 6094298513528744798}
   m_Layer: 0
   m_Name: bunny7
@@ -326,10 +325,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 2
+  m_Acceleration: 2
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 500
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -350,7 +349,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -361,24 +360,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7366081109373987059}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e768873b5ca4c984b875015ef4cc6a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6737490690126160846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7366081109373987059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39d4867028ce92746bc59c4fede2630a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _agent: {fileID: 6435164666967379445}
+  range: 5
   Fox: {fileID: 0}
   foxList: []
   _direction: {x: 0, y: 0, z: 0}
