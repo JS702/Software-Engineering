@@ -45,10 +45,10 @@ public class foxMovement : Movement
         if(col.tag == "Prey")
         {
             isWandering = false;
+            agent.speed = sprintSpeed;
             Hare = col.gameObject;
             preyList.Add(Hare);
             isHunting = true;
-
         }
     }
 
@@ -113,7 +113,8 @@ public class foxMovement : Movement
             //Tell Agent where to go  
             _agent.SetDestination(_huntDirection);
             
-        }else
+        }
+        else
         { // If there is only one Fox
             Vector3 dirToFox = transform.position - Hare.transform.position;
             Debug.DrawLine(transform.position, Hare.transform.position, Color.red );

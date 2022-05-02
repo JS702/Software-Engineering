@@ -14986,7 +14986,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 466823867, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 466823868, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
       propertyPath: m_RootOrder
@@ -14994,11 +14994,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2028889097, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2028889097, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2188469228723943683, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
       propertyPath: m_RootOrder
@@ -29862,7 +29862,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b0034982702a94a9b3a6e3a9c7fbc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nutritionalValue: 0
+  thirst: 100
   hunger: 100
+  reproductionDrive: 100
+  health: 100
+  speed: 0
   currentHunger: 0
   hungerBar: {fileID: 1702043147}
 --- !u!4 &1510227329
@@ -38533,7 +38538,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 466823867, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 466823869, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
       propertyPath: cam
@@ -38541,11 +38546,11 @@ PrefabInstance:
       objectReference: {fileID: 963194228}
     - target: {fileID: 2028889097, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2028889097, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6189034732971714832, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
       propertyPath: m_RootOrder

@@ -10,6 +10,10 @@ public class Movement : MonoBehaviour
     protected bool isRotatingLeft = false;
     protected bool isRotatingRight = false;
     protected bool isWalking = false;
+
+    protected int normalSpeed = 2;
+    protected int sprintSpeed = 8;
+
     protected NavMeshAgent agent;
 
     protected Rigidbody rb;

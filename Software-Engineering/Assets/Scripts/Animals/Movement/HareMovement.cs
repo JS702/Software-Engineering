@@ -7,6 +7,7 @@ public class HareMovement : Movement
     Bunny bunny;
 
     public GameObject Fox;
+
     public List<GameObject> foxList;
     public Vector3 _direction;
     private float lowestDistance = 100;
@@ -21,7 +22,6 @@ public class HareMovement : Movement
 
     private void Update()
     {
-
         Debug.Log("isFleeing:" + isFleeing);
         if(isFleeing)
         {
@@ -45,6 +45,7 @@ public class HareMovement : Movement
         if (col.tag == "Fox")
         {
             isWandering = false;
+            agent.speed = sprintSpeed;
             Fox = col.gameObject;
             foxList.Add(Fox);
             isFleeing = true;
@@ -53,7 +54,6 @@ public class HareMovement : Movement
 
     private void OnTriggerExit(Collider col)
     {
-
         if (col.gameObject.tag == "Fox")
         {
             foxList.Remove(col.gameObject);
@@ -61,6 +61,7 @@ public class HareMovement : Movement
             //set isFleeing to false when there is no fox around
             if (foxList.Count == 0)
             {
+                agent.speed = normalSpeed;
                 isFleeing = false;
             }
 
