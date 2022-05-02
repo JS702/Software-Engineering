@@ -58,8 +58,10 @@ public class foxMovement : Movement
         if(col.gameObject.tag == "Prey")
         {
             preyList.Remove(col.gameObject);
-            
+
         }
+
+
     }
 
     public bool getIsWalking()
@@ -69,6 +71,13 @@ public class foxMovement : Movement
 
     public void hunt()
     {
+        // is there anything to hunt?
+        if(preyList.Count == 0)
+        {
+            isHunting=false;
+        }
+
+
         // reset Distance back to 100 to find the new nearest Fox
         lowestDistance = 100;
 
@@ -82,7 +91,7 @@ public class foxMovement : Movement
             foreach(GameObject prey in preyList)
             {
                 
-                foxPosition = prey.transform.position;
+                preyPosition = prey.transform.position;
                 _distanceToPrey = Vector3.Distance(foxPosition, preyPosition);
 
                 if(_distanceToPrey < lowestDistance){
@@ -93,14 +102,8 @@ public class foxMovement : Movement
                 }
             }
 
-     
-            _distanceToPrey = Vector3.Distance(foxPosition, preyPosition);
-            if(_distanceToPrey < lowestDistance)
-            {
-                //the nearest fox will be the Fox gameObject which the hare flee from
-                Hare = preyList[0];
-                lowestDistance = _distanceToPrey;
-            }
+            
+           
             
             //Look for nearest Fox
             Vector3 dirToPrey = transform.position - Hare.transform.position;
@@ -116,6 +119,15 @@ public class foxMovement : Movement
         }
         else
         { // If there is only one Fox
+
+            _distanceToPrey = Vector3.Distance(foxPosition, preyPosition);
+            if(_distanceToPrey < lowestDistance)
+            {
+                //the nearest fox will be the Fox gameObject which the hare flee from
+                Hare = preyList[0];
+                lowestDistance = _distanceToPrey;
+            }
+
             Vector3 dirToFox = transform.position - Hare.transform.position;
             Debug.DrawLine(transform.position, Hare.transform.position, Color.red );
             
