@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Animal : Food
 {
-    public int thirst = 100;
-    public int hunger = 100;
-    public int reproductionDrive = 100;
-
     public int health=100;
+    public int hunger = 100;
+
+    public int thirst = 100;
+    public int reproductionDrive = 5;
+
+    
     public int speed;
     
 
