@@ -22,6 +22,11 @@ public class Animal : Food
     public void drink(int water)
     {
         thirst += water;
-    } 
+    }
+    
+    public int getHunger()
+    {
+        return hunger;
+    }
     
 }

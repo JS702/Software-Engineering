@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class HareMovement : Movement
 {
     Bunny bunny;
+    public Hare hare;
 
     public GameObject Fox;
     public GameObject Grass;
@@ -20,6 +21,7 @@ public class HareMovement : Movement
         rb = GetComponent<Rigidbody>();
         bunny = GetComponent<Bunny>();
         agent = GetComponent<NavMeshAgent>();
+        hare = GetComponent<Hare>();
     }
 
     private void Update()
@@ -32,6 +34,40 @@ public class HareMovement : Movement
         else if (!isWandering && !isFleeing)
         {
             StartCoroutine(setWanderDestination());
+        }
+        
+        //Abfrage, ob der Hase hungrig ist und Gras kennt
+        if (hare.hunger < 50 && grassPositionList.Count > 0)
+        {
+            Debug.Log("Dichtestes Gras wird gesucht...");
+            //Default: Dichtestes Gras ist das, das er zuerst entdeckt hat
+            float distanceToNearestGrass = Vector3.Distance(grassPositionList[0], transform.position);
+            Vector3 nearestGrassPosition = grassPositionList[0];
+            foreach (Vector3 grassPosition in grassPositionList)
+            {
+                float distanceToGrass = Mathf.Abs(Vector3.Distance(grassPosition, transform.position));
+                //Dichtestes Gras finden
+                if (distanceToGrass < distanceToNearestGrass)
+                {
+                    distanceToNearestGrass = distanceToGrass;
+                    nearestGrassPosition = grassPosition;
+                }
+            }
+            //Zum dichtesten bekannten Gras laufen
+            Debug.Log("Zum Gras bewegen");
+            agent.SetDestination(nearestGrassPosition);
+        }
+        
+        //Debug-Tool, bis der Hase hunger bekommen und fressen kann
+        if (Input.GetKeyDown("h"))
+        {
+            hare.hunger = 10;
+            Debug.Log(hare.hunger);
+        }
+        if (Input.GetKeyDown("j"))
+        {
+            hare.hunger = 100;
+            Debug.Log(hare.hunger);
         }
     }
 
@@ -61,7 +97,7 @@ public class HareMovement : Movement
             if (!grassPositionList.Contains(grassPosition))
             {
                 grassPositionList.Add(grassPosition);
-                Debug.Log("Grass added to list");
+                Debug.Log("Grass added to list" + grassPosition.ToString());
             } else
             {
                 Debug.Log("Grass already in list");

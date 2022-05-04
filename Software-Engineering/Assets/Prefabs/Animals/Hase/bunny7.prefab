@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 4132814682747188821}
   - component: {fileID: 4861671670232834315}
   - component: {fileID: 6094298513528744798}
+  - component: {fileID: 8406825488684166222}
   m_Layer: 0
   m_Name: bunny7
   m_TagString: Prey
@@ -366,8 +367,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 5
+  hare: {fileID: 0}
   Fox: {fileID: 0}
+  Grass: {fileID: 0}
   foxList: []
+  grassPositionList: []
   _direction: {x: 0, y: 0, z: 0}
   isFleeing: 0
 --- !u!65 &6094298513528744798
@@ -383,3 +387,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.35908362, y: 0.6599444, z: 1}
   m_Center: {x: 0, y: 0.3245986, z: 0}
+--- !u!114 &8406825488684166222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7366081109373987059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4325879e38241747ab1d2e46592ba59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nutritionalValue: 0
+  health: 100
+  hunger: 100
+  thirst: 100
+  reproductionDrive: 5
+  speed: 0
+  isFleeing: 0
