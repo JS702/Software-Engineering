@@ -7,8 +7,10 @@ public class HareMovement : Movement
     Bunny bunny;
 
     public GameObject Fox;
+    public GameObject Grass;
 
     public List<GameObject> foxList;
+    public List<Vector3> grassPositionList;
     public Vector3 _direction;
     private float lowestDistance = 100;
     private float _distanceToFox;
@@ -22,7 +24,7 @@ public class HareMovement : Movement
 
     private void Update()
     {
-        Debug.Log("isFleeing:" + isFleeing);
+        //Debug.Log("isFleeing:" + isFleeing);
         if(isFleeing)
         {
             escape();
@@ -49,6 +51,21 @@ public class HareMovement : Movement
             Fox = col.gameObject;
             foxList.Add(Fox);
             isFleeing = true;
+        }
+
+        if (col.tag == "Grass")
+        {
+            Debug.Log("Grass in sight");
+            Grass = col.gameObject;
+            Vector3 grassPosition = Grass.transform.position;
+            if (!grassPositionList.Contains(grassPosition))
+            {
+                grassPositionList.Add(grassPosition);
+                Debug.Log("Grass added to list");
+            } else
+            {
+                Debug.Log("Grass already in list");
+            }
         }
     }
 
