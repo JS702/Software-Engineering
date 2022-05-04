@@ -5,8 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class Options : MonoBehaviour
 {
+    
+   
     public void StartSimulation()
     {
+       
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+       
+
+    }
+   
+    public void update()
+    {
+        
+       
     }
 }

@@ -2340,6 +2340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e294bc7b59640e14fb06a3aeb9cc967e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bunnyPrefab: {fileID: 7366081109373987059, guid: effa1d17590c5084fbc5391832bc0064, type: 3}
 --- !u!1 &1509501732
 GameObject:
   m_ObjectHideFlags: 0
@@ -3122,7 +3123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 177583300}
-  bunny: 0
 --- !u!114 &1761281457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3136,7 +3136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 277362560}
-  fox: 1
 --- !u!1 &1787399284
 GameObject:
   m_ObjectHideFlags: 0

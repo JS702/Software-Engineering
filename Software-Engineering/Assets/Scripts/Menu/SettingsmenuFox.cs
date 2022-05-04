@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-
-public class SettingsmenuBunny : MonoBehaviour
+public class SettingsmenuFox : MonoBehaviour
 {
     public Slider slider;
-    public int bunny;
+    public static int fox=1;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +16,7 @@ public class SettingsmenuBunny : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bunny = (int)slider.value;
+        fox = (int)slider.value;
         
     }
 }
