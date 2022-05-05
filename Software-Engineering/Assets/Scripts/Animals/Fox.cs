@@ -42,7 +42,7 @@ public class Fox : Animal
     {
         currentHealth=health;
         healthBar.setMaxValue(health);
-       currentHunger=hunger;
+        currentHunger=hunger;
         hungerBar.setMaxValue(hunger);
         currentThirst=thirst;
         thirstBar.setMaxValue(thirst);
