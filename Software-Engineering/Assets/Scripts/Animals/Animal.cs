@@ -10,6 +10,7 @@ public class Animal : Food
     public int thirst = 100;
     public int reproductionDrive = 5;
 
+    public bool isAlive = true;
     
     public int speed;
     

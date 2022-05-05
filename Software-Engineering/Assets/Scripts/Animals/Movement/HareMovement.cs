@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class HareMovement : Movement
 {
-    Bunny bunny;
+   
     public Hare hare;
 
     public GameObject Fox;
@@ -19,7 +19,7 @@ public class HareMovement : Movement
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        bunny = GetComponent<Bunny>();
+        
         agent = GetComponent<NavMeshAgent>();
         hare = GetComponent<Hare>();
     }
@@ -82,6 +82,7 @@ public class HareMovement : Movement
             Fox = col.gameObject;
             foxList.Add(Fox);
             isFleeing = true;
+
         }
 
         if (col.tag == "Grass")
@@ -112,20 +113,20 @@ public class HareMovement : Movement
                 agent.speed = normalSpeed;
                 isFleeing = false;
             }
-
         }
     }
+
     private void escape()
     {
-        agent.speed = 20; // wert für jeden hasen einzeln setzte -> fleeSpeed
         // reset Distance back to 100 to find the new nearest Fox
-        lowestDistance = 100;
+        lowestDistance = 100; //getLowestDistance();
 
         Vector3 harePosition = transform.position;
         Vector3 foxPosition = foxList[0].transform.position;
 
         _distanceToFox = Vector3.Distance(harePosition, foxPosition);
-
+        
+        
         if (_distanceToFox < lowestDistance)
         {
             //the nearest fox will be the Fox gameObject which the hare flee from
@@ -150,8 +151,6 @@ public class HareMovement : Movement
                     lowestDistance = _distanceToFox;
                 }
             }
-
-
 
             //Look for nearest Fox
             Vector3 dirToFox = transform.position - Fox.transform.position;
@@ -179,5 +178,4 @@ public class HareMovement : Movement
 
         }
     }
-
 }
