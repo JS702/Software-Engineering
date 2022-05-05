@@ -235,7 +235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3421249330488713915}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.558943, y: -5.024903, z: 4.2454643}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -340,7 +340,6 @@ MonoBehaviour:
   Fox: {fileID: 0}
   Grass: {fileID: 0}
   foxList: []
-  grassPositionList: []
   _direction: {x: 0, y: 0, z: 0}
   isFleeing: 0
 --- !u!65 &6094298513528744798
@@ -376,6 +375,7 @@ MonoBehaviour:
   isAlive: 1
   speed: 0
   isFleeing: 0
+  grassPositionList: []
 --- !u!95 &3816233004399031238
 Animator:
   serializedVersion: 4
