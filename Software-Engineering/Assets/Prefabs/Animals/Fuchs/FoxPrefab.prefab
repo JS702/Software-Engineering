@@ -647,6 +647,8 @@ GameObject:
   - component: {fileID: 5665828050681723460}
   - component: {fileID: 4307038512871931671}
   - component: {fileID: 6601355252471824773}
+  - component: {fileID: 4543071862442785083}
+  - component: {fileID: 1332724152397091524}
   m_Layer: 0
   m_Name: FoxPrefab
   m_TagString: Fox
@@ -705,6 +707,7 @@ MonoBehaviour:
   hunger: 100
   thirst: 100
   reproductionDrive: 5
+  isAlive: 1
   speed: 0
   currentHealth: 0
   currentHunger: 0
@@ -727,6 +730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 10
+  isWandering: 0
   _agent: {fileID: 4307038512871931671}
   Hare: {fileID: 0}
   preyList: []
@@ -768,6 +772,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.41518784, y: 1.7938818, z: 2.1860971}
   m_Center: {x: 0, y: -0.067049325, z: -0.0991168}
+--- !u!95 &4543071862442785083
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189034732971714835}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eeaa8f3ed0f65a545af0f5ef2217bc8e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1332724152397091524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189034732971714835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad57ff3931bd3e84896aacf9a0c4b488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6767507912596128942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,7 +1383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5c3db36520939484e91d1d8f69c26657, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5c3db36520939484e91d1d8f69c26657, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1400,40 +1436,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5c3db36520939484e91d1d8f69c26657, type: 3}
   m_PrefabInstance: {fileID: 6189034732161476060}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6422897906424420493 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5c3db36520939484e91d1d8f69c26657, type: 3}
-  m_PrefabInstance: {fileID: 6189034732161476060}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &2155073865893231960
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6422897906424420493}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: eeaa8f3ed0f65a545af0f5ef2217bc8e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8712487021297851104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6422897906424420493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad57ff3931bd3e84896aacf9a0c4b488, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
