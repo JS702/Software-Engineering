@@ -64,11 +64,6 @@ public class foxMovement : Movement
 
     }
 
-    public bool getIsMoving()
-    {
-        return isWandering || isHunting;
-    }
-
     public void hunt()
     {
         // is there anything to hunt?

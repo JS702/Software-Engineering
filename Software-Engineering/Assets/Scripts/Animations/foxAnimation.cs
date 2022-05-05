@@ -6,6 +6,7 @@ public class foxAnimation : MonoBehaviour
 {
     private foxMovement movement;
     Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,11 @@ public class foxAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetBool("isMoving", movement.getIsMoving());
+        animator.SetBool("isMoving", getIsMoving());
+    }
+
+    public bool getIsMoving()
+    {
+        return movement.isWandering || movement.isHunting;
     }
 }

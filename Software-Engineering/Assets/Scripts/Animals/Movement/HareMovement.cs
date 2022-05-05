@@ -71,11 +71,6 @@ public class HareMovement : Movement
         }
     }
 
-    public bool getIsMoving()
-    {
-        return isWandering || isFleeing;
-    }
-
     private void OnTriggerEnter(Collider col)
     {
 

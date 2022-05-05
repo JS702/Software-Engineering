@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
     public float range = 10.0f;
 
-    protected bool isWandering = false;
+    public bool isWandering = false;
     protected bool isRotatingLeft = false;
     protected bool isRotatingRight = false;
     protected bool isWalking = false;

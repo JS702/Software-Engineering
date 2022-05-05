@@ -16,6 +16,11 @@ public class bunnyAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetBool("isMoving", movement.getIsMoving());
+        animator.SetBool("isMoving", getIsMoving());
+    }
+
+    public bool getIsMoving()
+    {
+        return movement.isWandering || movement.isFleeing;
     }
 }
