@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIGridRenderer : Graphic
 {
     public Vector2Int gridSize = new Vector2Int(1, 1);
-    public float thickness = 10f;
+    [SerializeField] float thickness = 10f;
 
     float width;
     float height;
@@ -54,8 +54,6 @@ public class UIGridRenderer : Graphic
         vertex.position = new Vector3(xPos + cellWidth, yPos);
         vh.AddVert(vertex);
 
-        //vh.AddTriangle(0, 1, 2);
-        //vh.AddTriangle(2, 3, 0);
 
         float widthSqr = thickness * thickness;
         float distanceSqr = widthSqr / 2f;

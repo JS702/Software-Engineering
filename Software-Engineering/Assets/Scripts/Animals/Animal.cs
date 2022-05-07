@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Animal : Food
 {
+
+    //Event Methods 
+    public delegate void gotKilled();
+    public static event gotKilled OnGotKilled;
+
     public int health=100;
     public int hunger = 100;
 
@@ -29,5 +34,10 @@ public class Animal : Food
     {
         return hunger;
     }
-    
+
+    public void getKilled()
+    {
+        OnGotKilled?.Invoke();
+    }
+
 }

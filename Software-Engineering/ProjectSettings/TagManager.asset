@@ -9,6 +9,7 @@ TagManager:
   - Fox
   - Prey
   - Grass
+  - StatsManager
   layers:
   - Default
   - TransparentFX

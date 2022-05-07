@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class UILineRenderer : Graphic
 {
+    //damit der StatsManager das unterscheiden kann
+    public string diagramName;
 
     public UIGridRenderer gridRenderer;
     public Vector2Int gridSize;
     public List<Vector2> points;
 
-    public float thickness = 10f;
+    [SerializeField] float thickness = 10f;
 
     float width;
     float height;
@@ -51,7 +53,7 @@ public class UILineRenderer : Graphic
             vh.AddTriangle(index + 3, index + 2, index + 0);
         }
     }
-    void DrawVerticesForPoint(Vector2 point, VertexHelper vh, float angle)
+    private void DrawVerticesForPoint(Vector2 point, VertexHelper vh, float angle)
     {
          UIVertex vertex = UIVertex.simpleVert;
          vertex.color = color;
@@ -65,7 +67,7 @@ public class UILineRenderer : Graphic
          vh.AddVert(vertex);
     }
 
-    public float GetAngle(Vector2 me, Vector2 target)
+    private float GetAngle(Vector2 me, Vector2 target)
     {
         return (float)(Mathf.Atan2(target.y - me.y, target.x - me.x) * (180 / Mathf.PI));
     }
