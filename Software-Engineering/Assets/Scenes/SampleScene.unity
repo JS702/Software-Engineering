@@ -9589,7 +9589,7 @@ GameObject:
   - component: {fileID: 480675455}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9606,6 +9606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df79c0e84a5e9645a05df9d75ae99dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTime: 0
 --- !u!4 &480675456
 Transform:
   m_ObjectHideFlags: 0
@@ -18316,6 +18317,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0.017280716, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  diagramName: 
   gridRenderer: {fileID: 1785644025}
   gridSize: {x: 10, y: 10}
   points:
@@ -24365,11 +24367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8917dfbb4421fb2418865b5f28ef1849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foxesAlive: 0
-  haresAlive: 0
-  haresKilled: 0
-  haresStarved: 0
-  foxesStarved: 0
 --- !u!1001 &1227606372
 PrefabInstance:
   m_ObjectHideFlags: 0

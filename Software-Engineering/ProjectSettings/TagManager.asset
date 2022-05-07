@@ -10,6 +10,7 @@ TagManager:
   - Prey
   - Grass
   - StatsManager
+  - GameManager
   layers:
   - Default
   - TransparentFX
