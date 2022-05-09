@@ -566,7 +566,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.21, y: 7}
+  m_AnchoredPosition: {x: -0.21000008, y: 7.000002}
   m_SizeDelta: {x: 52.32, y: 2.47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3843443605508724841
@@ -713,10 +713,10 @@ MonoBehaviour:
   currentHunger: 0
   currentThirst: 0
   currentHorny: 0
-  healthBar: {fileID: 0}
-  hungerBar: {fileID: 0}
-  thirstBar: {fileID: 0}
-  hornyBar: {fileID: 0}
+  healthBar: {fileID: 9040828220337567268}
+  hungerBar: {fileID: 4983374725502423437}
+  thirstBar: {fileID: 5639208040364727676}
+  hornyBar: {fileID: 2993167932771041258}
 --- !u!114 &5665828050681723460
 MonoBehaviour:
   m_ObjectHideFlags: 0

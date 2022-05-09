@@ -19,7 +19,31 @@ public class Animal : Food
     
     public int speed;
     
+    //BARS Start:
+    public int currentHealth;
+    public int currentHunger;
+    public int currentThirst;
+    public int currentHorny;
 
+    public Bars healthBar;
+    public Bars hungerBar;
+    public Bars thirstBar;
+    public Bars hornyBar;
+
+    public float timePassed = 0f;
+
+    public void changeBar(Bars bar,int damage, ref int currentNumber,string operations){
+        
+        currentNumber= operations.Equals("plus") ? currentNumber+=damage : currentNumber-=damage;
+        bar.setValue(currentNumber);
+    }
+
+    public void setBar(ref int currentNumber, int number, Bars bar){
+        currentNumber=number;
+        bar.setMaxValue(number);
+    }
+
+    //BARS End
 
     public void eat(int food)
     {

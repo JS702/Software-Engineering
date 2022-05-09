@@ -6,46 +6,12 @@ using UnityEngine;
 public class Fox : Animal
 {
     
-    public int currentHealth;
-    public int currentHunger;
-    public int currentThirst;
-    public int currentHorny;
-
-    public Bars healthBar;
-    public Bars hungerBar;
-    public Bars thirstBar;
-    public Bars hornyBar;
-
-    float timePassed = 0f;
-
-
-    public void TakeDamage(Bars bar,int damage){
-        currentHealth-=damage;
-        bar.setValue(currentHealth);
-    }
-    public void TakeHunger(Bars bar,int damage){
-        currentHunger-=damage;
-        bar.setValue(currentHunger);
-    }
-    public void TakeThirst(Bars bar,int damage){
-        currentThirst-=damage;
-        bar.setValue(currentThirst);
-    }
-    public void TakeHorny(Bars bar,int damage){
-        currentHorny+=damage;
-        bar.setValue(currentHorny);
-    }
-
-
     
     void Start()
     {
-        currentHealth=health;
-        healthBar.setMaxValue(health);
-        currentHunger=hunger;
-        hungerBar.setMaxValue(hunger);
-        currentThirst=thirst;
-        thirstBar.setMaxValue(thirst);
+        setBar(ref currentHealth, health, healthBar);
+        setBar(ref currentHunger, hunger, hungerBar);
+        setBar(ref currentThirst, thirst, thirstBar);
         
         hornyBar.slider.maxValue=5;
         hornyBar.slider.value=0;
@@ -58,20 +24,19 @@ public class Fox : Animal
     if(timePassed > 2f)
     {
         if(hungerBar.slider.value==0){
-          TakeDamage(healthBar,10);
+          changeBar(healthBar,10,ref currentHealth,"minus");
         }
         if(thirstBar.slider.value==0){
-          TakeDamage(healthBar,10);
+          changeBar(healthBar,10,ref currentHealth,"minus");
         }
-        TakeHunger(hungerBar,10);
-        TakeThirst(thirstBar,15);
-       
+        changeBar(hungerBar,10, ref currentHunger,"minus");
+        changeBar(thirstBar,15, ref currentThirst,"minus");
+        changeBar(hornyBar,1,ref currentHorny,"plus");
         Debug.Log("2 sec passed ");
-        timePassed=0f;
+    
+        timePassed=0f;  
     } 
     }
-    
-    
 }
 
 
