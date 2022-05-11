@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SettingsmenuFox : MonoBehaviour
+public class Timeslider : MonoBehaviour
 {
     public Slider slider;
-    public static int fox=1;
-    public TextMeshProUGUI foxnumber;
+    public static float timef;
+    public TextMeshProUGUI time;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +18,7 @@ public class SettingsmenuFox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fox = (int)slider.value;
-        foxnumber.text= slider.value.ToString();
-
+        timef = (float)slider.value;
+        time.text = slider.value.ToString();
     }
 }
