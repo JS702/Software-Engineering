@@ -38,11 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-<<<<<<< Updated upstream
   m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
-=======
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
->>>>>>> Stashed changes
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18784,11 +18780,12 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0.017280716, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  diagramName: animalsAlive
+  diagramName: 
   gridRenderer: {fileID: 1785644025}
   gridSize: {x: 10, y: 10}
   points:
   - {x: 0, y: 0}
+  - {x: 1, y: 1}
   thickness: 10
 --- !u!222 &954861752
 CanvasRenderer:
@@ -24878,8 +24875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8917dfbb4421fb2418865b5f28ef1849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiLineRenderer:
-  - {fileID: 954861751}
 --- !u!1001 &1227606372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30880,7 +30875,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1495832320
 RectTransform:
   m_ObjectHideFlags: 0
