@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatsManager : MonoBehaviour
 {
-    List<UILineRenderer> uiLineRenderer;
+    [SerializeField] List<UILineRenderer> uiLineRenderer;
     GameManager gameManager;
 
     private int foxesAlive;
@@ -32,15 +32,15 @@ public class StatsManager : MonoBehaviour
 
     private void addHaresKilled()
     {
-        haresKilled++;
-        UILineRenderer line = uiLineRenderer.Find(renderer => renderer.diagramName.Equals("haresKilled"));
-        drawPoint(haresKilled, line);
+        //haresKilled++;
+        //UILineRenderer line = uiLineRenderer.Find(renderer => renderer.diagramName.Equals("haresKilled"));
+        //drawPoint(haresKilled, line);
     }
 
     private void getAnimalsAlive()
     {
         UILineRenderer line = uiLineRenderer.Find(renderer => renderer.diagramName.Equals("animalsAlive"));
-        drawPoint(haresAlive + foxesAlive, line);
+        drawPoint(gameManager.hareAlives.Count + gameManager.foxAlives.Count, line);
     }
 
     private int getAnimalsStarved()
@@ -55,7 +55,7 @@ public class StatsManager : MonoBehaviour
 
     private void drawPoint(float value, UILineRenderer lineRenderer)
     {
-        lineRenderer.points.Add(new Vector2(getTime(), value));
+        lineRenderer.points.Add(new Vector2(gameManager.currentStatsTrackingIntervall, value));
     }
 
 }

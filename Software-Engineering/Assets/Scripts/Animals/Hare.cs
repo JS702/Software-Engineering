@@ -92,7 +92,6 @@ public class Hare : Animal
             changeBar(hungerBar,10, ref currentHunger,"minus");
             changeBar(thirstBar,15, ref currentThirst,"minus");
             changeBar(hornyBar,1,ref currentHorny,"plus");
-            Debug.Log("2 sec passed ");
         
             timePassed=0f;  
         }
