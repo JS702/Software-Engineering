@@ -53,6 +53,7 @@ public class Hare : Animal
     //Während der Hase hungrig ist (Hunger < 50), frisst er jede halbe Sekunde einen Nahrungspunkt
     public void eatGrass()
     {
+        isEating = true;
         if (eatTimer > 0.5f)
         {
             eat(1);
@@ -61,7 +62,9 @@ public class Hare : Animal
         if (hunger > 99)
         {
             isHungry = false;
+            isEating = false;
         }
+        Debug.Log("isEating: " + isEating);
     }
 
     void Start()

@@ -37,7 +37,7 @@ public class HareMovement : Movement
         }
         
         //Abfrage, ob der Hase hungrig ist und Gras kennt
-        if (hare.isHungry && hare.hasFoundGrass())
+        if (hare.isHungry && hare.hasFoundGrass() && !isFleeing)
         {
             agent.SetDestination(hare.moveToNearestGrass());
             if (agent.remainingDistance < 0.1)
@@ -70,6 +70,7 @@ public class HareMovement : Movement
             Fox = col.gameObject;
             foxList.Add(Fox);
             isFleeing = true;
+            hare.isEating = false;
 
         }
 

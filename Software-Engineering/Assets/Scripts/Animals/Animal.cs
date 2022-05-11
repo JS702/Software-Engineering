@@ -16,6 +16,7 @@ public class Animal : Food
     public int reproductionDrive = 5;
 
     public bool isAlive = true;
+    public bool isEating;
     
     public int speed;
     

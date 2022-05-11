@@ -17,10 +17,16 @@ public class bunnyAnimation : MonoBehaviour
     void Update()
     {
         animator.SetBool("isMoving", getIsMoving());
+        animator.SetBool("isEating", getIsEating());
     }
 
     public bool getIsMoving()
     {
-        return movement.isWandering || movement.isFleeing;
+        return (movement.isWandering || movement.isFleeing) && !movement.hare.isEating;
+    }
+
+    public bool getIsEating()
+    {
+        return movement.hare.isEating;
     }
 }
