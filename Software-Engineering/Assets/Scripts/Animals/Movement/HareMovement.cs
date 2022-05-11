@@ -37,9 +37,14 @@ public class HareMovement : Movement
         }
         
         //Abfrage, ob der Hase hungrig ist und Gras kennt
-        if (hare.getHunger() < 50 && hare.hasFoundGrass())
+        if (hare.isHungry && hare.hasFoundGrass())
         {
-            agent.SetDestination(hare.searchAndEatGrass());
+            agent.SetDestination(hare.moveToNearestGrass());
+            if (agent.remainingDistance < 0.1)
+            {
+                hare.eatGrass();
+                Debug.Log("Hase frisst. Hunger: " + hare.hunger);
+            }
         }
         
         //Debug-Tool, bis der Hase hunger bekommen und fressen kann

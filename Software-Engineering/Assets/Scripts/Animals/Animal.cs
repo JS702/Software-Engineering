@@ -31,6 +31,7 @@ public class Animal : Food
     public Bars hornyBar;
 
     public float timePassed = 0f;
+    public float eatTimer = 0f;
 
     public void changeBar(Bars bar,int damage, ref int currentNumber,string operations){
         

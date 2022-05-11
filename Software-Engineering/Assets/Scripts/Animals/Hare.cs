@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Hare : Animal
 {
+    public bool isHungry;
     public bool isFleeing = false;
     public List<Vector3> grassPositionList;
 
@@ -23,7 +24,7 @@ public class Hare : Animal
         }
     }
 
-    public Vector3 searchAndEatGrass()
+    public Vector3 moveToNearestGrass()
     {
         Debug.Log("Dichtestes Gras wird gesucht...");
         //Default: Dichtestes Gras ist das, das er zuerst entdeckt hat
@@ -47,6 +48,20 @@ public class Hare : Animal
     public bool hasFoundGrass()
     {
         return grassPositionList.Count > 0;
+    }
+
+    //Während der Hase hungrig ist (Hunger < 50), frisst er jede halbe Sekunde einen Nahrungspunkt
+    public void eatGrass()
+    {
+        if (eatTimer > 0.5f)
+        {
+            eat(1);
+            eatTimer = 0f;
+        }
+        if (hunger > 99)
+        {
+            isHungry = false;
+        }
     }
 
     void Start()
@@ -77,6 +92,12 @@ public class Hare : Animal
             Debug.Log("2 sec passed ");
         
             timePassed=0f;  
-        } 
+        }
+        eatTimer += Time.deltaTime;
+
+        if (hunger < 50)
+        {
+            isHungry = true;
+        }
     }
 }
