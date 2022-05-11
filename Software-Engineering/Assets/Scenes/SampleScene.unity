@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9863,7 +9863,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df79c0e84a5e9645a05df9d75ae99dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hareAlives: []
+  foxAlives: []
   currentTime: 0
+  currentStatsTrackingIntervall: 1
 --- !u!4 &480675456
 Transform:
   m_ObjectHideFlags: 0
@@ -18780,7 +18783,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0.017280716, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  diagramName: 
+  diagramName: animalsAlive
   gridRenderer: {fileID: 1785644025}
   gridSize: {x: 10, y: 10}
   points:
@@ -24875,6 +24878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8917dfbb4421fb2418865b5f28ef1849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiLineRenderer:
+  - {fileID: 954861751}
 --- !u!1001 &1227606372
 PrefabInstance:
   m_ObjectHideFlags: 0
