@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7459,7 +7459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &350268199
 Transform:
   m_ObjectHideFlags: 0
@@ -18785,10 +18785,9 @@ MonoBehaviour:
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   diagramName: animalsAlive
   gridRenderer: {fileID: 1785644025}
-  gridSize: {x: 10, y: 10}
+  gridSize: {x: 5, y: 5}
   points:
   - {x: 0, y: 0}
-  - {x: 1, y: 1}
   thickness: 10
 --- !u!222 &954861752
 CanvasRenderer:
@@ -24678,27 +24677,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4846501292466111729, guid: effa1d17590c5084fbc5391832bc0064, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4846501292466111729, guid: effa1d17590c5084fbc5391832bc0064, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5294749837274774432, guid: effa1d17590c5084fbc5391832bc0064, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5294749837274774432, guid: effa1d17590c5084fbc5391832bc0064, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5717084264730170382, guid: effa1d17590c5084fbc5391832bc0064, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5717084264730170382, guid: effa1d17590c5084fbc5391832bc0064, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7366081109373987059, guid: effa1d17590c5084fbc5391832bc0064, type: 3}
       propertyPath: m_Name
@@ -24706,11 +24705,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7768934499742210514, guid: effa1d17590c5084fbc5391832bc0064, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7768934499742210514, guid: effa1d17590c5084fbc5391832bc0064, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7886439639857492553, guid: effa1d17590c5084fbc5391832bc0064, type: 3}
       propertyPath: m_RootOrder
@@ -30893,7 +30892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1495832320
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36261,7 +36260,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  gridSize: {x: 10, y: 10}
+  gridSize: {x: 5, y: 5}
   thickness: 5
 --- !u!222 &1785644026
 CanvasRenderer:
