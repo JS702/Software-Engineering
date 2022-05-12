@@ -7,7 +7,7 @@ using TMPro;
 public class SettingsmenuFox : MonoBehaviour
 {
     public Slider slider;
-    public static int fox=1;
+    public static int fox;
     public TextMeshProUGUI foxnumber;
     // Start is called before the first frame update
     void Start()
