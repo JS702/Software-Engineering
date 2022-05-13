@@ -18,10 +18,16 @@ public class foxAnimation : MonoBehaviour
     void Update()
     {
         animator.SetBool("isMoving", getIsMoving());
+        animator.SetBool("isAlive", getIsAlive());
     }
 
     public bool getIsMoving()
     {
-        return movement.isWandering || movement.isHunting;
+        return (movement.isWandering || movement.isHunting) && movement.fox.isAlive;
+    }
+
+    public bool getIsAlive()
+    {
+        return movement.fox.isAlive;
     }
 }

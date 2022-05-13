@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class foxMovement : Movement
 {
-    private Fox fox;
+    public Fox fox;
     
 
     // Hunting Variables
@@ -34,6 +34,16 @@ public class foxMovement : Movement
         else if (!isWandering && !isHunting)
         {
             StartCoroutine(setWanderDestination());
+        }
+
+        if (Input.GetKeyDown("k"))
+        {
+            fox.die(false);
+        }
+
+        if (!fox.isAlive)
+        {
+            agent.isStopped = true;
         }
     }
 

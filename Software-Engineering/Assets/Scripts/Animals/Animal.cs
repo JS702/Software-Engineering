@@ -66,4 +66,18 @@ public class Animal : Food
         OnGotKilled?.Invoke();
     }
 
+    //Wenn der Methode "true" übergeben wird, so verschwindet die Leiche, nachdem die Sterbeanimation durchgelaufen ist
+    //Andernfalls bleibt sie Liegen (z.B. falls sie noch gefressen werden soll)
+    public void die(bool instantDespawn)
+    {
+        if (instantDespawn)
+        {
+            isAlive = false;
+            Destroy(this.gameObject, 5f);
+        } else
+        {
+            isAlive = false;
+        }
+    }
+
 }

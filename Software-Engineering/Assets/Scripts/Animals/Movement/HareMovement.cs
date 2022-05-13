@@ -58,6 +58,15 @@ public class HareMovement : Movement
             hare.hunger = 100;
             Debug.Log(hare.hunger);
         }
+        if (Input.GetKeyDown("k"))
+        {
+            hare.die(false);
+        }
+
+        if(!hare.isAlive)
+        {
+            agent.isStopped = true;
+        }
     }
 
     private void OnTriggerEnter(Collider col)

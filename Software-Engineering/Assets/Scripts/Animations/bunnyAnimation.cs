@@ -18,15 +18,21 @@ public class bunnyAnimation : MonoBehaviour
     {
         animator.SetBool("isMoving", getIsMoving());
         animator.SetBool("isEating", getIsEating());
+        animator.SetBool("isAlive", getIsAlive());
     }
 
     public bool getIsMoving()
     {
-        return (movement.isWandering || movement.isFleeing) && !movement.hare.isEating;
+        return (movement.isWandering || movement.isFleeing) && !movement.hare.isEating && movement.hare.isAlive;
     }
 
     public bool getIsEating()
     {
-        return movement.hare.isEating;
+        return movement.hare.isEating && movement.hare.isAlive;
+    }
+
+    public bool getIsAlive()
+    {
+        return movement.hare.isAlive;
     }
 }
