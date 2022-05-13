@@ -72,12 +72,9 @@ public class Animal : Food
     {
         if (instantDespawn)
         {
-            isAlive = false;
             Destroy(this.gameObject, 5f);
-        } else
-        {
-            isAlive = false;
         }
+        isAlive = false;
     }
 
 }
