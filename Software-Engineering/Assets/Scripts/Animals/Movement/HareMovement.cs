@@ -61,10 +61,7 @@ public class HareMovement : Movement
         if (Input.GetKeyDown("k"))
         {
             hare.die(false);
-        }
-
-        if(!hare.isAlive)
-        {
+            //Denkt daran den Agent zu stoppen wenn ihr die die-Methode aufruft, ich konnte aus Animal nicht darauf zugreifen
             agent.isStopped = true;
         }
     }

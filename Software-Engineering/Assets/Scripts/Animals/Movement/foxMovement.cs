@@ -38,11 +38,8 @@ public class foxMovement : Movement
 
         if (Input.GetKeyDown("k"))
         {
-            fox.die(false);
-        }
-
-        if (!fox.isAlive)
-        {
+            fox.die(true);
+            //Denkt daran den Agent zu stoppen wenn ihr die die-Methode aufruft, ich konnte aus Animal nicht darauf zugreifen
             agent.isStopped = true;
         }
     }

@@ -67,12 +67,16 @@ public class Animal : Food
     }
 
     //Wenn der Methode "true" übergeben wird, so verschwindet die Leiche, nachdem die Sterbeanimation durchgelaufen ist
-    //Andernfalls bleibt sie Liegen (z.B. falls sie noch gefressen werden soll)
+    //Andernfalls bleibt sie Liegen (z.B. falls sie noch gefressen werden soll) und verliert pro Sekunde einen Nährwertpunkt
     public void die(bool instantDespawn)
     {
         if (instantDespawn)
         {
             Destroy(this.gameObject, 5f);
+        }
+        else
+        {
+            StartCoroutine(decreaseNutritionalValue());
         }
         isAlive = false;
     }
