@@ -22,7 +22,6 @@ public class Countdown : MonoBehaviour
         if((countdowntime > Timeslider.timef) & a)
         {
 
-            Debug.Log("Jetzt würde das Statistikenfenster erscheinen!");
             a = false;
         }
     }

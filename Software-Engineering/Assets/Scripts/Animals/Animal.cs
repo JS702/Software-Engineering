@@ -30,9 +30,19 @@ public class Animal : Food
     public Bars hungerBar;
     public Bars thirstBar;
     public Bars hornyBar;
+    protected bool updatingBars = false;
 
     public float timePassed = 0f;
     public float eatTimer = 0f;
+
+
+    protected void Update()
+    {
+        if (!updatingBars)
+        {
+            StartCoroutine(updateBars());
+        }
+    }
 
     public void changeBar(Bars bar,int damage, ref int currentNumber,string operations){
         
@@ -43,6 +53,21 @@ public class Animal : Food
     public void setBar(ref int currentNumber, int number, Bars bar){
         currentNumber=number;
         bar.setMaxValue(number);
+    }
+
+    protected IEnumerator updateBars()
+    {
+        updatingBars = true;
+        if (thirstBar.slider.value == 0)
+        {
+            changeBar(healthBar, 10, ref currentHealth, "minus");
+        }
+        changeBar(hungerBar, 10, ref currentHunger, "minus");
+        changeBar(thirstBar, 15, ref currentThirst, "minus");
+        changeBar(hornyBar, 1, ref currentHorny, "plus");
+
+        yield return new WaitForSeconds(3f);
+        updatingBars = false;
     }
 
     //BARS End

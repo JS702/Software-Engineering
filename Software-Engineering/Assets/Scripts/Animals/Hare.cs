@@ -79,22 +79,9 @@ public class Hare : Animal
 
     }
 
-    void Update(){
-    timePassed += Time.deltaTime;
-        if(timePassed > 2f)
-        {
-            if(hungerBar.slider.value==0){
-            changeBar(healthBar,10,ref currentHealth,"minus");
-            }
-            if(thirstBar.slider.value==0){
-            changeBar(healthBar,10,ref currentHealth,"minus");
-            }
-            changeBar(hungerBar,10, ref currentHunger,"minus");
-            changeBar(thirstBar,15, ref currentThirst,"minus");
-            changeBar(hornyBar,1,ref currentHorny,"plus");
-        
-            timePassed=0f;  
-        }
+    void Update()
+    {
+        base.Update();// updates the bars
         eatTimer += Time.deltaTime;
 
         if (hunger < 50)

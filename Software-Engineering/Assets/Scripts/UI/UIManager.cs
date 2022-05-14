@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject diagramPanel;
     [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject aimDot;
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -44,6 +45,7 @@ public class UIManager : MonoBehaviour
         {
             if(Time.timeScale > 0)
             {
+                aimDot.SetActive(false);
                 Time.timeScale = 0;
                 pausePanel.SetActive(true);
                 GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FreeFlyCamera>().enabled = false;
@@ -52,7 +54,10 @@ public class UIManager : MonoBehaviour
             }
             else
             {
+                pausePanel.SetActive(false);
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FreeFlyCamera>().enabled = true;
                 Time.timeScale = 1;
+                aimDot.SetActive(true);
             }
         }
     }
