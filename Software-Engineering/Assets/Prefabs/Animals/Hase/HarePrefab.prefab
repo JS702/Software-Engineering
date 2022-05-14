@@ -1222,6 +1222,7 @@ GameObject:
   - component: {fileID: 8406825488684166222}
   - component: {fileID: 3816233004399031238}
   - component: {fileID: 435888891079221855}
+  - component: {fileID: -1798922287744968124}
   m_Layer: 0
   m_Name: HarePrefab
   m_TagString: Prey
@@ -1334,6 +1335,7 @@ MonoBehaviour:
   thirst: 100
   reproductionDrive: 5
   isAlive: 1
+  isEating: 0
   speed: 0
   currentHealth: 0
   currentHunger: 0
@@ -1344,6 +1346,8 @@ MonoBehaviour:
   thirstBar: {fileID: 7514151324299109184}
   hornyBar: {fileID: 5728684598532982814}
   timePassed: 0
+  eatTimer: 0
+  isHungry: 0
   isFleeing: 0
   grassPositionList: []
 --- !u!95 &3816233004399031238
@@ -1378,6 +1382,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d63b3bff55ba0a428451ed7d2f50783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1798922287744968124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7366081109373987059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09454771bca765f4b9855ee9eec9433e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animal: {fileID: 8406825488684166222}
 --- !u!1 &7770220560490308381
 GameObject:
   m_ObjectHideFlags: 0

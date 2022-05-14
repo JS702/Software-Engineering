@@ -649,6 +649,7 @@ GameObject:
   - component: {fileID: 6601355252471824773}
   - component: {fileID: 4543071862442785083}
   - component: {fileID: 1332724152397091524}
+  - component: {fileID: 8790085639308673462}
   m_Layer: 0
   m_Name: FoxPrefab
   m_TagString: Fox
@@ -708,6 +709,7 @@ MonoBehaviour:
   thirst: 100
   reproductionDrive: 5
   isAlive: 1
+  isEating: 0
   speed: 0
   currentHealth: 0
   currentHunger: 0
@@ -717,6 +719,8 @@ MonoBehaviour:
   hungerBar: {fileID: 4983374725502423437}
   thirstBar: {fileID: 5639208040364727676}
   hornyBar: {fileID: 2993167932771041258}
+  timePassed: 0
+  eatTimer: 0
 --- !u!114 &5665828050681723460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,6 +735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 10
   isWandering: 0
+  fox: {fileID: 0}
   _agent: {fileID: 4307038512871931671}
   Hare: {fileID: 0}
   preyList: []
@@ -804,6 +809,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad57ff3931bd3e84896aacf9a0c4b488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8790085639308673462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189034732971714835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09454771bca765f4b9855ee9eec9433e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsPanel: {fileID: 0}
+  animal: {fileID: 6702265670465999294}
 --- !u!1 &6767507912596128942
 GameObject:
   m_ObjectHideFlags: 0
