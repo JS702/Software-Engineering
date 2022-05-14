@@ -12,10 +12,11 @@ public class StatsWindow : MonoBehaviour
     [SerializeField] Bars thirstBar;
     [SerializeField] Bars reproductionDriveBar;
     private Animal animal1;
+    private bool updating = false;
 
     private void Update()
     {
-        if(animal1 != null)
+        if(animal1 != null && !updating)
         {
             StartCoroutine(updateStats());
         }
@@ -38,13 +39,32 @@ public class StatsWindow : MonoBehaviour
 
     IEnumerator updateStats()
     {
+        updating = true;
         this.healthBar.setValue(animal1.currentHealth);
         this.hungerBar.setValue(animal1.currentHunger);
         this.thirstBar.setValue(animal1.currentThirst);
         this.reproductionDriveBar.setValue(animal1.currentHorny);
 
+        if (animal1 is Fox)
+        {
+            foxStats();
+        }
+        else if (animal1 is Hare)
+        {
+            hareStats();
+        }
+
         yield return new WaitForSeconds(3f);
+        updating = false;
     }
 
-
+    private void foxStats()
+    {
+        //TODO fox stats
+    }
+    
+    private void hareStats()
+    {
+        //TODO hare stats
+    }
 }

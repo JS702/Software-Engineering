@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
 
     [SerializeField] GameObject diagramPanel;
+    [SerializeField] GameObject pausePanel;
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -44,6 +45,10 @@ public class UIManager : MonoBehaviour
             if(Time.timeScale > 0)
             {
                 Time.timeScale = 0;
+                pausePanel.SetActive(true);
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FreeFlyCamera>().enabled = false;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
             else
             {
