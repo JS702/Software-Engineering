@@ -50,7 +50,7 @@ public class Hare : Animal
         return grassPositionList.Count > 0;
     }
 
-    //Während der Hase hungrig ist (Hunger < 50), frisst er jede halbe Sekunde einen Nahrungspunkt
+    //Wï¿½hrend der Hase hungrig ist (Hunger < 50), frisst er jede halbe Sekunde einen Nahrungspunkt
     public void eatGrass()
     {
         isEating = true;

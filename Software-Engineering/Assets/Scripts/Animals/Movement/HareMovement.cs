@@ -124,18 +124,24 @@ public class HareMovement : Movement
         Vector3 harePosition = transform.position;
 
         //get the distance to the nearest fox
-        getLowestDistance(harePosition);
+        try{
+            getLowestDistance(harePosition);
 
-         //Look for nearest Fox
-        Vector3 dirToFox = harePosition - Fox.transform.position;
-        Debug.DrawLine(harePosition, Fox.transform.position, Color.red);
+            //Look for nearest Fox
+            Vector3 dirToFox = harePosition - Fox.transform.position;
+            Debug.DrawLine(harePosition, Fox.transform.position, Color.red);
 
-        // Escape direction
-        _fleeDirection = harePosition + (dirToFox).normalized;
-        Debug.DrawLine(harePosition, _fleeDirection, Color.blue);
+            // Escape direction
+            _fleeDirection = harePosition + (dirToFox).normalized;
+            Debug.DrawLine(harePosition, _fleeDirection, Color.blue);
 
-        //Tell Agent where to go  
-        agent.SetDestination(_fleeDirection);
+            //Tell Agent where to go  
+            agent.SetDestination(_fleeDirection);
+
+        }catch(MissingReferenceException){
+
+        }
+        
 
     }
     
