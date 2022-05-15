@@ -50,16 +50,17 @@ public class Hare : Animal
         return grassPositionList.Count > 0;
     }
 
-    //Während der Hase hungrig ist (Hunger < 50), frisst er jede halbe Sekunde einen Nahrungspunkt
+    //Wï¿½hrend der Hase hungrig ist (Hunger < 50), frisst er jede halbe Sekunde einen Nahrungspunkt
     public void eatGrass()
     {
         isEating = true;
         if (eatTimer > 0.5f)
         {
-            eat(1);
+            eat(10);
             eatTimer = 0f;
+            hungerBar.setValue(currentHunger);
         }
-        if (hunger > 99)
+        if (currentHunger > 99)
         {
             isHungry = false;
             isEating = false;
@@ -83,6 +84,7 @@ public class Hare : Animal
     timePassed += Time.deltaTime;
         if(timePassed > 2f)
         {
+            if(isEating==false){
             if(hungerBar.slider.value==0){
             changeBar(healthBar,10,ref currentHealth,"minus");
             }
@@ -92,12 +94,12 @@ public class Hare : Animal
             changeBar(hungerBar,10, ref currentHunger,"minus");
             changeBar(thirstBar,15, ref currentThirst,"minus");
             changeBar(hornyBar,1,ref currentHorny,"plus");
-        
+            }
             timePassed=0f;  
         }
         eatTimer += Time.deltaTime;
 
-        if (hunger < 50)
+        if (currentHunger < 50)
         {
             isHungry = true;
         }

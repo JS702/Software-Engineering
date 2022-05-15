@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class Movement : MonoBehaviour
 {
+    public Animal animal;
     public float range = 10.0f;
 
     public bool isWandering = false;
@@ -32,4 +33,6 @@ public class Movement : MonoBehaviour
         }
         isWandering = false;
     }
+    
+    
 }

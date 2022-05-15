@@ -45,6 +45,16 @@ public class foxMovement : Movement
         {
             agent.isStopped = true;
         }
+        
+        
+        if (fox.isThirsty && fox.hasFoundWaterSource() && !isHunting)
+        {
+            agent.SetDestination(fox.moveToNearestWaterSource());
+            if (agent.remainingDistance < 0.1)
+            {
+                fox.drinkWater();
+            }
+        }
     }
 
     public Collider col;
@@ -60,6 +70,13 @@ public class foxMovement : Movement
             preyList.Add(Hare);
             isHunting = true;
         }
+
+        if (col.tag == "WaterSource")
+        {
+            Debug.Log("Added to waterlist");
+            fox.addWaterSourceToList(col);
+        }
+
     }
 
     private void OnTriggerExit(Collider col)
