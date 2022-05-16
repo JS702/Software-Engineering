@@ -9,11 +9,7 @@ public class Timeslider : MonoBehaviour
     public Slider slider;
     public static float timef;
     public TextMeshProUGUI time;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   
 
     // Update is called once per frame
     void Update()
