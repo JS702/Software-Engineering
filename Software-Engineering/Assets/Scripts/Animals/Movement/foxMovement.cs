@@ -49,10 +49,15 @@ public class foxMovement : Movement
         
         if (fox.isThirsty && fox.hasFoundWaterSource() && !isHunting)
         {
+            
             agent.SetDestination(fox.moveToNearestWaterSource());
+            Debug.Log("Set destination: "+agent.SetDestination(fox.moveToNearestWaterSource()));
+            Debug.Log("remaining Distance:"+agent.remainingDistance);
             if (agent.remainingDistance < 0.1)
             {
-                fox.drinkWater();
+
+                fox.drinkWater();     
+ ;         
             }
         }
     }
@@ -73,7 +78,6 @@ public class foxMovement : Movement
 
         if (col.tag == "WaterSource")
         {
-            Debug.Log("Added to waterlist");
             fox.addWaterSourceToList(col);
         }
 
