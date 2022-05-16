@@ -28,6 +28,7 @@ public class StatsManager : MonoBehaviour
     private void OnDisable()
     {
         Animal.OnGotKilled -= addHaresKilled;
+        GameManager.onStatTracking -= getAnimalsAlive;
     }
 
     private void addHaresKilled()
