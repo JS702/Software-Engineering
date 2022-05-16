@@ -16,12 +16,8 @@ public class Hare : Animal
         if (!grassPositionList.Contains(grassPosition))
         {
             grassPositionList.Add(grassPosition);
-            Debug.Log("Grass added to list" + grassPosition.ToString());
         }
-        else
-        {
-            Debug.Log("Grass already in list");
-        }
+
     }
 
     public Vector3 moveToNearestGrass()
