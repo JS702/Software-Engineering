@@ -8,6 +8,13 @@ using TMPro;
 public class Options : MonoBehaviour
 {
     
+
+    public void update()
+    {
+        
+
+    }
+
     public void StartSimulation()
     {
        

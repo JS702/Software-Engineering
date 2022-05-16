@@ -15,12 +15,15 @@ public class GameManager : MonoBehaviour
     public float currentTime = 0f;
     float maxTime = 100f;
 
-    private int statsTrackingIntervall = 10;
-    private int nextStatsTrackingIntervall = 10;
+    int statsTrackingIntervall = 10;
+    int nextStatsTrackingIntervall = 10;
     public int currentStatsTrackingIntervall = 1;
+    private void Start()
+    {
+        hareAlives.Add(new GameObject());
+        hareAlives.Add(new GameObject());
+    }
 
-    //UI
-    [SerializeField] GameObject panel;
 
 
     private void Update()
@@ -29,46 +32,15 @@ public class GameManager : MonoBehaviour
         {
             if (currentTime > nextStatsTrackingIntervall)
             {
-                hareAlives = new List<GameObject>(GameObject.FindGameObjectsWithTag("Prey"));
-                foxAlives = new List<GameObject>(GameObject.FindGameObjectsWithTag("Fox"));
                 onStatTracking?.Invoke();
                 nextStatsTrackingIntervall += statsTrackingIntervall;
                 currentStatsTrackingIntervall++;
             }
             currentTime += 1 * Time.deltaTime;
         }
-        if (!panel.activeSelf)
-        {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                float timeScale = Time.timeScale;
-                if (timeScale >= 16)
-                {
-                    Time.timeScale = 0.5f;
-                }
-                else
-                {
-                    Time.timeScale *= 2;
-                }
-
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                float timeScale = Time.timeScale;
-
-                if (timeScale <= 0.5)
-                {
-                    Time.timeScale = 16f;
-                }
-                else
-                {
-                    Time.timeScale /= 2;
-                }
-            }
-        }
         else
         {
             //TODO implement end screen
-        }  
+        }
     }
 }

@@ -16,8 +16,12 @@ public class Hare : Animal
         if (!grassPositionList.Contains(grassPosition))
         {
             grassPositionList.Add(grassPosition);
+            Debug.Log("Grass added to list" + grassPosition.ToString());
         }
-
+        else
+        {
+            Debug.Log("Grass already in list");
+        }
     }
 
     public Vector3 moveToNearestGrass()
@@ -93,9 +97,6 @@ public class Hare : Animal
             }
             timePassed=0f;  
         }
-    void Update()
-    {
-        base.Update();// updates the bars
         eatTimer += Time.deltaTime;
 
         if (currentHunger < 50)
@@ -103,5 +104,4 @@ public class Hare : Animal
             isHungry = true;
         }
     }
-}
 }

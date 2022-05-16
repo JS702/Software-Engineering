@@ -18,11 +18,6 @@ public class UILineRenderer : Graphic
     float height;
     float unitWidth;
     float unitHeight;
-
-    protected override void Start()
-    {
-        gridRenderer = transform.GetComponentInParent<UIGridRenderer>();
-    }
     protected override void OnPopulateMesh(VertexHelper vh)
     {
         vh.Clear();
@@ -60,24 +55,16 @@ public class UILineRenderer : Graphic
     }
     private void DrawVerticesForPoint(Vector2 point, VertexHelper vh, float angle)
     {
-        if (point.x > gridRenderer.gridSize.x)
-        {
-            gridRenderer.gridSize.x *= 2;
-        }
-        if (point.y > gridRenderer.gridSize.y)
-        {
-            gridRenderer.gridSize.y *= 2;
-        }
-        UIVertex vertex = UIVertex.simpleVert;
-        vertex.color = color;
+         UIVertex vertex = UIVertex.simpleVert;
+         vertex.color = color;
 
-        vertex.position = Quaternion.Euler(0,0,angle) * new Vector3(-thickness / 2, 0);
-        vertex.position += new Vector3(unitWidth * point.x , unitHeight * point.y);
-        vh.AddVert(vertex);
+         vertex.position = Quaternion.Euler(0,0,angle) * new Vector3(-thickness / 2, 0);
+         vertex.position += new Vector3(unitWidth * point.x , unitHeight * point.y);
+         vh.AddVert(vertex);
 
-        vertex.position = Quaternion.Euler(0, 0, angle) * new Vector3(thickness / 2, 0);
-        vertex.position += new Vector3(unitWidth * point.x, unitHeight * point.y);
-        vh.AddVert(vertex);
+         vertex.position = Quaternion.Euler(0, 0, angle) * new Vector3(thickness / 2, 0);
+         vertex.position += new Vector3(unitWidth * point.x, unitHeight * point.y);
+         vh.AddVert(vertex);
     }
 
     private float GetAngle(Vector2 me, Vector2 target)

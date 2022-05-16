@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Fox : Animal
 {
-
-    public int killedHares = 0;
+    
+    
     void Start()
     {
         setBar(ref currentHealth, health, healthBar);

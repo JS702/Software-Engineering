@@ -494,7 +494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2188469228723943683}
   - component: {fileID: 4676514228099275810}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,7 +721,6 @@ MonoBehaviour:
   hornyBar: {fileID: 2993167932771041258}
   timePassed: 0
   eatTimer: 0
-  killedHares: 0
 --- !u!114 &5665828050681723460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,6 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09454771bca765f4b9855ee9eec9433e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statsPanel: {fileID: 0}
   animal: {fileID: 6702265670465999294}
 --- !u!1 &6767507912596128942
 GameObject:

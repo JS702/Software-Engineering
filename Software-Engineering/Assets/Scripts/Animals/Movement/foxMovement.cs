@@ -16,7 +16,6 @@ public class foxMovement : Movement
     public Vector3 _huntDirection;
     private float lowestDistance = 100;
     private float _distanceToPrey;
-    //Vector3 foxPosition = transform.position;
     public bool isHunting = false;
 
 
@@ -39,8 +38,11 @@ public class foxMovement : Movement
 
         if (Input.GetKeyDown("k"))
         {
-            fox.die(true);
-            //Denkt daran den Agent zu stoppen wenn ihr die die-Methode aufruft, ich konnte aus Animal nicht darauf zugreifen
+            fox.die(false);
+        }
+
+        if (!fox.isAlive)
+        {
             agent.isStopped = true;
         }
         
@@ -67,7 +69,6 @@ public class foxMovement : Movement
          //if a fox enters the Sight of the hare, the hare add this Fox to his list of Foxes nearby
         if(col.tag == "Prey")
         {
-            
             isWandering = false;
             agent.speed = sprintSpeed;
             Hare = col.gameObject;
@@ -83,62 +84,89 @@ public class foxMovement : Movement
     }
 
     private void OnTriggerExit(Collider col)
-    {  
+    {
+        
         if(col.gameObject.tag == "Prey")
         {
             preyList.Remove(col.gameObject);
+
         }
+
+
     }
 
-     public void getLowestDistance(Vector3 foxPosition)
-     {
-        float _distanceToHare;
-        float lowestDistance = 100;
-         foreach (GameObject hare in preyList)
-            {
-                Vector3 harePosition = hare.transform.position;
-                _distanceToHare = Vector3.Distance(foxPosition, harePosition);
-
-                if (_distanceToHare < lowestDistance)
-                {
-                    //Der Fox der am dichtesten ist wird zum gameObject Fox vor dem der Hase wegrennt
-                    Hare = hare;
-                    lowestDistance = _distanceToHare;
-                }
-            }
-    }
-
-
-    private void hunt()
+    public void hunt()
     {
-         // is there anything to hunt?
+        // is there anything to hunt?
         if(preyList.Count == 0)
         {
             isHunting=false;
         }
-        
-        //the direction in wich the hare is fleeing if a Fox is around
-        Vector3 _huntDirection;
+
+
+        // reset Distance back to 100 to find the new nearest Fox
+        lowestDistance = 100;
+
         Vector3 foxPosition = transform.position;
+        Vector3 preyPosition = preyList[0].transform.position;
 
-        //get the distance to the nearest fox
-        try
+        if(preyList.Count > 1)
         {
-            getLowestDistance(foxPosition);
-            //Look for nearest Fox
-            Vector3 dirToHare = foxPosition - Hare.transform.position;
-            Debug.DrawLine(foxPosition, Hare.transform.position, Color.red);
 
+            // find the closest Fox
+            foreach(GameObject prey in preyList)
+            {
+                
+                preyPosition = prey.transform.position;
+                _distanceToPrey = Vector3.Distance(foxPosition, preyPosition);
+
+                if(_distanceToPrey < lowestDistance){
+
+                    //Der Fox der am dichtesten ist wird zum gameObject Fox vor dem der Hase wegrennt
+                    Hare = prey;
+                    lowestDistance = _distanceToPrey;
+                }
+            }
+
+            
+           
+            
+            //Look for nearest Fox
+            Vector3 dirToPrey = transform.position - Hare.transform.position;
+            Debug.DrawLine(transform.position, Hare.transform.position, Color.red );
+            
             // Escape direction
-            _huntDirection = foxPosition - (dirToHare).normalized;
-            Debug.DrawLine(foxPosition, _huntDirection, Color.blue);
+            _huntDirection = transform.position - (dirToPrey).normalized;
+            Debug.DrawLine(transform.position,  _huntDirection, Color.blue );
 
             //Tell Agent where to go  
-            agent.SetDestination(_huntDirection);
-        }catch(MissingReferenceException e)
-        {
-            //Debug.LogException(e,this);
+            _agent.SetDestination(_huntDirection);
+            
+        }
+        else
+        { // If there is only one Fox
+
+            _distanceToPrey = Vector3.Distance(foxPosition, preyPosition);
+            if(_distanceToPrey < lowestDistance)
+            {
+                //the nearest fox will be the Fox gameObject which the hare flee from
+                Hare = preyList[0];
+                lowestDistance = _distanceToPrey;
+            }
+
+            Vector3 dirToFox = transform.position - Hare.transform.position;
+            Debug.DrawLine(transform.position, Hare.transform.position, Color.red );
+            
+            // Escape direction
+            _huntDirection = transform.position - (dirToFox).normalized;
+            Debug.DrawLine(transform.position,  _huntDirection, Color.blue );
+
+            //Tell Agent where to go  
+            _agent.SetDestination(_huntDirection);
+
         }
     }
+
+
 }
 

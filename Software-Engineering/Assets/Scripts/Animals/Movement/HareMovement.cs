@@ -63,7 +63,10 @@ public class HareMovement : Movement
         if (Input.GetKeyDown("k"))
         {
             hare.die(false);
-            //Denkt daran den Agent zu stoppen wenn ihr die die-Methode aufruft, ich konnte aus Animal nicht darauf zugreifen
+        }
+
+        if(!hare.isAlive)
+        {
             agent.isStopped = true;
         }
     }
@@ -126,24 +129,18 @@ public class HareMovement : Movement
         Vector3 harePosition = transform.position;
 
         //get the distance to the nearest fox
-        try{
-            getLowestDistance(harePosition);
+        getLowestDistance(harePosition);
 
-            //Look for nearest Fox
-            Vector3 dirToFox = harePosition - Fox.transform.position;
-            Debug.DrawLine(harePosition, Fox.transform.position, Color.red);
+         //Look for nearest Fox
+        Vector3 dirToFox = harePosition - Fox.transform.position;
+        Debug.DrawLine(harePosition, Fox.transform.position, Color.red);
 
-            // Escape direction
-            _fleeDirection = harePosition + (dirToFox).normalized;
-            Debug.DrawLine(harePosition, _fleeDirection, Color.blue);
+        // Escape direction
+        _fleeDirection = harePosition + (dirToFox).normalized;
+        Debug.DrawLine(harePosition, _fleeDirection, Color.blue);
 
-            //Tell Agent where to go  
-            agent.SetDestination(_fleeDirection);
-
-        }catch(MissingReferenceException){
-
-        }
-        
+        //Tell Agent where to go  
+        agent.SetDestination(_fleeDirection);
 
     }
     
