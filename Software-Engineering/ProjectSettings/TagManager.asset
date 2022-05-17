@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Environment
   - Beute
+  - Fox
+  - Prey
+  - Grass
+  - StatsManager
+  - GameManager
+  - StatsPanel
   layers:
   - Default
   - TransparentFX

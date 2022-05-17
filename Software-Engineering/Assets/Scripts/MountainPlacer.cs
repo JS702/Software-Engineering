@@ -12,7 +12,7 @@ public class MountainPlacer : MonoBehaviour
 
     [SerializeField]
     private float scaleWidth, scaleHeight, distance;
-    // Start is called before the first frame update
+   
     
     [ContextMenu("CreateMountains")]
 
@@ -25,6 +25,8 @@ public class MountainPlacer : MonoBehaviour
 
         int prefabIndex = 0;
         float angle = 0f;
+
+        //Hardcoded to Form an Octagon     
 
         for(int i = 0; i<8; i++){
             mountains.Add(Instantiate(mountainPrefabs[prefabIndex],transform));
