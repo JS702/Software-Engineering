@@ -12,6 +12,7 @@ TagManager:
   - StatsManager
   - GameManager
   - StatsPanel
+  - DiagramManager
   layers:
   - Default
   - TransparentFX

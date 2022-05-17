@@ -9,8 +9,10 @@ public class UILineRenderer : Graphic
     public string diagramName;
 
     public UIGridRenderer gridRenderer;
+    public DiagramManager diagramManager;
     public Vector2Int gridSize;
     public List<Vector2> points;
+    public int scale = 1;
 
     [SerializeField] float thickness = 10f;
 
@@ -22,6 +24,7 @@ public class UILineRenderer : Graphic
     protected override void Start()
     {
         gridRenderer = transform.GetComponentInParent<UIGridRenderer>();
+        diagramManager = GameObject.FindGameObjectWithTag("DiagramManager").GetComponent<DiagramManager>();
     }
     protected override void OnPopulateMesh(VertexHelper vh)
     {
@@ -40,7 +43,7 @@ public class UILineRenderer : Graphic
 
         float angle = 0;
 
-        for(int i = 0; i<points.Count; i++)
+        for(int i = 0; i < points.Count; i++)
         {
             Vector2 point = points[i];
             if (i < points.Count - 1)
@@ -60,13 +63,16 @@ public class UILineRenderer : Graphic
     }
     private void DrawVerticesForPoint(Vector2 point, VertexHelper vh, float angle)
     {
+        /*
         if (point.x > gridRenderer.gridSize.x)
         {
             gridRenderer.gridSize.x *= 2;
         }
+        */
         if (point.y > gridRenderer.gridSize.y)
         {
             gridRenderer.gridSize.y *= 2;
+            adjustPointScale();
         }
         UIVertex vertex = UIVertex.simpleVert;
         vertex.color = color;
@@ -95,5 +101,16 @@ public class UILineRenderer : Graphic
                 SetVerticesDirty();
             }
         }
+    }
+
+    private void adjustPointScale()
+    {
+        for(int i = 0; i < points.Count; i++)
+        {
+            points[i] = new Vector2(points[i].x, points[i].y / 2);
+        }
+        scale *= 2;
+
+        //change scale of text axes
     }
 } 

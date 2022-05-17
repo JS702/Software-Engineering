@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DiagramManager : MonoBehaviour
 {
     [SerializeField] List<GameObject> diagrams;
+    [SerializeField] GameObject y_Axis;
+    [SerializeField] GameObject x_Axis;
     private int activeDiagramIndex = 0; // muss default m‰ﬂig dass diagram sein, was als erstes an ist
 
     // Update is called once per frame
@@ -53,5 +56,15 @@ public class DiagramManager : MonoBehaviour
            
         }
     }
+
+    public void scaleAxis()
+    {
+        string number = y_Axis.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        int.TryParse(number, out int scale);
+        scale *= 2;
+        y_Axis.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = scale.ToString();
+
+    }
+
         
 }
