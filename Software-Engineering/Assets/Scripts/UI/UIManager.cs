@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
         {
             bool isActive = diagramPanel.activeInHierarchy;
             diagramPanel.SetActive(!isActive);
+            aimDot.SetActive(isActive);
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
