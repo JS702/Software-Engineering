@@ -18220,6 +18220,11 @@ PrefabInstance:
     - target: {fileID: 6189034732971714832, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+<<<<<<< HEAD
+      value: 3.18
+=======
+>>>>>>> 3c7a4ef56ede7a41c305297adb43ac946717ee6b
+>>>>>>> parent of 4ba2530 (Revert "fix merge conflicts")
       objectReference: {fileID: 0}
     - target: {fileID: 6189034732971714832, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
       propertyPath: m_LocalPosition.z
