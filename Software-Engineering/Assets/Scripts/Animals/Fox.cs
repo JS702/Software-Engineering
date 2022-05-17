@@ -39,7 +39,7 @@ public class Fox : Animal
 
     public Vector3 moveToNearestWaterSource()
     {
-
+        Debug.Log("Closest watersource...");
         
         float distanceToNearestWaterSource = Vector3.Distance(waterSourcePositionList[0], transform.position);
         Vector3 nearestWaterSourcePosition = waterSourcePositionList[0];
@@ -54,10 +54,10 @@ public class Fox : Animal
             }
         }
         //move to watersource
-
+        Debug.Log("move to water");
         //return nearestWaterSourcePosition;
         Debug.Log("Watersource position: " + waterSourcePositionList[0]);
-        return nearestWaterSourcePosition;
+        return waterSourcePositionList[0];
     }
 
     public bool hasFoundWaterSource()
@@ -80,7 +80,8 @@ public class Fox : Animal
             isThirsty = false;
             isDrinking = false;
         }
-
+        Debug.Log("isDrinking: " + isDrinking);
+        Debug.Log("currentthirst:"+ currentThirst);
     }
     void Update(){
     timePassed += Time.deltaTime;

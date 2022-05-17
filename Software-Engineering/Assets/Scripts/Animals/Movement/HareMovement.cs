@@ -40,8 +40,6 @@ public class HareMovement : Movement
         if (hare.isHungry && hare.hasFoundGrass() && !isFleeing)
         {
             agent.SetDestination(hare.moveToNearestGrass());
-            Debug.Log("Set destination hare: "+agent.SetDestination(hare.moveToNearestGrass()));
-            Debug.Log("remaining Distance hare:"+agent.remainingDistance);
             if (agent.remainingDistance < 0.1)
             {
                 hare.eatGrass();
