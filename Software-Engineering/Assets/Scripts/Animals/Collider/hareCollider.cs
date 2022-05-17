@@ -2,18 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hareCollider : MonoBehaviour
+public class hareCollider : HareMovement
 {
-    
-    // Start is called before the first frame update
-    void Start()
+    //private Hare hare;
+    public List<GameObject> foxList;
+      private void OnTriggerEnter(Collider col)
     {
-        
+        //if a fox enters the Sight of the hare, the hare add this Fox to his list of Foxes nearby
+        if (col.tag == "Fox")
+        {
+            
+            isWandering = false;
+            agent.speed = sprintSpeed;
+            Fox = col.gameObject;
+            foxList.Add(Fox);
+            isFleeing = true;
+            hare.isEating = false;
+
+        }
+
+        if (col.tag == "Grass")
+        {
+            hare.addGrassToList(col);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit(Collider col)
     {
-        
+        if (col.gameObject.tag == "Fox")
+        {
+            foxList.Remove(col.gameObject);
+
+            //set isFleeing to false when there is no fox around
+            if (foxList.Count == 0)
+            {
+                agent.speed = normalSpeed;
+                isFleeing = false;
+            }
+        }
     }
+  
 }

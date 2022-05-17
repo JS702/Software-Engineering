@@ -11,8 +11,7 @@ public class HareMovement : Movement
     //reference to the closest Fox
     public GameObject Fox;
 
-    // a list of foxes around the hare
-    public List<GameObject> foxList;
+    //public List<GameObject> foxList;
     public bool isFleeing = false;
 
 
@@ -66,42 +65,9 @@ public class HareMovement : Movement
         }
     }
 
-    private void OnTriggerEnter(Collider col)
-    {
-        //if a fox enters the Sight of the hare, the hare add this Fox to his list of Foxes nearby
-        if (col.tag == "Fox")
-        {
-            isWandering = false;
-            agent.speed = sprintSpeed;
-            Fox = col.gameObject;
-            foxList.Add(Fox);
-            isFleeing = true;
-            hare.isEating = false;
-
-        }
-
-        if (col.tag == "Grass")
-        {
-            hare.addGrassToList(col);
-        }
-    }
-
-    private void OnTriggerExit(Collider col)
-    {
-        if (col.gameObject.tag == "Fox")
-        {
-            foxList.Remove(col.gameObject);
-
-            //set isFleeing to false when there is no fox around
-            if (foxList.Count == 0)
-            {
-                agent.speed = normalSpeed;
-                isFleeing = false;
-            }
-        }
-    }
-
-    public void getLowestDistance(Vector3 harePosition){
+    
+    public void setLowestDistanceFox(Vector3 harePosition){
+        List<GameObject> foxList = GetComponent<hareCollider>().foxList;
         float _distanceToFox;
         float lowestDistance = 100;
          foreach (GameObject fox in foxList)
@@ -123,11 +89,11 @@ public class HareMovement : Movement
         Vector3 _fleeDirection;
         Vector3 harePosition = transform.position;
 
-        //get the distance to the nearest fox
+        //set the lowest distance Fox in range as the Fox too flee from
         try{
-            getLowestDistance(harePosition);
+            setLowestDistanceFox(harePosition);
 
-            //Look for nearest Fox
+            //in whoch direction is the nearest Fox?
             Vector3 dirToFox = harePosition - Fox.transform.position;
             Debug.DrawLine(harePosition, Fox.transform.position, Color.red);
 
@@ -141,8 +107,6 @@ public class HareMovement : Movement
         }catch(MissingReferenceException){
 
         }
-        
-
     }
     
 }

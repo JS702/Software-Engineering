@@ -650,6 +650,7 @@ GameObject:
   - component: {fileID: 4543071862442785083}
   - component: {fileID: 1332724152397091524}
   - component: {fileID: 8790085639308673462}
+  - component: {fileID: 4105040624192789388}
   m_Layer: 0
   m_Name: FoxPrefab
   m_TagString: Fox
@@ -737,12 +738,10 @@ MonoBehaviour:
   range: 10
   isWandering: 0
   fox: {fileID: 0}
-  _agent: {fileID: 4307038512871931671}
-  Hare: {fileID: 0}
+  _agent: {fileID: 0}
+  hare: {fileID: 0}
   preyList: []
-  _huntDirection: {x: 0, y: 0, z: 0}
   isHunting: 0
-  col: {fileID: 0}
 --- !u!195 &4307038512871931671
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -823,6 +822,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animal: {fileID: 6702265670465999294}
+--- !u!114 &4105040624192789388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189034732971714835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2390862e18f90428a02a74878c04f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 10
+  isWandering: 0
+  fox: {fileID: 0}
+  _agent: {fileID: 4307038512871931671}
+  hare: {fileID: 0}
+  preyList: []
+  isHunting: 0
 --- !u!1 &6767507912596128942
 GameObject:
   m_ObjectHideFlags: 0

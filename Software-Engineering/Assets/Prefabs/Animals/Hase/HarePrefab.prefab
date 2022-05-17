@@ -1223,6 +1223,7 @@ GameObject:
   - component: {fileID: 3816233004399031238}
   - component: {fileID: 435888891079221855}
   - component: {fileID: -1798922287744968124}
+  - component: {fileID: 5601587719732099992}
   m_Layer: 0
   m_Name: HarePrefab
   m_TagString: Prey
@@ -1395,6 +1396,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animal: {fileID: 8406825488684166222}
+--- !u!114 &5601587719732099992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7366081109373987059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df7dbe8c13d60b408e18bbe6786f896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 10
+  isWandering: 0
+  hare: {fileID: 0}
+  Fox: {fileID: 0}
+  foxList: []
+  isFleeing: 0
 --- !u!1 &7770220560490308381
 GameObject:
   m_ObjectHideFlags: 0
