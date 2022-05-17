@@ -10,7 +10,6 @@ public class Hare : Animal
 
     public void addGrassToList(Collider col)
     {
-        Debug.Log("Grass in sight");
         GameObject Grass = col.gameObject;
         Vector3 grassPosition = Grass.transform.position;
         if (!grassPositionList.Contains(grassPosition))

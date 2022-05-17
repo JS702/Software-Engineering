@@ -12,7 +12,7 @@ public class UILineRenderer : Graphic
     public DiagramManager diagramManager;
     public Vector2Int gridSize;
     public List<Vector2> points;
-    public int scale = 1;
+    public int gridScale = 1;
 
     [SerializeField] float thickness = 10f;
 
@@ -69,10 +69,13 @@ public class UILineRenderer : Graphic
             gridRenderer.gridSize.x *= 2;
         }
         */
-        if (point.y > gridRenderer.gridSize.y)
+        if (point.y > gridRenderer.gridSize.y * gridScale)
         {
-            gridRenderer.gridSize.y *= 2;
-            adjustPointScale();
+            int scale = Mathf.CeilToInt(point.y / gridRenderer.gridSize.y * gridScale);
+            gridScale *= scale;
+            gridSize.y = gridScale * gridRenderer.gridSize.y;
+            //gridRenderer.gridSize.y *= 2;
+            adjustPointScale(scale);
         }
         UIVertex vertex = UIVertex.simpleVert;
         vertex.color = color;
@@ -90,7 +93,7 @@ public class UILineRenderer : Graphic
     {
         return (float)(Mathf.Atan2(target.y - me.y, target.x - me.x) * (180 / Mathf.PI));
     }
-
+    /*
     private void Update()
     {
         if(gridRenderer != null)
@@ -102,15 +105,14 @@ public class UILineRenderer : Graphic
             }
         }
     }
-
-    private void adjustPointScale()
+    */
+    private void adjustPointScale(int scale)
     {
         for(int i = 0; i < points.Count; i++)
         {
-            points[i] = new Vector2(points[i].x, points[i].y / 2);
+            points[i] = new Vector2(points[i].x, points[i].y / scale);
         }
-        scale *= 2;
 
-        //change scale of text axes
+        diagramManager.scaleAxis(scale);
     }
 } 

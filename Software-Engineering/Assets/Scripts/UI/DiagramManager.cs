@@ -57,13 +57,17 @@ public class DiagramManager : MonoBehaviour
         }
     }
 
-    public void scaleAxis()
+    public void scaleAxis(int scale)
     {
-        string number = y_Axis.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
-        int.TryParse(number, out int scale);
-        scale *= 2;
-        y_Axis.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = scale.ToString();
+        for(int i = 0; i < y_Axis.transform.childCount; i++)
+        {
+            string number = y_Axis.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text;
+            int.TryParse(number, out int result);
+            result *= scale;
+            y_Axis.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = result.ToString();
+        }
 
+        
     }
 
         
