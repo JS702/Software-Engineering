@@ -11,12 +11,13 @@ public class Animal : Food
 
     public int health=100;
     public int hunger = 100;
-
+    
     public int thirst = 100;
     public int reproductionDrive = 5;
 
     public bool isAlive = true;
     public bool isEating;
+    public bool isHungry;
     
     public int speed;
     
@@ -38,6 +39,7 @@ public class Animal : Food
 
     protected void Update()
     {
+        
         if (!updatingBars)
         {
             StartCoroutine(updateBars());
@@ -70,6 +72,8 @@ public class Animal : Food
         updatingBars = false;
     }
 
+  
+
     //BARS End
 
     public void eat(int food)
@@ -91,8 +95,8 @@ public class Animal : Food
         OnGotKilled?.Invoke();
     }
 
-    //Wenn der Methode "true" übergeben wird, so verschwindet die Leiche, nachdem die Sterbeanimation durchgelaufen ist
-    //Andernfalls bleibt sie Liegen (z.B. falls sie noch gefressen werden soll) und verliert pro Sekunde einen Nährwertpunkt
+    //Wenn der Methode "true" ï¿½bergeben wird, so verschwindet die Leiche, nachdem die Sterbeanimation durchgelaufen ist
+    //Andernfalls bleibt sie Liegen (z.B. falls sie noch gefressen werden soll) und verliert pro Sekunde einen Nï¿½hrwertpunkt
     public void die(bool instantDespawn)
     {
         if (instantDespawn)

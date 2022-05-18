@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class Fox : Animal
 {
-
+    private Movement movement;
     public int killedHares = 0;
     void Start()
     {
+        movement = gameObject.GetComponent<Movement>();
         setBar(ref currentHealth, health, healthBar);
         setBar(ref currentHunger, hunger, hungerBar);
         setBar(ref currentThirst, thirst, thirstBar);
@@ -16,7 +17,6 @@ public class Fox : Animal
         hornyBar.slider.maxValue=5;
         hornyBar.slider.value=0;
         currentHorny=0;
-
     }
 
     public void kill(GameObject hare){
@@ -24,16 +24,48 @@ public class Fox : Animal
         hare.GetComponent<Animal>().isAlive = false;
         gameObject.GetComponent<FoxCollider>().preyList.Remove(hare);
         hare.GetComponent<Animal>().die(false);
-        //hare.GetComponent<Animal>().die(false);
-        //GameObject hare = gameObject.GetComponent<foxMovement>().hare;
-        //Vector3 harePosition = gameObject.GetComponent<foxMovement>().hare.transform.position;
-        //Vector3 foxPosition = transform.position;
-        //float _distanceToHare = Vector3.Distance(foxPosition, harePosition);
+        hare.GetComponent<Movement>().agent.isStopped = true;
 
-        //if(_distanceToHare < 3)
-        //{
-        //Destroy(hare);
-        //}
+    }
+    public IEnumerator fillStomach(Hare hare)
+    {
+        
+        while (hunger < 100)
+        {
+            if(hare.nutritionalValue == 1){
+                //movement.agent.isStopped = false;
+                break;
+            }
+            hunger++;
+
+            yield return new WaitForSeconds(1.0f);
+        }
+        isHungry = false;
+        movement.agent.isStopped = false;
+       
+        
+    }
+
+    public void eatHare(Hare hare){
+
+
+        movement.agent.SetDestination(hare.transform.position);
+        new WaitForSeconds(2f);
+
+        if(Vector3.Distance(transform.position,hare.transform.position) < 3){
+            movement.agent.isStopped = true;
+            StartCoroutine(fillStomach(hare));
+        }
+    }
+    void Update()
+    {
+        base.Update();// updates the bars
+        //eatTimer += Time.deltaTime;
+
+        if (hunger < 50)
+        {
+            isHungry = true;
+        }
     }
 }
 

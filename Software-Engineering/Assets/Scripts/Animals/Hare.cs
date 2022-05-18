@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hare : Animal
 {
-    public bool isHungry;
+    //public bool isHungry;
     public bool isFleeing = false;
     public List<Vector3> grassPositionList;
 
@@ -73,7 +73,7 @@ public class Hare : Animal
         currentHorny=0;
 
     }
-
+    
     void Update()
     {
         base.Update();// updates the bars

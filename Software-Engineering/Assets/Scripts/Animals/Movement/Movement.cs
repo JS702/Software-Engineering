@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     protected int normalSpeed = 2;
     protected int sprintSpeed = 8;
 
-    protected NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     protected Rigidbody rb;
 

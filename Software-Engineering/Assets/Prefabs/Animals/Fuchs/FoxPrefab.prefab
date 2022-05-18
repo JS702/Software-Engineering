@@ -711,6 +711,7 @@ MonoBehaviour:
   reproductionDrive: 5
   isAlive: 1
   isEating: 0
+  isHungry: 0
   speed: 0
   currentHealth: 0
   currentHunger: 0
@@ -737,10 +738,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 10
   isWandering: 0
+  agent: {fileID: 0}
   fox: {fileID: 0}
-  _agent: {fileID: 0}
   hare: {fileID: 0}
-  preyList: []
+  thisHare: {fileID: 0}
   isHunting: 0
 --- !u!195 &4307038512871931671
 NavMeshAgent:
@@ -836,11 +837,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 10
   isWandering: 0
+  agent: {fileID: 4307038512871931671}
   fox: {fileID: 0}
-  _agent: {fileID: 4307038512871931671}
   hare: {fileID: 0}
-  preyList: []
+  thisHare: {fileID: 0}
   isHunting: 0
+  preyList: []
 --- !u!1 &6767507912596128942
 GameObject:
   m_ObjectHideFlags: 0

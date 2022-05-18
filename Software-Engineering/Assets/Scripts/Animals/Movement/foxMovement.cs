@@ -7,17 +7,14 @@ public class foxMovement : Movement
 {
     public Fox fox;
     
-
-    
-    public NavMeshAgent _agent;
+    //public NavMeshAgent _agent;
     // Hunting Variables
 
     //the Hare that the fox is Hunting
     public GameObject hare;
 
-    //list of prey nearby the Fox
-    //public List<GameObject> preyList;
-    
+    public Hare thisHare;
+
     private Vector3 _huntDirection;
   
     private float _distanceToPrey;
@@ -27,6 +24,7 @@ public class foxMovement : Movement
 
     private void Start()
     {
+        sprintSpeed = 20;
         rb = GetComponent<Rigidbody>();
         fox = GetComponent<Fox>();
         agent = GetComponent<NavMeshAgent>();
@@ -50,31 +48,6 @@ public class foxMovement : Movement
         }
     }
 
-/*
-    public Collider col;
-
-    private void OnTriggerEnter(Collider col)
-    {
-         //if a fox enters the Sight of the hare, the hare add this Fox to his list of Foxes nearby
-        if(col.tag == "Prey")
-        {
-            
-            isWandering = false;
-            agent.speed = sprintSpeed;
-            Hare = col.gameObject;
-            preyList.Add(Hare);
-            isHunting = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider col)
-    {  
-        if(col.gameObject.tag == "Prey")
-        {
-            preyList.Remove(col.gameObject);
-        }
-    }
-    */
 
      public void setLowestDistanceHare(Vector3 foxPosition)
      {
@@ -90,6 +63,7 @@ public class foxMovement : Movement
                 {
                     //Der Fox der am dichtesten ist wird zum gameObject Fox vor dem der Hase wegrennt
                     this.hare = hare;
+                    thisHare = hare.GetComponent<Hare>();
                     lowestDistance = _distanceToPrey;
                 }
             }
@@ -97,9 +71,7 @@ public class foxMovement : Movement
 
 
     private void hunt()
-    {
-        
-
+    { 
     try
         {
         if(hare.GetComponent<Animal>().isAlive == false){
@@ -120,12 +92,7 @@ public class foxMovement : Movement
        
             setLowestDistanceHare(foxPosition);
 
-            if(_distanceToPrey < 4){
-                
-                gameObject.GetComponent<Fox>().kill(hare);
-                isHunting = false;
-                //kill(hare);
-            }
+           
             //Look for nearest Fox
             Vector3 dirToHare = foxPosition - hare.transform.position;
             Debug.DrawLine(foxPosition, hare.transform.position, Color.red);
@@ -136,6 +103,17 @@ public class foxMovement : Movement
 
             //Tell Agent where to go  
             agent.SetDestination(_huntDirection);
+
+            Debug.Log(_distanceToPrey);
+            if(_distanceToPrey < 3){
+                
+                isHunting = false;
+                fox.kill(hare);
+                
+                fox.isEating = true;
+                fox.eatHare(thisHare);
+                //kill(hare);
+            }
         }catch(MissingReferenceException e)
         {
             //Debug.LogException(e,this);
