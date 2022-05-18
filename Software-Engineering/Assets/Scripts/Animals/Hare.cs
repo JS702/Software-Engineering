@@ -55,7 +55,7 @@ public class Hare : Animal
             eatTimer = 0f;
             hungerBar.setValue(currentHunger);
         }
-        if (hunger > 99)
+        if (currentHunger > 99)
         {
             isHungry = false;
             isEating = false;
