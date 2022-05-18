@@ -410,7 +410,10 @@ MonoBehaviour:
   gridSize: {x: 5, y: 5}
   points:
   - {x: 0, y: 0}
-  gridScale: 1
+  scale: 1
+  min: 1
+  mid: 5
+  max: 10
   thickness: 10
 --- !u!222 &8898612
 CanvasRenderer:
@@ -7934,7 +7937,10 @@ MonoBehaviour:
   gridSize: {x: 5, y: 5}
   points:
   - {x: 0, y: 0}
-  gridScale: 1
+  scale: 1
+  min: 1
+  mid: 5
+  max: 10
   thickness: 10
 --- !u!222 &320538021
 CanvasRenderer:
@@ -15119,7 +15125,10 @@ MonoBehaviour:
   gridSize: {x: 5, y: 5}
   points:
   - {x: 0, y: 1}
-  gridScale: 1
+  scale: 1
+  min: 1
+  mid: 5
+  max: 10
   thickness: 10
 --- !u!222 &672816085
 CanvasRenderer:
@@ -20822,7 +20831,10 @@ MonoBehaviour:
   gridSize: {x: 5, y: 5}
   points:
   - {x: 0, y: 0}
-  gridScale: 1
+  scale: 1
+  min: 1
+  mid: 5
+  max: 10
   thickness: 10
 --- !u!222 &906852036
 CanvasRenderer:
@@ -21903,7 +21915,10 @@ MonoBehaviour:
   gridSize: {x: 24, y: 10}
   points:
   - {x: 0, y: 0}
-  gridScale: 1
+  scale: 1
+  min: 1
+  mid: 5
+  max: 10
   thickness: 10
 --- !u!222 &954861752
 CanvasRenderer:
@@ -33846,6 +33861,11 @@ GameObject:
   - component: {fileID: 1422885047}
   - component: {fileID: 1422885048}
   - component: {fileID: 1422885049}
+  - component: {fileID: 1422885054}
+  - component: {fileID: 1422885053}
+  - component: {fileID: 1422885052}
+  - component: {fileID: 1422885051}
+  - component: {fileID: 1422885050}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Environment
@@ -33955,6 +33975,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d0c9c2837a198419dbb7053d56b75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1422885050
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422885043}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.521345, y: 9.52194, z: 17.956589}
+  m_Center: {x: 10.239327, y: -0.23902988, z: 85.639626}
+--- !u!65 &1422885051
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422885043}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8, y: 10, z: 90}
+  m_Center: {x: 92, y: 0, z: 50}
+--- !u!65 &1422885052
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422885043}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8, y: 10, z: 90}
+  m_Center: {x: 3, y: 0, z: 50}
+--- !u!65 &1422885053
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422885043}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 95, y: 10, z: 8}
+  m_Center: {x: 50, y: 0, z: 10}
+--- !u!65 &1422885054
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422885043}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 95, y: 10, z: 8}
+  m_Center: {x: 50, y: 0, z: 95}
 --- !u!4 &1423208847 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3356751432537613521, guid: ffbddc4ef9676cc419e81e06aaa836d8, type: 3}
