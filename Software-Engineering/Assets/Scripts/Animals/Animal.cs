@@ -53,14 +53,14 @@ public class Animal : Food
         
         currentNumber= operations.Equals("plus") ? currentNumber+=damage : currentNumber-=damage;
         bar.setValue(currentNumber);
+        if (currentNumber < 0) {
+                  currentNumber = 0;
+                }
     }
 
     public void setBar(ref int currentNumber, int number, Bars bar){
         currentNumber=number;
         bar.setMaxValue(number);
-        if (currentNumber < 0) {
-                  currentNumber = 0;
-                }
     }
 
     protected IEnumerator updateBars()

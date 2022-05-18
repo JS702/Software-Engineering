@@ -66,6 +66,10 @@ public class Fox : Animal
         {
             isThirsty = true;
         }
+        if (hunger < 50)
+        {
+            isHungry = true;
+        }
     }
 }
 
