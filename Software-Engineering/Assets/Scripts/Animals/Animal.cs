@@ -145,7 +145,7 @@ public class Animal : Food
         isDrinking = true;
         if (drinkTimer > 0.5f)
         {
-            drink(10);
+            drink(20);
             drinkTimer = 0f;
             thirstBar.setValue(currentThirst);
         }

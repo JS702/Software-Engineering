@@ -27,7 +27,8 @@ public class hareCollider : HareMovement
         }
         if (col.tag == "WaterSource")
         {
-            fox.addWaterSourceToList(col);
+            hare.addWaterSourceToList(col);
+            
         }
     }
 

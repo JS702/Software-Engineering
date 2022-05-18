@@ -39,17 +39,16 @@ public class HareMovement : Movement
         if (hare.isHungry && hare.hasFoundGrass() && !isFleeing && !hare.isDrinking)
         {
             agent.SetDestination(hare.moveToNearestGrass());
-            if (agent.remainingDistance < 0.1)
+            if (agent.remainingDistance < 0.5)
             {
                 hare.eatGrass();
-                Debug.Log("Hase frisst. Hunger: " + hare.hunger);
             }
         }
         
         if (hare.isThirsty && hare.hasFoundWaterSource() && !isFleeing &&!hare.isEating)
         {
             agent.SetDestination(hare.moveToNearestWaterSource());
-            if (agent.remainingDistance < 0.1)
+            if (agent.remainingDistance < 0.5)
             {
                 hare.drinkWater();
             }

@@ -50,7 +50,7 @@ public class foxMovement : Movement
         if (fox.isThirsty && fox.hasFoundWaterSource() && !isHunting)
         {
             agent.SetDestination(fox.moveToNearestWaterSource());
-            if (agent.remainingDistance < 0.1)
+            if (agent.remainingDistance < 0.5)
             {
                 fox.drinkWater();
             }
