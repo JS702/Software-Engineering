@@ -17,11 +17,15 @@ public class DiagramManager : MonoBehaviour
         {
             activeDiagramIndex++;
             setDiagram(true);
+            setAxis(diagrams[activeDiagramIndex].GetComponentInChildren<UILineRenderer>());
+
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             activeDiagramIndex--;
             setDiagram(false);
+            setAxis(diagrams[activeDiagramIndex].GetComponentInChildren<UILineRenderer>());
+
         }
     }
 
@@ -57,17 +61,13 @@ public class DiagramManager : MonoBehaviour
         }
     }
 
-    public void scaleAxis(int scale)
+    public void setAxis(UILineRenderer lineRenderer)
     {
-        for(int i = 0; i < y_Axis.transform.childCount; i++)
+        int[] numbers = new int[] { lineRenderer.min, lineRenderer.mid, lineRenderer.max };
+        for (int i = 0; i < y_Axis.transform.childCount; i++)
         {
-            string number = y_Axis.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text;
-            int.TryParse(number, out int result);
-            result *= scale;
-            y_Axis.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = result.ToString();
+            y_Axis.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = numbers[i].ToString();
         }
-
-        
     }
 
         

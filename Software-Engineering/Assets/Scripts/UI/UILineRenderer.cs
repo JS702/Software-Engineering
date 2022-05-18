@@ -12,7 +12,12 @@ public class UILineRenderer : Graphic
     public DiagramManager diagramManager;
     public Vector2Int gridSize;
     public List<Vector2> points;
-    public int gridScale = 1;
+
+    //axis
+    public int scale = 1;
+    public int min = 1;
+    public int mid = 5;
+    public int max = 10;
 
     [SerializeField] float thickness = 10f;
 
@@ -43,6 +48,7 @@ public class UILineRenderer : Graphic
 
         float angle = 0;
 
+
         for(int i = 0; i < points.Count; i++)
         {
             Vector2 point = points[i];
@@ -63,20 +69,7 @@ public class UILineRenderer : Graphic
     }
     private void DrawVerticesForPoint(Vector2 point, VertexHelper vh, float angle)
     {
-        /*
-        if (point.x > gridRenderer.gridSize.x)
-        {
-            gridRenderer.gridSize.x *= 2;
-        }
-        */
-        if (point.y > gridRenderer.gridSize.y * gridScale)
-        {
-            int scale = Mathf.CeilToInt(point.y / gridRenderer.gridSize.y * gridScale);
-            gridScale *= scale;
-            gridSize.y = gridScale * gridRenderer.gridSize.y;
-            //gridRenderer.gridSize.y *= 2;
-            adjustPointScale(scale);
-        }
+        point.y /= scale; // set point corresponding to scale
         UIVertex vertex = UIVertex.simpleVert;
         vertex.color = color;
 
@@ -93,26 +86,26 @@ public class UILineRenderer : Graphic
     {
         return (float)(Mathf.Atan2(target.y - me.y, target.x - me.x) * (180 / Mathf.PI));
     }
-    /*
-    private void Update()
+
+    public void updateScale()
     {
-        if(gridRenderer != null)
+        bool shouldUpdateScale = false;
+
+        for (int i = 0; i < points.Count; i++)
         {
-            if(gridSize != gridRenderer.gridSize)
+            if (points[i].y > max)
             {
-                gridSize = gridRenderer.gridSize;
-                SetVerticesDirty();
+                scale = Mathf.CeilToInt(points[i].y / max);
+                shouldUpdateScale = true;
             }
         }
-    }
-    */
-    private void adjustPointScale(int scale)
-    {
-        for(int i = 0; i < points.Count; i++)
+        if (shouldUpdateScale)
         {
-            points[i] = new Vector2(points[i].x, points[i].y / scale);
+            min *= scale;
+            mid *= scale;
+            max *= scale;
+            Debug.Log("updated Scale, new Scale = " + scale);
+            diagramManager.setAxis(this);
         }
-
-        diagramManager.scaleAxis(scale);
     }
 } 

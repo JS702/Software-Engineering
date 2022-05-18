@@ -41,7 +41,9 @@ public class StatsManager : MonoBehaviour
     private void getAnimalsAlive()
     {
         UILineRenderer line = uiLineRenderer.Find(renderer => renderer.diagramName.Equals("animalsAlive"));
-        drawPoint(gameManager.hareAlives.Count + gameManager.foxAlives.Count, line);
+        int count = gameManager.hareAlives.Count + gameManager.foxAlives.Count;
+        Debug.Log(count);
+        drawPoint(count, line);
     }
 
     private int getAnimalsStarved()
@@ -57,6 +59,7 @@ public class StatsManager : MonoBehaviour
     private void drawPoint(float value, UILineRenderer lineRenderer)
     {
         lineRenderer.points.Add(new Vector2(gameManager.currentStatsTrackingIntervall, value));
+        lineRenderer.updateScale();
     }
 
 }

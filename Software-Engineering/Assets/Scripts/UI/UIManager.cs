@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
             {
                 pausePanel.SetActive(false);
                 GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FreeFlyCamera>().enabled = true;
-                Time.timeScale = 1;
+                Time.timeScale = 1; 
                 aimDot.SetActive(true);
             }
         }
