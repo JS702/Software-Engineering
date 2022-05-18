@@ -28,6 +28,10 @@ public class FoxCollider : foxMovement
             preyList.Add(hare);
             isHunting = true;
         }
+        if (col.tag == "WaterSource")
+        {
+            fox.addWaterSourceToList(col);
+        }
     }
 
     private void OnTriggerExit(Collider col)

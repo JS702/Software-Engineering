@@ -6,6 +6,7 @@ using UnityEngine;
 public class Fox : Animal
 {
 
+     
     public int killedHares = 0;
     void Start()
     {
@@ -34,6 +35,16 @@ public class Fox : Animal
         //{
         //Destroy(hare);
         //}
+    }
+    void Update()
+    {
+        base.Update();
+        drinkTimer += Time.deltaTime;
+        if (currentThirst < 50)
+        {
+            isThirsty = true;
+        }
+
     }
 }
 

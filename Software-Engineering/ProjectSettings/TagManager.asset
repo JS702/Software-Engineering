@@ -13,6 +13,7 @@ TagManager:
   - GameManager
   - StatsPanel
   - DiagramManager
+  - WaterSource
   layers:
   - Default
   - TransparentFX
