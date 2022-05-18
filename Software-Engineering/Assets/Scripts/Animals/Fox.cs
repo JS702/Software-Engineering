@@ -33,13 +33,13 @@ public class Fox : Animal
         while (hunger < 100)
         {
             if(hare.nutritionalValue == 1){
-                //movement.agent.isStopped = false;
                 break;
             }
             hunger++;
 
             yield return new WaitForSeconds(1.0f);
         }
+        isEating = false;
         isHungry = false;
         movement.agent.isStopped = false;
        
@@ -48,7 +48,7 @@ public class Fox : Animal
 
     public void eatHare(Hare hare){
 
-
+        isEating = true;
         movement.agent.SetDestination(hare.transform.position);
         new WaitForSeconds(2f);
 
@@ -60,7 +60,6 @@ public class Fox : Animal
     void Update()
     {
         base.Update();// updates the bars
-        //eatTimer += Time.deltaTime;
 
         if (hunger < 50)
         {

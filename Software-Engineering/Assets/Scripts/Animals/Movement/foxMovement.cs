@@ -33,9 +33,10 @@ public class foxMovement : Movement
     private void Update()
     {
         if (isHunting){
+            //isWandering = false;
             hunt();
         }
-        else if (!isWandering && !isHunting)
+        else if (!isWandering && !isHunting && !fox.isEating)
         {
             StartCoroutine(setWanderDestination());
         }
@@ -46,6 +47,7 @@ public class foxMovement : Movement
             //Denkt daran den Agent zu stoppen wenn ihr die die-Methode aufruft, ich konnte aus Animal nicht darauf zugreifen
             agent.isStopped = true;
         }
+
     }
 
 
@@ -104,13 +106,12 @@ public class foxMovement : Movement
             //Tell Agent where to go  
             agent.SetDestination(_huntDirection);
 
-            Debug.Log(_distanceToPrey);
+            //Debug.Log(_distanceToPrey);
             if(_distanceToPrey < 3){
                 
                 isHunting = false;
                 fox.kill(hare);
                 
-                fox.isEating = true;
                 fox.eatHare(thisHare);
                 //kill(hare);
             }
