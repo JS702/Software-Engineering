@@ -25,6 +25,10 @@ public class hareCollider : HareMovement
         {
             hare.addGrassToList(col);
         }
+        if (col.tag == "WaterSource")
+        {
+            fox.addWaterSourceToList(col);
+        }
     }
 
     private void OnTriggerExit(Collider col)

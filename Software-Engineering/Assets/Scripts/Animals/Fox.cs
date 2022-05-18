@@ -59,11 +59,12 @@ public class Fox : Animal
     }
     void Update()
     {
-        base.Update();// updates the bars
-
-        if (hunger < 50)
+        base.Update();
+        
+        drinkTimer += Time.deltaTime;
+        if (currentThirst < 50)
         {
-            isHungry = true;
+            isThirsty = true;
         }
     }
 }

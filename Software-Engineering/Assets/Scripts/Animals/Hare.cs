@@ -51,8 +51,9 @@ public class Hare : Animal
         isEating = true;
         if (eatTimer > 0.5f)
         {
-            eat(1);
+            eat(15);
             eatTimer = 0f;
+            hungerBar.setValue(currentHunger);
         }
         if (hunger > 99)
         {
@@ -78,10 +79,14 @@ public class Hare : Animal
     {
         base.Update();// updates the bars
         eatTimer += Time.deltaTime;
-
-        if (hunger < 50)
+        drinkTimer += Time.deltaTime;
+        if (currentHunger < 50)
         {
             isHungry = true;
+        }
+        if (currentThirst < 50)
+        {
+            isThirsty = true;
         }
     }
 }
