@@ -465,7 +465,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4.43
+  m_Radius: 7.28
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3421249330488713915
 GameObject:
@@ -1301,9 +1301,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 5
   isWandering: 0
+  agent: {fileID: 0}
   hare: {fileID: 0}
   Fox: {fileID: 0}
-  foxList: []
+  danger: 0
   isFleeing: 0
 --- !u!65 &6094298513528744798
 BoxCollider:
@@ -1331,12 +1332,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nutritionalValue: 0
+  animal: {fileID: 0}
   health: 100
   hunger: 100
   thirst: 100
   reproductionDrive: 5
   isAlive: 1
   isEating: 0
+  isHungry: 0
+  isDrinking: 0
   speed: 0
   currentHealth: 0
   currentHunger: 0
@@ -1348,8 +1352,11 @@ MonoBehaviour:
   hornyBar: {fileID: 5728684598532982814}
   timePassed: 0
   eatTimer: 0
-  isHungry: 0
+  drinkTimer: 0
+  isThirsty: 0
+  waterSourcePositionList: []
   isFleeing: 0
+  isInGrassArea: 0
   grassPositionList: []
 --- !u!95 &3816233004399031238
 Animator:
@@ -1410,10 +1417,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 10
   isWandering: 0
+  agent: {fileID: 0}
   hare: {fileID: 0}
   Fox: {fileID: 0}
-  foxList: []
+  danger: 0
   isFleeing: 0
+  foxList: []
 --- !u!1 &7770220560490308381
 GameObject:
   m_ObjectHideFlags: 0

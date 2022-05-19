@@ -11,7 +11,8 @@ public class HareMovement : Movement
     //reference to the closest Fox
     public GameObject Fox;
 
-    //public List<GameObject> foxList;
+    //public List<GameObject> foxList
+    public bool danger = false;
     public bool isFleeing = false;
 
 
@@ -25,9 +26,14 @@ public class HareMovement : Movement
 
     private void Update()
     {
+        if(GetComponent<hareCollider>().foxList.Count > 0){
+            danger = true;
+
+        }
         //Debug.Log("isFleeing:" + isFleeing);
-        if(isFleeing)
+        if(danger)
         {
+            agent.speed = sprintSpeed;
             escape();
         }
         else if (!isWandering && !isFleeing)
@@ -96,6 +102,7 @@ public class HareMovement : Movement
     }
 
     private void escape(){
+        isFleeing = true;
         //the direction in wich the hare is fleeing if a Fox is around
         Vector3 _fleeDirection;
         Vector3 harePosition = transform.position;
@@ -106,11 +113,11 @@ public class HareMovement : Movement
 
             //in whoch direction is the nearest Fox?
             Vector3 dirToFox = harePosition - Fox.transform.position;
-            Debug.DrawLine(harePosition, Fox.transform.position, Color.red);
+            //Debug.DrawLine(harePosition, Fox.transform.position, Color.red);
 
             // Escape direction
             _fleeDirection = harePosition + (dirToFox).normalized;
-            Debug.DrawLine(harePosition, _fleeDirection, Color.blue);
+            //Debug.DrawLine(harePosition, _fleeDirection, Color.blue);
 
             //Tell Agent where to go  
             agent.SetDestination(_fleeDirection);

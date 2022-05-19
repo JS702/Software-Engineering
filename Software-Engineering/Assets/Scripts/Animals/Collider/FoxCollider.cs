@@ -22,13 +22,13 @@ public class FoxCollider : foxMovement
     private void OnTriggerEnter(Collider col)
     {
          //if a fox enters the Sight of the hare, the hare add this Fox to his list of Foxes nearby
-        if(col.tag == "Prey" && fox.isHungry)
+        if(col.tag == "Prey")
         {
-            isWandering = false;
-            agent.speed = sprintSpeed;
+            //isWandering = false;
+            //agent.speed = sprintSpeed;
             hare = col.gameObject;
             preyList.Add(hare);
-            isHunting = true;
+            //isHunting = true;
         }
     }
 

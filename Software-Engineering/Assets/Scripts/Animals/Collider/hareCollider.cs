@@ -12,12 +12,13 @@ public class hareCollider : HareMovement
         if (col.tag == "Fox")
         {
             
-            isWandering = false;
-            agent.speed = sprintSpeed;
+            //isWandering = false;
+            //agent.speed = sprintSpeed;
             Fox = col.gameObject;
             foxList.Add(Fox);
-            isFleeing = true;
-            hare.isEating = false;
+            //danger = true;
+            //hare.isEating = false;
+            //hare.isDrinking = false;
 
         }
 
@@ -42,7 +43,7 @@ public class hareCollider : HareMovement
             if (foxList.Count == 0)
             {
                 agent.speed = normalSpeed;
-                isFleeing = false;
+                danger = false;
             }
         }
         
