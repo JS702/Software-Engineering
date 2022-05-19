@@ -19,6 +19,7 @@ public class foxMovement : Movement
     private float _distanceToPrey;
     //Vector3 foxPosition = transform.position;
     public bool isHunting = false;
+    public bool isUnderwater;
 
 
     private void Start()
@@ -32,7 +33,7 @@ public class foxMovement : Movement
 
     private void Update()
     {
-        if (fox.isHungry && !fox.isEating)
+        if (fox.isHungry && !fox.isEating && !isUnderwater)
         {
             if(GetComponent<FoxCollider>().preyList.Count > 0){
                 isWandering = false;
@@ -40,7 +41,7 @@ public class foxMovement : Movement
                 hunt();
             }
         }
-        else if (!isWandering && !isHunting && !fox.isEating)
+        else if (!isWandering && !isHunting && !fox.isEating && !isUnderwater)
         {
             StartCoroutine(setWanderDestination());
         }
@@ -51,6 +52,8 @@ public class foxMovement : Movement
             //Denkt daran den Agent zu stoppen wenn ihr die die-Methode aufruft, ich konnte aus Animal nicht darauf zugreifen
             agent.isStopped = true;
         }
+        //Stefans Code
+        /**
         if (fox.isThirsty && fox.hasFoundWaterSource() && !isHunting)
         {
             agent.SetDestination(fox.moveToNearestWaterSource());
@@ -58,6 +61,22 @@ public class foxMovement : Movement
             {
                 fox.drinkWater();
             }
+        }
+        */
+
+        //Dieser Code > Stefans Code
+        if (fox.isThirsty && !isHunting)
+        {
+            agent.SetDestination(fox.waterPosition);
+            if (fox.isInWaterArea)
+            {
+                agent.isStopped = fox.drinkWater();
+            }
+        }
+
+        if(isUnderwater)
+        {
+            agent.isStopped = true;
         }
 
     }

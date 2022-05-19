@@ -19,9 +19,13 @@ public class Animal : Food
     public bool isAlive = true;
     public bool isEating;
     public bool isHungry;
+    public bool isThirsty;
     public bool isDrinking;
+    public bool isInWaterArea;
     
     public int speed;
+
+    public Vector3 waterPosition = new Vector3(43.8f, 1.3f, 71.4f);
     
     //BARS Start:
     public int currentHealth;
@@ -95,8 +99,10 @@ public class Animal : Food
     {
         return hunger;
     }
-     public bool isThirsty;
-    public List<Vector3> waterSourcePositionList;
+    //public bool isThirsty;
+
+    //public List<Vector3> waterSourcePositionList;
+    /**
     public void addWaterSourceToList(Collider col)
     {
         Debug.Log("Water in sight");
@@ -112,7 +118,9 @@ public class Animal : Food
             Debug.Log("Water already in list");
         }
     }
+    */
 
+    /**
     public Vector3 moveToNearestWaterSource()
     {
         Debug.Log("Closest watersource...");
@@ -133,14 +141,17 @@ public class Animal : Food
         Debug.Log("move to water");
         return waterSourcePositionList[0];
     }
+    */
 
+    /*
     public bool hasFoundWaterSource()
     {
         return waterSourcePositionList.Count > 0;
     }
+    */
 
 
-    public void drinkWater()
+    public bool drinkWater()
     {
         isDrinking = true;
         if (drinkTimer > 0.5f)
@@ -154,6 +165,7 @@ public class Animal : Food
             isThirsty = false;
             isDrinking = false;
         }
+        return isDrinking;
     }
 
     public void getKilled()

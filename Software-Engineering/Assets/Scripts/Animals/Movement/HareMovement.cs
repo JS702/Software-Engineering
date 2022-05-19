@@ -14,6 +14,7 @@ public class HareMovement : Movement
     //public List<GameObject> foxList
     public bool danger = false;
     public bool isFleeing = false;
+    public bool isUnderwater;
 
 
 
@@ -36,23 +37,24 @@ public class HareMovement : Movement
             agent.speed = sprintSpeed;
             escape();
         }
-        else if (!isWandering && !isFleeing)
+        else if (!isWandering && !isFleeing && !isUnderwater)
         {
             StartCoroutine(setWanderDestination());
         }
         
         //Abfrage, ob der Hase hungrig ist und Gras kennt
-        if (hare.isHungry && hare.hasFoundGrass() && !isFleeing && !hare.isDrinking)
+        if (hare.isHungry && hare.hasFoundGrass() && !isFleeing && !hare.isDrinking && !isUnderwater)
         {
             agent.SetDestination(hare.moveToNearestGrass());
             if (/**agent.remainingDistance < 0.5*/hare.isInGrassArea)
             {
                 //agent.isStopped = true;
-                agent. isStopped = hare.eatGrass();
+                agent.isStopped = hare.eatGrass();
             }
         }
-        
-        
+
+        //Stefans Code
+        /**
         if (hare.isThirsty && hare.hasFoundWaterSource() && !isFleeing &&!hare.isEating)
         {
             agent.SetDestination(hare.moveToNearestWaterSource());
@@ -61,8 +63,27 @@ public class HareMovement : Movement
                 hare.drinkWater();
             }
         }
-        
-        
+        */
+
+        //Dieser Code > Stefans Code
+        if (hare.isThirsty && !isFleeing && !hare.isEating && !isUnderwater)
+        {
+            agent.SetDestination(hare.waterPosition);
+            if (hare.isInWaterArea)
+            {
+                agent.isStopped = hare.drinkWater();
+            }
+        }
+
+        if(isUnderwater)
+        {
+            //Debug.Log("hare is underwater");
+            //Vector3 direction = agent.destination;
+            //agent.SetDestination(-direction);
+            //Debug.Log("hare is underwater" + direction + " " + -direction);
+            agent.isStopped = true;
+        }
+
         //Debug-Tool, bis der Hase hunger bekommen und fressen kann
         if (Input.GetKeyDown("h"))
         {
@@ -79,6 +100,10 @@ public class HareMovement : Movement
             hare.die(false);
             //Denkt daran den Agent zu stoppen wenn ihr die die-Methode aufruft, ich konnte aus Animal nicht darauf zugreifen
             agent.isStopped = true;
+        }
+        if (Input.GetKeyDown("l"))
+        {
+            hare.currentThirst = 10;
         }
     }
 

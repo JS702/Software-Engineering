@@ -38,9 +38,11 @@ public class FoxCollider : foxMovement
         {
             preyList.Remove(col.gameObject);
         }
+        /**
         if (col.tag == "WaterSource")
         {
             fox.addWaterSourceToList(col);
         }
+        */
     }
 }

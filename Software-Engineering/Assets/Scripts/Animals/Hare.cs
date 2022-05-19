@@ -63,7 +63,6 @@ public class Hare : Animal
             isEating = false;
         }
         return isEating;
-        Debug.Log("isEating: " + isEating);
     }
 
     void Start()

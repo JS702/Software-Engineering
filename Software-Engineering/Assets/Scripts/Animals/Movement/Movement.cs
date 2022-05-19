@@ -32,4 +32,16 @@ public class Movement : MonoBehaviour
         }
         isWandering = false;
     }
+
+    /**
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "WaterSource")
+        {
+            Debug.Log("Collision with Water detected");
+            Vector3 destination = agent.destination;
+            agent.SetDestination(-destination);
+        }
+    }
+    */
 }
