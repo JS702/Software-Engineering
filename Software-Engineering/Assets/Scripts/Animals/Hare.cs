@@ -6,6 +6,7 @@ public class Hare : Animal
 {
     //public bool isHungry;
     public bool isFleeing = false;
+    public bool isInGrassArea;
     public List<Vector3> grassPositionList;
 
     public void addGrassToList(Collider col)
@@ -46,7 +47,8 @@ public class Hare : Animal
     }
 
     //W�hrend der Hase hungrig ist (Hunger < 50), frisst er jede halbe Sekunde einen Nahrungspunkt
-    public void eatGrass()
+    
+    public bool eatGrass()
     {
         isEating = true;
         if (eatTimer > 0.5f)
@@ -60,6 +62,7 @@ public class Hare : Animal
             isHungry = false;
             isEating = false;
         }
+        return isEating;
         Debug.Log("isEating: " + isEating);
     }
 
@@ -89,4 +92,5 @@ public class Hare : Animal
             isThirsty = true;
         }
     }
+
 }

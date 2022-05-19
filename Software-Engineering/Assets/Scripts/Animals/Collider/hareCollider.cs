@@ -45,6 +45,7 @@ public class hareCollider : HareMovement
                 isFleeing = false;
             }
         }
+        
     }
   
 }

@@ -39,11 +39,13 @@ public class HareMovement : Movement
         if (hare.isHungry && hare.hasFoundGrass() && !isFleeing && !hare.isDrinking)
         {
             agent.SetDestination(hare.moveToNearestGrass());
-            if (agent.remainingDistance < 0.1)
+            if (/**agent.remainingDistance < 0.5*/hare.isInGrassArea)
             {
-                hare.eatGrass();
+                //agent.isStopped = true;
+                agent. isStopped = hare.eatGrass();
             }
         }
+        
         
         if (hare.isThirsty && hare.hasFoundWaterSource() && !isFleeing &&!hare.isEating)
         {
@@ -54,16 +56,17 @@ public class HareMovement : Movement
             }
         }
         
+        
         //Debug-Tool, bis der Hase hunger bekommen und fressen kann
         if (Input.GetKeyDown("h"))
         {
-            hare.hunger = 10;
-            Debug.Log(hare.hunger);
+            hare.currentHunger = 10;
+            Debug.Log(hare.currentHunger);
         }
         if (Input.GetKeyDown("j"))
         {
-            hare.hunger = 100;
-            Debug.Log(hare.hunger);
+            hare.currentHunger = 100;
+            Debug.Log(hare.currentHunger);
         }
         if (Input.GetKeyDown("k"))
         {
