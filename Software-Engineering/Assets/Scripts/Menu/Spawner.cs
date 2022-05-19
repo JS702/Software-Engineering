@@ -18,14 +18,14 @@ public class Spawner : MonoBehaviour
     {   bunnynum = SettingsmenuBunny.bunny;
         foxnum = SettingsmenuFox.fox;
         while ( i < bunnynum) {
-            Vector3 pos = new Vector3(Random.Range(20, 80), Random.Range(4, 6), Random.Range(20, 80));
+            Vector3 pos = new Vector3(Random.Range(25, 75), Random.Range(4, 6), Random.Range(25, 75));
             Instantiate(bunnyPrefab, pos, Quaternion.identity);
             i++;
 
                   }
         while (j < foxnum)
         {
-            Vector3 pos = new Vector3(Random.Range(20, 80), Random.Range(4, 6), Random.Range(20, 80));
+            Vector3 pos = new Vector3(Random.Range(25, 75), Random.Range(4, 6), Random.Range(25, 75));
             Instantiate(foxPrefab, pos, Quaternion.identity);
             j++;
 
