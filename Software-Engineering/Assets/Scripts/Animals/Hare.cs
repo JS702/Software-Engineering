@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hare : Animal
 {
     //public bool isHungry;
-    public bool isFleeing = false;
+    
     public bool isInGrassArea;
     public List<Vector3> grassPositionList;
 

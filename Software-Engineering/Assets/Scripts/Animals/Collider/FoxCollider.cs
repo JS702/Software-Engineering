@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoxCollider : foxMovement
+public class FoxCollider : MonoBehaviour
 {
     // a list of foxes around the hare
          
@@ -26,8 +26,8 @@ public class FoxCollider : foxMovement
         {
             //isWandering = false;
             //agent.speed = sprintSpeed;
-            hare = col.gameObject;
-            preyList.Add(hare);
+            GetComponent<foxMovement>().hare = col.gameObject;
+            preyList.Add(GetComponent<foxMovement>().hare);
             //isHunting = true;
         }
     }

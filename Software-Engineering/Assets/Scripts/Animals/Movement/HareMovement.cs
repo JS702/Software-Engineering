@@ -30,7 +30,6 @@ public class HareMovement : Movement
     {
         if(GetComponent<hareCollider>().foxList.Count > 0){
             danger = true;
-
         }
         //Debug.Log("isFleeing:" + isFleeing);
         if(danger)
@@ -115,9 +114,10 @@ public class HareMovement : Movement
         }
         if (Input.GetKeyDown("k"))
         {
-            hare.die(false);
             //Denkt daran den Agent zu stoppen wenn ihr die die-Methode aufruft, ich konnte aus Animal nicht darauf zugreifen
             agent.isStopped = true;
+            hare.die(false);
+            
         }
         if (Input.GetKeyDown("l"))
         {

@@ -23,55 +23,51 @@ public class Fox : Animal
 
     public void kill(GameObject hare)
     {
-        //if(!hare.GetComponent<Movement>().agent.isStopped){
-        hare.GetComponent<Movement>().agent.isStopped = true;
-        // }
-        hare.GetComponent<Animal>().isAlive = false;
-        hare.GetComponent<Animal>().die(false);
-
         
+        //if(!hare.GetComponent<Movement>().agent.isStopped){
+        hare.GetComponent<HareMovement>().agent.isStopped = true;
+        // }
+        hare.GetComponent<Hare>().isAlive = false;
+        hare.GetComponent<Hare>().die(false);
 
-        gameObject.GetComponent<FoxCollider>().preyList.Remove(hare);
+       
 
 
     }
     public IEnumerator fillStomach(GameObject hare)
     {
-
+        
         while (currentHunger < 100)
         {
+            GetComponent<foxMovement>().isHunting = false;
             if (hare != null)
             {
-                if (hare.GetComponent<Food>().nutritionalValue == 1)
+                if (hare.GetComponent<Hare>().nutritionalValue == 1)
                 {
                     break;
                 }
 
             }
 
-            currentHunger++;
+            currentHunger += 10;
 
             yield return new WaitForSeconds(1.0f);
         }
         isEating = false;
         isHungry = false;
         movement.agent.isStopped = false;
+        gameObject.GetComponent<FoxCollider>().preyList.Remove(hare);
 
 
     }
 
     public void eatHare(GameObject hare)
     {
-
-
         isEating = true;
         movement.agent.SetDestination(hare.transform.position);
-        //new WaitForSeconds(2f);
-
-        //if(Vector3.Distance(transform.position,hare.transform.position) < 3){
         movement.agent.isStopped = true;
         StartCoroutine(fillStomach(hare));
-        //}
+       
     }
     void Update()
     {

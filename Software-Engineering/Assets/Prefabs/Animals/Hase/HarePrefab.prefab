@@ -1301,11 +1301,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 5
   isWandering: 0
+  normalSpeed: 2
+  sprintSpeed: 8
   agent: {fileID: 0}
   hare: {fileID: 0}
   Fox: {fileID: 0}
   danger: 0
   isFleeing: 0
+  isUnderwater: 0
 --- !u!65 &6094298513528744798
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1331,7 +1334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4325879e38241747ab1d2e46592ba59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nutritionalValue: 0
+  nutritionalValue: 100
   animal: {fileID: 0}
   health: 100
   hunger: 100
@@ -1340,8 +1343,11 @@ MonoBehaviour:
   isAlive: 1
   isEating: 0
   isHungry: 0
+  isThirsty: 0
   isDrinking: 0
+  isInWaterArea: 0
   speed: 0
+  waterPosition: {x: 43.8, y: 1.3, z: 71.4}
   currentHealth: 0
   currentHunger: 0
   currentThirst: 0
@@ -1353,9 +1359,6 @@ MonoBehaviour:
   timePassed: 0
   eatTimer: 0
   drinkTimer: 0
-  isThirsty: 0
-  waterSourcePositionList: []
-  isFleeing: 0
   isInGrassArea: 0
   grassPositionList: []
 --- !u!95 &3816233004399031238
@@ -1415,13 +1418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df7dbe8c13d60b408e18bbe6786f896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
-  isWandering: 0
-  agent: {fileID: 0}
-  hare: {fileID: 0}
-  Fox: {fileID: 0}
-  danger: 0
-  isFleeing: 0
   foxList: []
 --- !u!1 &7770220560490308381
 GameObject:

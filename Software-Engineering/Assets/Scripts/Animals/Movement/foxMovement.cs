@@ -52,6 +52,10 @@ public class foxMovement : Movement
             //Denkt daran den Agent zu stoppen wenn ihr die die-Methode aufruft, ich konnte aus Animal nicht darauf zugreifen
             agent.isStopped = true;
         }
+
+        if(Input.GetKeyDown("o")){
+            GetComponent<Fox>().currentHunger -= 50;
+        }
         //Stefans Code
         /**
         if (fox.isThirsty && fox.hasFoundWaterSource() && !isHunting)
@@ -81,7 +85,7 @@ public class foxMovement : Movement
 
         IEnumerator getOutOfWater()
         {
-            if (hare.transform.position.z > 71)
+            if (fox.transform.position.z > 71)
             {
                 agent.SetDestination(new Vector3(100f, 0f, 100f));
             }
@@ -156,15 +160,20 @@ public class foxMovement : Movement
             if (_distanceToPrey < fox.killRange)
             {
                 isHunting = false;
-                fox.kill(hare);
-        // TODO hier laufe zum hasen einfuegen
-                fox.eatHare(hare);
+                
+                if(hare.GetComponent<Hare>().isAlive){
+                    fox.kill(hare);
+                    //StartCoroutine(runToDeadHare());
+                      // TODO hier laufe zum hasen einfuegen
+                    fox.eatHare(hare);
+                }
+              
                 
             }
             //Tell Agent where to go
             agent.SetDestination(runToHare(foxPosition));  
         }
-        catch (MissingReferenceException e)
+        catch (MissingReferenceException)
         {
             //Debug.LogException(e,this);
         }
@@ -175,6 +184,17 @@ public class foxMovement : Movement
         }
 
     }
+
+    /*
+    public IEnumerator runToDeadHare(){
+        if(hare != null){
+            agent.SetDestination(hare.transform.position);
+        }
+        yield return new WaitForSeconds(1f);
+
+        fox.eatHare(hare);   
+    }
+    */
 }
 
 

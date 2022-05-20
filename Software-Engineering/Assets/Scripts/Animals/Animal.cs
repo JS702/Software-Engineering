@@ -74,8 +74,8 @@ public class Animal : Food
         {
             changeBar(healthBar, 10, ref currentHealth, "minus");
         }
-        changeBar(hungerBar, 10, ref currentHunger, "minus");
-        changeBar(thirstBar, 15, ref currentThirst, "minus");
+        changeBar(hungerBar, 3, ref currentHunger, "minus");
+        changeBar(thirstBar, 3, ref currentThirst, "minus");
         changeBar(hornyBar, 1, ref currentHorny, "plus");
 
         yield return new WaitForSeconds(3f);

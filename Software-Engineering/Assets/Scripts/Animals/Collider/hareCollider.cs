@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hareCollider : HareMovement
+public class hareCollider : MonoBehaviour
 {
     //private Hare hare;
     public List<GameObject> foxList;
@@ -14,8 +14,8 @@ public class hareCollider : HareMovement
             
             //isWandering = false;
             //agent.speed = sprintSpeed;
-            Fox = col.gameObject;
-            foxList.Add(Fox);
+             GetComponent<HareMovement>().Fox = col.gameObject;
+            foxList.Add( GetComponent<HareMovement>().Fox);
             //danger = true;
             //hare.isEating = false;
             //hare.isDrinking = false;
@@ -24,7 +24,7 @@ public class hareCollider : HareMovement
 
         if (col.tag == "Grass")
         {
-            hare.addGrassToList(col);
+            GetComponent<HareMovement>().hare.addGrassToList(col);
         }
         /**
         if (col.tag == "WaterSource")
@@ -44,8 +44,10 @@ public class hareCollider : HareMovement
             //set isFleeing to false when there is no fox around
             if (foxList.Count == 0)
             {
-                agent.speed = normalSpeed;
-                danger = false;
+                Debug.Log(" FLUCHT BEEENDEN");
+                GetComponent<HareMovement>().agent.speed =  GetComponent<Movement>().normalSpeed;
+                GetComponent<HareMovement>().danger = false;
+                GetComponent<HareMovement>().isFleeing = false;
             }
         }
         
