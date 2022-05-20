@@ -10,7 +10,9 @@ public class HareMovement : Movement
     public Hare hare;
 
     //reference to the closest Fox
-    public GameObject Fox;
+    public GameObject closestFox;
+    //
+    public GameObject closestSexPartner;
 
     //public List<GameObject> foxList
     public bool danger = false;
@@ -34,16 +36,15 @@ public class HareMovement : Movement
         //Debug.Log("isFleeing:" + isFleeing);
         if(danger)
         {
-            agent.speed = sprintSpeed;
             escape();
         }
-        else if (!isWandering && !isFleeing && !isUnderwater)
+        else if (!isWandering && !isFleeing && !isUnderwater && !GetComponent<Hare>().isHorny)
         {
             StartCoroutine(setWanderDestination());
         }
         
         //Abfrage, ob der Hase hungrig ist und Gras kennt
-        if (hare.isHungry && hare.hasFoundGrass() && !isFleeing && !hare.isDrinking && !isUnderwater)
+        if (hare.isHungry && hare.hasFoundGrass() && !isFleeing && !hare.isDrinking && !isUnderwater && !GetComponent<Hare>().isHorny)
         {
             agent.SetDestination(hare.moveToNearestGrass());
             if (/**agent.remainingDistance < 0.5*/hare.isInGrassArea)
@@ -66,13 +67,17 @@ public class HareMovement : Movement
         */
 
         //Dieser Code > Stefans Code
-        if (hare.isThirsty && !isFleeing && !hare.isEating && !isUnderwater)
+        if (hare.isThirsty && !isFleeing && !hare.isEating && !isUnderwater && !hare.isHorny)
         {
             agent.SetDestination(hare.waterPosition);
             if (hare.isInWaterArea)
             {
                 agent.isStopped = hare.drinkWater();
             }
+        }
+
+        if(hare.isHorny && !isFleeing && !hare.isEating && !hare.isThirsty){
+            reproduce();
         }
 
         if(isUnderwater)
@@ -138,14 +143,34 @@ public class HareMovement : Movement
                 if (_distanceToFox < lowestDistance)
                 {
                     //Der Fox der am dichtesten ist wird zum gameObject Fox vor dem der Hase wegrennt
-                    Fox = fox;
+                    closestFox = fox;
                     lowestDistance = _distanceToFox;
+                }
+            }
+    }
+
+     public void setLowestDistanceSexPartner(Vector3 harePosition){
+        
+        List<GameObject> potentialSexPartnerList = GetComponent<hareCollider>().potentialSexPartnerList;
+        float _distanceToSexPartner;
+        float lowestDistance = 100;
+         foreach (GameObject hare in potentialSexPartnerList)
+            {
+                Vector3 sexPartnerPosition = hare.transform.position;
+                _distanceToSexPartner = Vector3.Distance(harePosition, sexPartnerPosition);
+
+                if (_distanceToSexPartner < lowestDistance)
+                {
+                    //Der Fox der am dichtesten ist wird zum gameObject Fox vor dem der Hase wegrennt
+                    closestSexPartner = hare;
+                    lowestDistance = _distanceToSexPartner;
                 }
             }
     }
 
     private void escape(){
         isFleeing = true;
+        agent.speed = sprintSpeed;
         //the direction in wich the hare is fleeing if a Fox is around
         Vector3 _fleeDirection;
         Vector3 harePosition = transform.position;
@@ -155,7 +180,7 @@ public class HareMovement : Movement
             setLowestDistanceFox(harePosition);
 
             //in whoch direction is the nearest Fox?
-            Vector3 dirToFox = harePosition - Fox.transform.position;
+            Vector3 dirToFox = harePosition - closestFox.transform.position;
             //Debug.DrawLine(harePosition, Fox.transform.position, Color.red);
 
             // Escape direction
@@ -168,6 +193,32 @@ public class HareMovement : Movement
         }catch(MissingReferenceException){
 
         }
+    }
+
+    private void reproduce(){
+        //meine position
+        Vector3 harePosition = transform.position;
+        //ist auf partnersuche
+        //wantSomeLove = true;
+
+        //welches ist der naechste hase
+        setLowestDistanceSexPartner(harePosition);
+
+        if(closestSexPartner != null){
+            //wenn in reichweite des potentiellen partners dann paaren
+            if(Vector3.Distance(harePosition, closestSexPartner.transform.position) < 2){
+                
+                hare.isHavingFun();
+                Debug.Log(" IM HAVING A REALLY GOOD TIME");
+            }else{
+                 //Zum naechstbesten hasen laufen
+                 // abfragen ob geschlecht bzw alter stimmt
+                agent.SetDestination(closestSexPartner.transform.position);
+
+            }
+  
+        }
+    
     }
     
 }

@@ -82,6 +82,11 @@ public class Hare : Animal
         base.Update();// updates the bars
         eatTimer += Time.deltaTime;
         drinkTimer += Time.deltaTime;
+        sexTimer += Time.deltaTime;
+        
+        if(currentHorny > 90){
+            isHorny = true;
+        }
         if (currentHunger < 50)
         {
             isHungry = true;

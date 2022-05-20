@@ -6,6 +6,7 @@ public class hareCollider : MonoBehaviour
 {
     //private Hare hare;
     public List<GameObject> foxList;
+    public List<GameObject> potentialSexPartnerList;
       private void OnTriggerEnter(Collider col)
     {
         //if a fox enters the Sight of the hare, the hare add this Fox to his list of Foxes nearby
@@ -14,12 +15,15 @@ public class hareCollider : MonoBehaviour
             
             //isWandering = false;
             //agent.speed = sprintSpeed;
-             GetComponent<HareMovement>().Fox = col.gameObject;
-            foxList.Add( GetComponent<HareMovement>().Fox);
+             GetComponent<HareMovement>().closestFox = col.gameObject;
+            foxList.Add( GetComponent<HareMovement>().closestFox);
             //danger = true;
             //hare.isEating = false;
             //hare.isDrinking = false;
 
+        }
+        if(col.tag == "Prey"){
+            potentialSexPartnerList.Add(col.gameObject);
         }
 
         if (col.tag == "Grass")
@@ -49,6 +53,9 @@ public class hareCollider : MonoBehaviour
                 GetComponent<HareMovement>().danger = false;
                 GetComponent<HareMovement>().isFleeing = false;
             }
+        }
+        if(col.tag == "Prey"){
+            potentialSexPartnerList.Remove(col.gameObject);
         }
         
     }

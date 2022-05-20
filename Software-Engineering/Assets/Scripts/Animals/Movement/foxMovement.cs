@@ -136,7 +136,6 @@ public class foxMovement : Movement
 
         try
         {
-            
             Vector3 foxPosition = transform.position;
 
             //get the distance to the nearest fox

@@ -22,6 +22,8 @@ public class Animal : Food
     public bool isThirsty;
     public bool isDrinking;
     public bool isInWaterArea;
+    public bool isHorny;
+    public bool isHavingAReallyGoodTime;
     
     public int speed;
 
@@ -42,6 +44,7 @@ public class Animal : Food
     public float timePassed = 0f;
     public float eatTimer = 0f;
     public float drinkTimer = 0f;
+    public float sexTimer = 0f;
 
 
     protected void Update()
@@ -70,13 +73,19 @@ public class Animal : Food
     protected IEnumerator updateBars()
     {
         updatingBars = true;
-        if (thirstBar.slider.value == 0)
-        {
+        if (thirstBar.slider.value == 0){
             changeBar(healthBar, 10, ref currentHealth, "minus");
         }
-        changeBar(hungerBar, 3, ref currentHunger, "minus");
-        changeBar(thirstBar, 3, ref currentThirst, "minus");
-        changeBar(hornyBar, 1, ref currentHorny, "plus");
+        if(hungerBar.slider.value == 0){
+            changeBar(healthBar, 10, ref currentHealth, "minus");
+        }
+        if(healthBar.slider.value == 0){
+            die(false);
+        }
+
+        changeBar(hungerBar, 5, ref currentHunger, "minus");
+        changeBar(thirstBar, 5, ref currentThirst, "minus");
+        changeBar(hornyBar, 10, ref currentHorny, "plus");
 
         yield return new WaitForSeconds(3f);
         updatingBars = false;
@@ -93,6 +102,10 @@ public class Animal : Food
     public void drink(int water)
     {
         currentThirst += water;
+    }
+
+    public void haveSex(int endurance){
+        currentHorny -= endurance;
     }
     
     public int getHunger()
@@ -149,8 +162,23 @@ public class Animal : Food
         return waterSourcePositionList.Count > 0;
     }
     */
+    public bool isHavingFun(){
+        GetComponent<Movement>().agent.isStopped = true;
+        isHavingAReallyGoodTime = true;
 
-
+        if(sexTimer > 0.5f){
+            haveSex(50);
+            sexTimer = 0f;
+            hornyBar.setValue(currentHorny);
+        }
+        if(currentHorny <= 0){
+            isHavingAReallyGoodTime = false;
+            isHorny = false;
+            GetComponent<Movement>().agent.isStopped = false;
+        }
+        return isHavingAReallyGoodTime;
+    }
+    
     public bool drinkWater()
     {
         isDrinking = true;
