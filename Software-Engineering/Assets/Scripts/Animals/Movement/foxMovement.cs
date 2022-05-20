@@ -76,7 +76,22 @@ public class foxMovement : Movement
 
         if(isUnderwater)
         {
-            agent.isStopped = true;
+            StartCoroutine(getOutOfWater());
+        }
+
+        IEnumerator getOutOfWater()
+        {
+            if (hare.transform.position.z > 71)
+            {
+                agent.SetDestination(new Vector3(100f, 0f, 100f));
+            }
+            else
+            {
+                agent.SetDestination(new Vector3(0f, 0f, 0f));
+            }
+
+            yield return new WaitForSeconds(2.0f);
+            isUnderwater = false;
         }
 
     }

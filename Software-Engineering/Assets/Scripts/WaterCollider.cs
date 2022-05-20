@@ -26,7 +26,7 @@ public class WaterCollider : MonoBehaviour
             other.GetComponent<foxMovement>().isUnderwater = true;
         }
     }
-
+    /**
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Prey")
@@ -39,4 +39,5 @@ public class WaterCollider : MonoBehaviour
             other.GetComponent<foxMovement>().isUnderwater = true;
         }
     }
+    */
 }

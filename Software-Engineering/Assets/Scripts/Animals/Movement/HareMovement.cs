@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using System.Collections;
 
 public class HareMovement : Movement
 {
@@ -81,7 +82,24 @@ public class HareMovement : Movement
             //Vector3 direction = agent.destination;
             //agent.SetDestination(-direction);
             //Debug.Log("hare is underwater" + direction + " " + -direction);
-            agent.isStopped = true;
+            //agent.isStopped = true;
+            StartCoroutine(getOutOfWater());
+        }
+
+        IEnumerator getOutOfWater()
+        {
+            //Vector3 direction = agent.destination;
+            //agent.SetDestination(-direction*5);
+            if(hare.transform.position.z > 71)
+            {
+                agent.SetDestination(new Vector3(100f, 0f, 100f));
+            } else
+            {
+                agent.SetDestination(new Vector3(0f, 0f, 0f));
+            }
+            
+            yield return new WaitForSeconds(2.0f);
+            isUnderwater = false;
         }
 
         //Debug-Tool, bis der Hase hunger bekommen und fressen kann
