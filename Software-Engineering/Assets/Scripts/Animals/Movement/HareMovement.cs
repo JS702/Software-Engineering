@@ -96,10 +96,29 @@ public class HareMovement : Movement
             //agent.SetDestination(-direction*5);
             if(hare.transform.position.z > 71)
             {
-                agent.SetDestination(new Vector3(100f, 0f, 100f));
-            } else
+                if (hare.transform.position.x > 43)
+                {
+                    //Hase ist im rechten oberen Viertel
+                    agent.SetDestination(new Vector3(100f, 0f, 100f));
+                }
+                else
+                {
+                    //Hase ist im linken oberen Viertel
+                    agent.SetDestination(new Vector3(0f, 0f, 100f));
+                }
+            }
+            else
             {
-                agent.SetDestination(new Vector3(0f, 0f, 0f));
+                if (hare.transform.position.x > 43)
+                {
+                    //Hase ist im rechten unteren Viertel
+                    agent.SetDestination(new Vector3(100f, 0f, 0f));
+                }
+                else
+                {
+                    //Hase ist im linken unteren Viertel
+                    agent.SetDestination(new Vector3(0f, 0f, 0f));
+                }
             }
             
             yield return new WaitForSeconds(2.0f);

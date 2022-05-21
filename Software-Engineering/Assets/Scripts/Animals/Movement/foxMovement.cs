@@ -87,11 +87,29 @@ public class foxMovement : Movement
         {
             if (fox.transform.position.z > 71)
             {
-                agent.SetDestination(new Vector3(100f, 0f, 100f));
+                if (fox.transform.position.x > 43)
+                {
+                    //Fuchs ist im rechten oberen Viertel
+                    agent.SetDestination(new Vector3(100f, 0f, 100f));
+                }
+                else
+                {
+                    //Fuchs ist im linken oberen Viertel
+                    agent.SetDestination(new Vector3(0f, 0f, 100f));
+                }
             }
             else
             {
-                agent.SetDestination(new Vector3(0f, 0f, 0f));
+                if (fox.transform.position.x > 43)
+                {
+                    //Fuchs ist im rechten unteren Viertel
+                    agent.SetDestination(new Vector3(100f, 0f, 0f));
+                }
+                else
+                {
+                    //Fuchs ist im linken unteren Viertel
+                    agent.SetDestination(new Vector3(0f, 0f, 0f));
+                }
             }
 
             yield return new WaitForSeconds(2.0f);
