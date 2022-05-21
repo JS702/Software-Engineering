@@ -12,9 +12,10 @@ public class Animal : Food
 
     public int health=100;
     public int hunger = 100;
-    
     public int thirst = 100;
     public int reproductionDrive = 5;
+
+    public string gender;
 
     public bool isAlive = true;
     public bool isEating;
@@ -23,6 +24,8 @@ public class Animal : Food
     public bool isDrinking;
     public bool isInWaterArea;
     public bool isHorny;
+    public bool isPregnant;
+    //public bool isLLookingForSex;
     public bool isHavingAReallyGoodTime;
     
     public int speed;
@@ -45,11 +48,20 @@ public class Animal : Food
     public float eatTimer = 0f;
     public float drinkTimer = 0f;
     public float sexTimer = 0f;
+    public float pregnancyTimer = 0f;
 
-
+    
     protected void Update()
     {
-        
+        if(isPregnant){
+            pregnancyTimer += Time.deltaTime;
+
+            if(pregnancyTimer > 5){
+                Debug.Log("NEW LIFE");
+                pregnancyTimer = 0;
+                isPregnant = false;
+            }
+        }
         if (!updatingBars)
         {
             StartCoroutine(updateBars());
@@ -85,7 +97,11 @@ public class Animal : Food
 
         changeBar(hungerBar, 5, ref currentHunger, "minus");
         changeBar(thirstBar, 5, ref currentThirst, "minus");
-        changeBar(hornyBar, 10, ref currentHorny, "plus");
+
+        if(!isPregnant){
+            changeBar(hornyBar, 1, ref currentHorny, "plus");
+        }
+        
 
         yield return new WaitForSeconds(3f);
         updatingBars = false;
@@ -162,19 +178,46 @@ public class Animal : Food
         return waterSourcePositionList.Count > 0;
     }
     */
+    
+    /*
+    public bool isLookingForSex(){
+        isLookingForSex = true;
+
+        if(isLookingForSexTimer > 2f){
+
+        }
+    }
+    */
+
     public bool isHavingFun(){
-        GetComponent<Movement>().agent.isStopped = true;
+        
         isHavingAReallyGoodTime = true;
+        GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isHavingAReallyGoodTime = true;
+
+        GetComponent<HareMovement>().closestSexPartner.GetComponent<HareMovement>().agent.isStopped = true;
+        //GetComponent<Movement>().agent.isStopped = true;
+        
 
         if(sexTimer > 0.5f){
-            haveSex(50);
+            haveSex(2);
+            gameObject.GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().haveSex(2);
             sexTimer = 0f;
+            
             hornyBar.setValue(currentHorny);
+            gameObject.GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().hornyBar.setMaxValue(currentHorny);
         }
         if(currentHorny <= 0){
+            currentHorny = 0;
+            GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().currentHorny =  0;
+
             isHavingAReallyGoodTime = false;
             isHorny = false;
-            GetComponent<Movement>().agent.isStopped = false;
+            //GetComponent<Movement>().agent.isStopped = false;
+
+            GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isHorny = false;
+            GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isHavingAReallyGoodTime = false;
+            GetComponent<HareMovement>().closestSexPartner.GetComponent<HareMovement>().agent.isStopped = false;
+            GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isPregnant = true;
         }
         return isHavingAReallyGoodTime;
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hare : Animal
 {
     //public bool isHungry;
-    
+
     public bool isInGrassArea;
     public List<Vector3> grassPositionList;
 
@@ -17,7 +17,6 @@ public class Hare : Animal
         {
             grassPositionList.Add(grassPosition);
         }
-
     }
 
     public Vector3 moveToNearestGrass()
@@ -47,7 +46,7 @@ public class Hare : Animal
     }
 
     //W�hrend der Hase hungrig ist (Hunger < 50), frisst er jede halbe Sekunde einen Nahrungspunkt
-    
+
     public bool eatGrass()
     {
         isEating = true;
@@ -67,24 +66,28 @@ public class Hare : Animal
 
     void Start()
     {
+        gender = Random.Range(0,2) == 1 ? "male" : "female";
+
         setBar(ref currentHealth, health, healthBar);
         setBar(ref currentHunger, hunger, hungerBar);
         setBar(ref currentThirst, thirst, thirstBar);
-        
-        hornyBar.slider.maxValue=5;
-        hornyBar.slider.value=0;
-        currentHorny=0;
+
+        hornyBar.slider.maxValue = 5;
+        hornyBar.slider.value = 0;
+        currentHorny = 0;
 
     }
     
+
     void Update()
     {
         base.Update();// updates the bars
         eatTimer += Time.deltaTime;
         drinkTimer += Time.deltaTime;
         sexTimer += Time.deltaTime;
-        
-        if(currentHorny > 90){
+
+        if (currentHorny == 5)
+        {
             isHorny = true;
         }
         if (currentHunger < 50)
@@ -96,5 +99,6 @@ public class Hare : Animal
             isThirsty = true;
         }
     }
+
 
 }
