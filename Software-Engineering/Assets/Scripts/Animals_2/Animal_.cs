@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Animal : Food
+public class Animal_ : Food
 {
-    
-    public Animal animal;
-
+    public Animal_ animal;
 
     //Event Methods 
     public delegate void gotKilled();
@@ -27,13 +26,13 @@ public class Animal : Food
     public bool isInWaterArea;
     public bool isHorny;
     public bool isPregnant;
-    //public bool isLLookingForSex;
+    public bool isLookingForSex;
     public bool isHavingAReallyGoodTime;
-    
+    public bool isUnderwater;
     public int speed;
 
     public Vector3 waterPosition = new Vector3(43.8f, 1.3f, 71.4f);
-    
+
     //BARS Start:
     public int currentHealth;
     public int currentHunger;
@@ -54,14 +53,15 @@ public class Animal : Food
 
     public GameObject baby;
 
-    
+
 
     protected void Update()
     {
-        if(isPregnant){
+        if (isPregnant)
+        {
             pregnancyTimer += Time.deltaTime;
-
-            if(pregnancyTimer > 5){
+            if (pregnancyTimer > 5)
+            {
                 Debug.Log("NEW LIFE");
                 pregnancyTimer = 0;
                 isPregnant = false;
@@ -73,30 +73,36 @@ public class Animal : Food
         }
     }
 
-    public void changeBar(Bars bar,int damage, ref int currentNumber,string operations){
-        
-        currentNumber= operations.Equals("plus") ? currentNumber+=damage : currentNumber-=damage;
+    public void changeBar(Bars bar, int damage, ref int currentNumber, string operations)
+    {
+
+        currentNumber = operations.Equals("plus") ? currentNumber += damage : currentNumber -= damage;
         bar.setValue(currentNumber);
-        if (currentNumber < 0) {
-                  currentNumber = 0;
-                }
+        if (currentNumber < 0)
+        {
+            currentNumber = 0;
+        }
     }
 
-    public void setBar(ref int currentNumber, int number, Bars bar){
-        currentNumber=number;
+    public void setBar(ref int currentNumber, int number, Bars bar)
+    {
+        currentNumber = number;
         bar.setMaxValue(number);
     }
 
     protected IEnumerator updateBars()
     {
         updatingBars = true;
-        if (thirstBar.slider.value == 0){
+        if (thirstBar.slider.value == 0)
+        {
             changeBar(healthBar, 10, ref currentHealth, "minus");
         }
-        if(hungerBar.slider.value == 0){
+        if (hungerBar.slider.value == 0)
+        {
             changeBar(healthBar, 10, ref currentHealth, "minus");
         }
-        if(healthBar.slider.value == 0){
+        if (healthBar.slider.value == 0)
+        {
             GetComponent<Movement>().agent.isStopped = true;
             die(false);
         }
@@ -104,125 +110,68 @@ public class Animal : Food
         changeBar(hungerBar, 5, ref currentHunger, "minus");
         changeBar(thirstBar, 5, ref currentThirst, "minus");
 
-        if(!isPregnant && currentHorny < reproductionDrive){
+        if (!isPregnant && currentHorny < reproductionDrive)
+        {
             changeBar(hornyBar, 1, ref currentHorny, "plus");
         }
-        
+
 
         yield return new WaitForSeconds(3f);
         updatingBars = false;
     }
-
-  
 
     //BARS End
 
     public void eat(int food)
     {
         currentHunger += food;
-    } 
+    }
     public void drink(int water)
     {
         currentThirst += water;
     }
 
-    public void haveSex(int endurance){
+    public void haveSex(int endurance)
+    {
         currentHorny -= endurance;
     }
-    
+
     public int getHunger()
     {
         return hunger;
     }
-    //public bool isThirsty;
 
-    //public List<Vector3> waterSourcePositionList;
-    /**
-    public void addWaterSourceToList(Collider col)
+    GameObject produceNewLife(GameObject male, GameObject female)
     {
-        Debug.Log("Water in sight");
-        GameObject water = col.gameObject;
-        Vector3 waterSourcePostion = water.transform.position;
-        if (!waterSourcePositionList.Contains(waterSourcePostion))
-        {
-            waterSourcePositionList.Add(waterSourcePostion);
-            Debug.Log("Watersource added" + waterSourcePostion.ToString());
-        }
-        else
-        {
-            Debug.Log("Water already in list");
-        }
-    }
-    */
-
-    /**
-    public Vector3 moveToNearestWaterSource()
-    {
-        Debug.Log("Closest watersource...");
-
-        float distanceToNearestWaterSource = Vector3.Distance(waterSourcePositionList[0], transform.position);
-        Vector3 nearestWaterSourcePosition = waterSourcePositionList[0];
-        foreach (Vector3 waterSourceposition in waterSourcePositionList)
-        {
-            float distanceToWaterSource = Mathf.Abs(Vector3.Distance(waterSourceposition, transform.position));
-            //find closest watersource
-            if (distanceToWaterSource < distanceToNearestWaterSource)
-            {
-                distanceToNearestWaterSource = distanceToWaterSource; 
-                nearestWaterSourcePosition = waterSourceposition;
-            }
-        }
-        //move to watersource
-        Debug.Log("move to water");
-        return waterSourcePositionList[0];
-    }
-    */
-
-    /*
-    public bool hasFoundWaterSource()
-    {
-        return waterSourcePositionList.Count > 0;
-    }
-    */
-    
-    /*
-    public bool isLookingForSex(){
-        isLookingForSex = true;
-
-        if(isLookingForSexTimer > 2f){
-
-        }
-    }
-    */
-    GameObject produceNewLife(GameObject male, GameObject female){
-
-
 
         return baby;
 
     }
 
-    public bool isHavingFun(){
-        
+    public bool isHavingFun(GameObject male, GameObject female)
+    {
+
         //male.isHavingAReallyGoodTime = true;
         isHavingAReallyGoodTime = true;
         GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isHavingAReallyGoodTime = true;
 
         GetComponent<HareMovement>().closestSexPartner.GetComponent<HareMovement>().agent.isStopped = true;
         //GetComponent<Movement>().agent.isStopped = true;
-        
 
-        if(sexTimer > 0.5f){
+
+        if (sexTimer > 0.5f)
+        {
             haveSex(2);
             gameObject.GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().haveSex(2);
             sexTimer = 0f;
-            
+
             hornyBar.setValue(currentHorny);
             gameObject.GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().hornyBar.setMaxValue(currentHorny);
         }
-        if(currentHorny <= 0){
+        if (currentHorny <= 0)
+        {
             currentHorny = 0;
-            GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().currentHorny =  0;
+            GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().currentHorny = 0;
 
             isHavingAReallyGoodTime = false;
             isHorny = false;
@@ -236,7 +185,7 @@ public class Animal : Food
         }
         return isHavingAReallyGoodTime;
     }
-    
+
     public bool drinkWater()
     {
         isDrinking = true;
@@ -264,7 +213,7 @@ public class Animal : Food
     public void die(bool instantDespawn)
     {
         GetComponent<Movement>().agent.isStopped = true;
-        
+
         if (instantDespawn)
         {
             Destroy(this.gameObject, 5f);
@@ -275,5 +224,40 @@ public class Animal : Food
         }
         isAlive = false;
     }
+
+    public IEnumerator getOutOfWater()
+    {
+        if (transform.position.z > 71)
+        {
+            if (transform.position.x > 43)
+            {
+                //Tier ist im rechten oberen Viertel
+                GetComponent<Movement_>().agent.SetDestination(new Vector3(100f, 0f, 100f));
+            }
+            else
+            {
+                //Tier ist im linken oberen Viertel
+                GetComponent<Movement_>().agent.SetDestination(new Vector3(0f, 0f, 100f));
+            }
+        }
+        else
+        {
+            if (transform.position.x > 43)
+            {
+                //Tier ist im rechten unteren Viertel
+                GetComponent<Movement_>().agent.SetDestination(new Vector3(100f, 0f, 0f));
+            }
+            else
+            {
+                //Tier ist im linken unteren Viertel
+                GetComponent<Movement_>().agent.SetDestination(new Vector3(0f, 0f, 0f));
+            }
+        }
+
+        yield return new WaitForSeconds(2.0f);
+        isUnderwater = false;
+    }
+
+
 
 }

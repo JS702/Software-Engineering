@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hare : Animal
-{
-    //public bool isHungry;
-
+public class Hare_ : Animal_
+{   
+    public bool inDanger = false;
+    public bool isFleeing = false;
     public bool isInGrassArea;
     public List<Vector3> grassPositionList;
 
@@ -18,7 +18,6 @@ public class Hare : Animal
             grassPositionList.Add(grassPosition);
         }
     }
-
 
     public Vector3 moveToNearestGrass()
     {
@@ -45,8 +44,6 @@ public class Hare : Animal
     {
         return grassPositionList.Count > 0;
     }
-
-    //W�hrend der Hase hungrig ist (Hunger < 50), frisst er jede halbe Sekunde einen Nahrungspunkt
 
     public bool eatGrass()
     {
@@ -90,15 +87,12 @@ public class Hare : Animal
         return isHorny;
     }
     
-
     void Update()
     {
-        stillHorny();
         base.Update();// updates the bars
         eatTimer += Time.deltaTime;
         drinkTimer += Time.deltaTime;
         sexTimer += Time.deltaTime;
-
         if (currentHorny == 5)
         {
             isHorny = true;
@@ -111,7 +105,7 @@ public class Hare : Animal
         {
             isThirsty = true;
         }
+        stillHorny();
     }
-
 
 }

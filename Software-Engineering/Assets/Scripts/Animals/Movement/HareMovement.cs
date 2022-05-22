@@ -8,14 +8,14 @@ public class HareMovement : Movement
    
    //reference to the hare itself
     public Hare hare;
-
+    public bool ISLOOKINGFORSEX = false;
     //reference to the closest Fox
     public GameObject closestFox;
     //
     public GameObject closestSexPartner;
 
     //public List<GameObject> foxList
-    public bool danger = false;
+    public bool inDanger = false;
     public bool isFleeing = false;
     public bool isUnderwater;
 
@@ -30,13 +30,18 @@ public class HareMovement : Movement
 
     private void Update()
     {
+        /*
         if(GetComponent<hareCollider>().foxList.Count > 0){
             danger = true;
         }
+        */
         //Debug.Log("isFleeing:" + isFleeing);
-        if(danger)
+        if(inDanger)
         {
             escape();
+
+        }else{
+
         }
       
         
@@ -65,7 +70,10 @@ public class HareMovement : Movement
 
         //Dieser Code > Stefans Code
 
-        if (hare.isThirsty && !isFleeing && !hare.isEating && !isUnderwater && !hare.isHavingAReallyGoodTime)
+        /*
+        if (hare.isThirsty && !isFleeing && !hare.isEating && !isUnderwater 
+        //&& !hare.isHavingAReallyGoodTime
+        )
         {
             agent.SetDestination(hare.waterPosition);
             if (hare.isInWaterArea)
@@ -73,6 +81,7 @@ public class HareMovement : Movement
                 agent.isStopped = hare.drinkWater();
             }
         }
+        */
 
        
         if(hare.isHorny && !isFleeing && !hare.isHungry && !hare.isThirsty && !isUnderwater){    
@@ -194,6 +203,7 @@ public class HareMovement : Movement
 
     private void escape(){
         isFleeing = true;
+        
         agent.speed = sprintSpeed;
         //the direction in wich the hare is fleeing if a Fox is around
         Vector3 _fleeDirection;
@@ -221,6 +231,7 @@ public class HareMovement : Movement
     private void reproduce(){
         
         //meine position
+        ISLOOKINGFORSEX = true;
         Vector3 harePosition = transform.position;
         
         //welches ist der naechste hase
@@ -233,6 +244,7 @@ public class HareMovement : Movement
                                 closestSexPartner.GetComponent<Hare>().isHorny &&           // the target hare isHorny
                                 !closestSexPartner.GetComponent<Hare>().isPregnant          // the target hare is NOT pregnant
                                 ){
+                ISLOOKINGFORSEX = false;
                 agent.isStopped = hare.isHavingFun();                                       // start to have sex
                 Debug.Log(" IM HAVING A REALLY GOOD TIME");
             }
@@ -245,6 +257,8 @@ public class HareMovement : Movement
             }                                                                                       
                
         }
+
+
     }
     
 }

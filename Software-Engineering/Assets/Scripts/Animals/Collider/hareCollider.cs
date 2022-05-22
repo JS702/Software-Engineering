@@ -15,7 +15,8 @@ public class hareCollider : MonoBehaviour
             
             //isWandering = false;
             //agent.speed = sprintSpeed;
-             GetComponent<HareMovement>().closestFox = col.gameObject;
+            GetComponent<HareMovement>().inDanger = true;
+            GetComponent<HareMovement>().closestFox = col.gameObject;
             foxList.Add( GetComponent<HareMovement>().closestFox);
             //danger = true;
             //hare.isEating = false;
@@ -48,9 +49,9 @@ public class hareCollider : MonoBehaviour
             //set isFleeing to false when there is no fox around
             if (foxList.Count == 0)
             {
-                Debug.Log(" FLUCHT BEEENDEN");
+                //Debug.Log(" FLUCHT BEEENDEN");
                 GetComponent<HareMovement>().agent.speed =  GetComponent<Movement>().normalSpeed;
-                GetComponent<HareMovement>().danger = false;
+                GetComponent<HareMovement>().inDanger = false;
                 GetComponent<HareMovement>().isFleeing = false;
             }
         }
