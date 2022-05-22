@@ -22,7 +22,7 @@ public class hareCollider : MonoBehaviour
             //hare.isDrinking = false;
 
         }
-        if(col.tag == "Prey" && col.gameObject.GetComponent<Hare>().gender != gameObject.GetComponent<Hare>().gender){
+        if(col.tag == "Prey" && col.gameObject.GetComponent<Hare>().gender != gameObject.GetComponent<Hare>().gender && col.GetComponent<Animal>().isAlive){
             potentialSexPartnerList.Add(col.gameObject);
         }
 

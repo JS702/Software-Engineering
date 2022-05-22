@@ -6,11 +6,13 @@ public class Animal : Food
 {
     
     public Animal animal;
+
+
     //Event Methods 
     public delegate void gotKilled();
     public static event gotKilled OnGotKilled;
 
-    public int health=100;
+    public int health = 100;
     public int hunger = 100;
     public int thirst = 100;
     public int reproductionDrive = 5;
@@ -50,7 +52,10 @@ public class Animal : Food
     public float sexTimer = 0f;
     public float pregnancyTimer = 0f;
 
+    public GameObject baby;
+
     
+
     protected void Update()
     {
         if(isPregnant){
@@ -92,13 +97,14 @@ public class Animal : Food
             changeBar(healthBar, 10, ref currentHealth, "minus");
         }
         if(healthBar.slider.value == 0){
+            GetComponent<Movement>().agent.isStopped = true;
             die(false);
         }
 
         changeBar(hungerBar, 5, ref currentHunger, "minus");
         changeBar(thirstBar, 5, ref currentThirst, "minus");
 
-        if(!isPregnant){
+        if(!isPregnant && currentHorny < reproductionDrive){
             changeBar(hornyBar, 1, ref currentHorny, "plus");
         }
         
@@ -113,7 +119,7 @@ public class Animal : Food
 
     public void eat(int food)
     {
-        currentHunger+=food;
+        currentHunger += food;
     } 
     public void drink(int water)
     {
@@ -188,9 +194,17 @@ public class Animal : Food
         }
     }
     */
+    GameObject produceNewLife(GameObject male, GameObject female){
+
+
+
+        return baby;
+
+    }
 
     public bool isHavingFun(){
         
+        //male.isHavingAReallyGoodTime = true;
         isHavingAReallyGoodTime = true;
         GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isHavingAReallyGoodTime = true;
 
@@ -216,6 +230,7 @@ public class Animal : Food
 
             GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isHorny = false;
             GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isHavingAReallyGoodTime = false;
+            
             GetComponent<HareMovement>().closestSexPartner.GetComponent<HareMovement>().agent.isStopped = false;
             GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isPregnant = true;
         }

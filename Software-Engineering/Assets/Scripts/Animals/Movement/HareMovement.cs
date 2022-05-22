@@ -41,7 +41,7 @@ public class HareMovement : Movement
       
         
         //Abfrage, ob der Hase hungrig ist und Gras kennt
-        if (hare.isHungry && hare.hasFoundGrass() && !isFleeing && !hare.isDrinking && !isUnderwater)
+        if (hare.isHungry && hare.hasFoundGrass() && !isFleeing && !hare.isDrinking && !isUnderwater &&!hare.isHavingAReallyGoodTime)
         {
             agent.SetDestination(hare.moveToNearestGrass());
             if (/**agent.remainingDistance < 0.5*/hare.isInGrassArea)
@@ -64,7 +64,8 @@ public class HareMovement : Movement
         */
 
         //Dieser Code > Stefans Code
-        if (hare.isThirsty && !isFleeing && !hare.isEating && !isUnderwater)
+
+        if (hare.isThirsty && !isFleeing && !hare.isEating && !isUnderwater && !hare.isHavingAReallyGoodTime)
         {
             agent.SetDestination(hare.waterPosition);
             if (hare.isInWaterArea)
@@ -73,9 +74,11 @@ public class HareMovement : Movement
             }
         }
 
-        if(hare.isHorny && !isFleeing && !hare.isHungry && !hare.isThirsty){    
+       
+        if(hare.isHorny && !isFleeing && !hare.isHungry && !hare.isThirsty && !isUnderwater){    
             reproduce();
         }
+        
 
 
         if(isUnderwater)

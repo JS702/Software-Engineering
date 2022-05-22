@@ -19,6 +19,7 @@ public class Hare : Animal
         }
     }
 
+
     public Vector3 moveToNearestGrass()
     {
         Debug.Log("Dichtestes Gras wird gesucht...");
