@@ -25,10 +25,6 @@ public class UILineRenderer : Graphic
     float unitWidth;
     float unitHeight;
 
-    protected override void Awake()
-    {
-        diagramManager = GameObject.FindGameObjectWithTag("DiagramManager").GetComponent<DiagramManager>();
-    }
     protected override void OnPopulateMesh(VertexHelper vh)
     {
         vh.Clear();

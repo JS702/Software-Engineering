@@ -405,7 +405,7 @@ MonoBehaviour:
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   diagramName: haresAlive
-  diagramManager: {fileID: 0}
+  diagramManager: {fileID: 1495832323}
   gridSize: {x: 24, y: 10}
   points:
   - {x: 0, y: 0}
@@ -7976,7 +7976,7 @@ MonoBehaviour:
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   diagramName: foxesAlive
-  diagramManager: {fileID: 0}
+  diagramManager: {fileID: 1495832323}
   gridSize: {x: 24, y: 10}
   points:
   - {x: 0, y: 0}
@@ -15215,7 +15215,7 @@ MonoBehaviour:
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   diagramName: generations
-  diagramManager: {fileID: 0}
+  diagramManager: {fileID: 1495832323}
   gridSize: {x: 24, y: 10}
   points:
   - {x: 0, y: 1}
@@ -29607,7 +29607,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Animals Alive
+  m_text: Hares Alive
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -31569,7 +31569,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Animals Alive
+  m_text: Foxes Alive
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
