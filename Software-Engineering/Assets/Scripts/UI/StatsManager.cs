@@ -23,6 +23,8 @@ public class StatsManager : MonoBehaviour
     {
         Animal.OnGotKilled += addHaresKilled;
         GameManager.onStatTracking += getAnimalsAlive;
+        GameManager.onStatTracking += getHaresAlive;
+        GameManager.onStatTracking += getFoxesAlive;
     }
 
     private void OnDisable()
@@ -46,15 +48,23 @@ public class StatsManager : MonoBehaviour
         drawPoint(count, line);
     }
 
+    private void getHaresAlive()
+    {
+        UILineRenderer line = uiLineRenderer.Find(renderer => renderer.diagramName.Equals("haresAlive"));
+        drawPoint(gameManager.hareAlives.Count, line);
+    }
+
+    private void getFoxesAlive()
+    {
+        UILineRenderer line = uiLineRenderer.Find(renderer => renderer.diagramName.Equals("foxesAlive"));
+        drawPoint(gameManager.foxAlives.Count, line);
+    }
+
     private int getAnimalsStarved()
     {
         return foxesStarved + haresStarved;
     }
 
-    private int getTime()
-    {
-        return Mathf.FloorToInt(gameManager.currentTime);
-    }
 
     private void drawPoint(float value, UILineRenderer lineRenderer)
     {

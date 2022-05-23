@@ -22,7 +22,6 @@ public class Hare : Animal
 
     public Vector3 moveToNearestGrass()
     {
-        Debug.Log("Dichtestes Gras wird gesucht...");
         //Default: Dichtestes Gras ist das, das er zuerst entdeckt hat
         float distanceToNearestGrass = Vector3.Distance(grassPositionList[0], transform.position);
         Vector3 nearestGrassPosition = grassPositionList[0];
@@ -37,7 +36,6 @@ public class Hare : Animal
             }
         }
         //Zum dichtesten bekannten Gras laufen
-        Debug.Log("Zum Gras bewegen");
         return nearestGrassPosition;
     }
 

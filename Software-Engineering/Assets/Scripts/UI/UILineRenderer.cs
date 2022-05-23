@@ -8,7 +8,6 @@ public class UILineRenderer : Graphic
     //damit der StatsManager das unterscheiden kann
     public string diagramName;
 
-    public UIGridRenderer gridRenderer;
     public DiagramManager diagramManager;
     public Vector2Int gridSize;
     public List<Vector2> points;
@@ -26,9 +25,8 @@ public class UILineRenderer : Graphic
     float unitWidth;
     float unitHeight;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        gridRenderer = transform.GetComponentInParent<UIGridRenderer>();
         diagramManager = GameObject.FindGameObjectWithTag("DiagramManager").GetComponent<DiagramManager>();
     }
     protected override void OnPopulateMesh(VertexHelper vh)
