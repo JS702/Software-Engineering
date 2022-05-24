@@ -30,7 +30,9 @@ public class HareMovement : Movement
 
     private void Update()
     {
-        if (inDanger)
+
+        if(hare.isAlive){
+            if (inDanger)
         {
             escape();
         }
@@ -68,7 +70,6 @@ public class HareMovement : Movement
             }
             
             //HORNY
-            
             if (hare.isHorny && !isFleeing && !hare.isHungry && !hare.isThirsty && !hare.isUnderwater)
             {
                 reproduce();
@@ -100,6 +101,9 @@ public class HareMovement : Movement
 
         //Dieser Code > Stefans Code
 
+
+        }
+        
     }
 
 
@@ -146,6 +150,13 @@ public class HareMovement : Movement
     {
         isFleeing = true;
 
+        agent.isStopped = false;
+        hare.isHavingAReallyGoodTime = false;
+        hare.isHorny = false;
+        hare.isLookingForSex = false;
+        hare.isDrinking = false;
+        hare.isEating = false;
+
         agent.speed = sprintSpeed;
         //the direction in wich the hare is fleeing if a Fox is around
         Vector3 _fleeDirection;
@@ -176,7 +187,7 @@ public class HareMovement : Movement
     private void reproduce()
     {
         hare.isLookingForSex = true;
-
+        GetComponent<hareCollider>().checkPotentialSexPartnerList();
         //meine position
         Vector3 harePosition = transform.position;
 
@@ -196,7 +207,7 @@ public class HareMovement : Movement
             {
                 hare.isLookingForSex = false;
                 agent.isStopped = hare.isHavingFun();                                       // start to have sex
-                Debug.Log(" IM HAVING A REALLY GOOD TIME");
+                //Debug.Log("IM HAVING A REALLY GOOD TIME");
             }
 
             if (closestSexPartner.GetComponent<Hare>().isPregnant)

@@ -7,6 +7,14 @@ public class hareCollider : MonoBehaviour
     //private Hare hare;
     public List<GameObject> foxList;
     public List<Hare> potentialSexPartnerList;
+    public void checkPotentialSexPartnerList()
+    {
+        for(var i = potentialSexPartnerList.Count - 1; i > -1; i--)
+        {   
+        if (potentialSexPartnerList[i] == null)
+        potentialSexPartnerList.RemoveAt(i);
+        }
+    }
       private void OnTriggerEnter(Collider col)
     {
         //if a fox enters the Sight of the hare, the hare add this Fox to his list of Foxes nearby
