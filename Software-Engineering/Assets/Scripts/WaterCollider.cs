@@ -18,7 +18,7 @@ public class WaterCollider : MonoBehaviour
 
         if (other.tag == "Prey")
         {
-            other.GetComponent<HareMovement>().isUnderwater = true;
+            other.GetComponent<HareMovement>().hare.isUnderwater = true;
         }
 
         if (other.tag == "Fox")

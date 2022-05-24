@@ -18,8 +18,6 @@ public class Hare : Animal
             grassPositionList.Add(grassPosition);
         }
     }
-
-
     public Vector3 moveToNearestGrass()
     {
         //Default: Dichtestes Gras ist das, das er zuerst entdeckt hat
@@ -77,22 +75,24 @@ public class Hare : Animal
 
     }
 
+    /*
     bool stillHorny(){
         if(isHungry || isThirsty){
             //hornyBar.slider.value = 0;
             currentHorny = 0;
             isHorny = false;
-        }else{
-            isHorny = true;
-        } 
+        }
         return isHorny;
     }
+    */
     
 
     void Update()
     {
-        stillHorny();
+        
+        
         base.Update();// updates the bars
+
         eatTimer += Time.deltaTime;
         drinkTimer += Time.deltaTime;
         sexTimer += Time.deltaTime;
@@ -109,6 +109,9 @@ public class Hare : Animal
         {
             isThirsty = true;
         }
+
+        //isHorny = stillHorny();
+        //isLookingForSex = stillHorny();
     }
 
 
