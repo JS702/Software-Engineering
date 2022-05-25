@@ -17,13 +17,13 @@ public class bunnyAnimation : MonoBehaviour
     void Update()
     {
         animator.SetBool("isMoving", getIsMoving());
-        animator.SetBool("isEating", getIsEating());
+        animator.SetBool("isEating", getIsEating() || getIsDrinking());
         animator.SetBool("isAlive", getIsAlive());
     }
 
     public bool getIsMoving()
     {
-        return (movement.isWandering || movement.isFleeing) && !movement.hare.isEating && movement.hare.isAlive;
+        return (movement.isWandering || movement.isFleeing || (movement.hare.isHungry && movement.hare.hasFoundGrass() || movement.hare.isThirsty)) && !movement.hare.isEating && !movement.hare.isDrinking && movement.hare.isAlive;
     }
 
     public bool getIsEating()
@@ -34,5 +34,10 @@ public class bunnyAnimation : MonoBehaviour
     public bool getIsAlive()
     {
         return movement.hare.isAlive;
+    }
+
+    public bool getIsDrinking()
+    {
+        return movement.hare.isDrinking;
     }
 }
