@@ -17,7 +17,6 @@ public class HareMovement : Movement
     //public List<GameObject> foxList
     public bool inDanger = false;
     public bool isFleeing = false;
-    public bool isMovingToGrass;
 
 
 
@@ -43,10 +42,8 @@ public class HareMovement : Movement
             if (hare.isHungry && hare.hasFoundGrass() && !isFleeing && !hare.isDrinking && !hare.isUnderwater && !hare.isThirsty)
             {
                 agent.SetDestination(hare.moveToNearestGrass());
-                isMovingToGrass = true;
                 if (hare.isInGrassArea)
                 {
-                    isMovingToGrass = false;
                     agent.isStopped = hare.eatGrass();
                 }
             }
