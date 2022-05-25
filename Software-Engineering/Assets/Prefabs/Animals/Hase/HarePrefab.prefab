@@ -1368,7 +1368,8 @@ MonoBehaviour:
   drinkTimer: 0
   sexTimer: 0
   pregnancyTimer: 0
-  hareBaby: {fileID: 7366081109373987059}
+  babyPrefab: {fileID: 7366081109373987059}
+  sexPartner: {fileID: 0}
   isInGrassArea: 0
   grassPositionList: []
 --- !u!95 &3816233004399031238
