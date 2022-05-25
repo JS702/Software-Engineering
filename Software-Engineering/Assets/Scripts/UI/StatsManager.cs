@@ -9,6 +9,8 @@ public class StatsManager : MonoBehaviour
 
     private int foxesAlive;
     private int haresAlive;
+   
+
 
     private int haresKilled;
     private int haresStarved;
@@ -17,6 +19,7 @@ public class StatsManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        
     }
     //Subscribe to Event Methods
     private void OnEnable()
