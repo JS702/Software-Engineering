@@ -55,6 +55,8 @@ public abstract class Animal : Food
     public float sexTimer = 0f;
     public float pregnancyTimer = 0f;
     public GameObject babyPrefab; //Prefab vom Hare (manuell über die grafische Oberfläche reinziehen)
+
+    public ParticleSystem heartParticel;
  
 
     protected void Update()
@@ -167,7 +169,7 @@ public abstract class Animal : Food
     
     public bool isHavingFun()
     {
-
+        
         isHavingAReallyGoodTime = true;
         GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isHavingAReallyGoodTime = true;
 
@@ -186,7 +188,7 @@ public abstract class Animal : Food
         }
         if (currentHorny <= 0)
         {
-
+            //heartParticel.Stop();
             isHavingAReallyGoodTime = false;
             GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isHavingAReallyGoodTime = false;
 
