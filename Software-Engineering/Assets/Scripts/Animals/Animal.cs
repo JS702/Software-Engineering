@@ -54,8 +54,8 @@ public abstract class Animal : Food
     public float drinkTimer = 0f;
     public float sexTimer = 0f;
     public float pregnancyTimer = 0f;
-    public GameObject hareBaby;
-
+    public GameObject hareBaby; //Prefab vom Hare (manuell über die grafische Oberfläche reinziehen)
+    
     //public List<Hare> babyList;
 
     protected void Update()
@@ -63,7 +63,6 @@ public abstract class Animal : Food
         if (isPregnant)
         {   
 
-           
             StartCoroutine(spawnChild());
             /*
             pregnancyTimer += Time.deltaTime;
@@ -91,12 +90,26 @@ public abstract class Animal : Food
             isPregnant = false;
             GetComponent<Movement>().agent.isStopped = true;
             Debug.Log("VERMEHRUNG: Try to spawn child");
+            int childCounter = Random.Range(1, 4); //Random Integer zwischen 1 und 3, der die Anzahl der zu spawnenden Kinder angibt
+            Vector3 pos = GetComponent<Movement>().transform.position;
+
             yield return new WaitForSeconds(5f);
 
-            Vector3 pos = new Vector3(Random.Range(25, 75), Random.Range(4, 6), Random.Range(25, 75));
+            for (int i = 1; i <= childCounter ; i++) //Entsprechende Anzahl von Kindern wird gespawnt
+            {
+                
+                hareBaby.GetComponent<Animal>().hunger = 500; //Test, funktioniert so
+                hareBaby.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); //Test, funktioniert so
+                Instantiate(hareBaby, pos + new Vector3(i, 0, i), Quaternion.identity); //Jedes gespawnte Kind wird um eine Einheit weiter auf der x- und z-Achse verschoben, um Kollisionen zu verhindern
+                
+                Debug.Log("VERMEHRUNG: child spawned");
+            }
+
+            //Vector3 pos = new Vector3(2f, 0f, 2f);
+            //Vector3 pos = GetComponent<Movement>().transform.position;
             //Transform pos = GetComponent<HareMovement>().hare.transform;
-            Instantiate(hareBaby, pos,  Quaternion.identity);
-            Debug.Log("VERMEHRUNG: child spawned");
+            //Instantiate(hareBaby, pos,  Quaternion.identity);
+            //Debug.Log("VERMEHRUNG: child spawned");
             //isPregnant = false;
             GetComponent<Movement>().agent.isStopped = false;
         }
@@ -244,6 +257,7 @@ public abstract class Animal : Food
         return mutation > 1 ? 0 : mutation == 1 ? Random.Range(1, 3) : Random.Range(-3, 0);
     }
 
+    
     private void setBabyValues(Hare male, Hare female)
     {
         Hare baby = new Hare();
