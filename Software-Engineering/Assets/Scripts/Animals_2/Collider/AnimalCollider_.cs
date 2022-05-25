@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimalCollider_ : MonoBehaviour
+public abstract class AnimalCollider_ : MonoBehaviour
 {
     public void removeMissingObjectsFromAnimalList(List<GameObject> animalList)
     {
-        for(var i = animalList.Count - 1; i > -1; i--)
-        {   
-        if (animalList[i] == null)
-        animalList.RemoveAt(i);
+        for (var i = animalList.Count - 1; i > -1; i--)
+        {
+            if (animalList[i] == null)
+                animalList.RemoveAt(i);
         }
     }
 
-     public GameObject lowestDistanceAnimal(GameObject self, List<GameObject> animalList)
+    public GameObject lowestDistanceAnimal(GameObject self, List<GameObject> animalList)
     {
-
         Vector3 selfPosition = self.transform.position;
         float distanceToOther;
         float lowestDistance = 100;
@@ -38,5 +37,5 @@ public class AnimalCollider_ : MonoBehaviour
         return null;
     }
     public List<GameObject> potentialSexPartnerList;
-    
+
 }

@@ -75,7 +75,7 @@ public class Hare : Animal
 
     }
 
-    /*
+    
     bool stillHorny(){
         if(isHungry || isThirsty){
             //hornyBar.slider.value = 0;
@@ -84,7 +84,7 @@ public class Hare : Animal
         }
         return isHorny;
     }
-    */
+    
     
 
     void Update()
@@ -101,17 +101,17 @@ public class Hare : Animal
         {
             isHorny = true;
         }
-        if (currentHunger < 50)
+        if (currentHunger < Mathf.Floor(hunger / 2))
         {
             isHungry = true;
         }
-        if (currentThirst < 50)
+        if (currentThirst < Mathf.Floor(thirst / 2))
         {
             isThirsty = true;
         }
 
-        //isHorny = stillHorny();
-        //isLookingForSex = stillHorny();
+        isHorny = stillHorny();
+        isLookingForSex = stillHorny();
     }
 
 

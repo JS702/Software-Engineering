@@ -1303,12 +1303,12 @@ MonoBehaviour:
   isWandering: 0
   normalSpeed: 2
   sprintSpeed: 8
-  agent: {fileID: 0}
+  agent: {fileID: 6435164666967379445}
   hare: {fileID: 0}
-  Fox: {fileID: 0}
-  danger: 0
+  closestFox: {fileID: 0}
+  closestSexPartner: {fileID: 0}
+  inDanger: 0
   isFleeing: 0
-  isUnderwater: 0
 --- !u!65 &6094298513528744798
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1340,12 +1340,19 @@ MonoBehaviour:
   hunger: 100
   thirst: 100
   reproductionDrive: 5
+  generation: 0
+  gender: 
   isAlive: 1
   isEating: 0
   isHungry: 0
   isThirsty: 0
   isDrinking: 0
   isInWaterArea: 0
+  isUnderwater: 0
+  isHorny: 0
+  isPregnant: 0
+  isLookingForSex: 0
+  isHavingAReallyGoodTime: 0
   speed: 0
   waterPosition: {x: 43.8, y: 1.3, z: 71.4}
   currentHealth: 0
@@ -1359,6 +1366,9 @@ MonoBehaviour:
   timePassed: 0
   eatTimer: 0
   drinkTimer: 0
+  sexTimer: 0
+  pregnancyTimer: 0
+  hareBaby: {fileID: 7366081109373987059}
   isInGrassArea: 0
   grassPositionList: []
 --- !u!95 &3816233004399031238
@@ -1419,6 +1429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foxList: []
+  potentialSexPartnerList: []
 --- !u!1 &7770220560490308381
 GameObject:
   m_ObjectHideFlags: 0

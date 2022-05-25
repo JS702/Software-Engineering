@@ -201,7 +201,6 @@ public class HareMovement : Movement
                                 && hare.gender.Equals("male")                                                   // the active hare is male
                                 && closestSexPartner.GetComponent<Hare>().isHorny                               // the target hare isHorny
                                 && !closestSexPartner.GetComponent<Hare>().isPregnant                           // the target hare is NOT pregnant
-                                //&& closestSexPartner.isAlive                                                    // the hare is Alive
                                 && closestSexPartner.GetComponent<HareMovement>().closestSexPartner == hare     //the target of my closest sex partner is me
                                 )
             {
@@ -211,7 +210,7 @@ public class HareMovement : Movement
             }
 
             if (closestSexPartner.GetComponent<Hare>().isPregnant)
-            {                              // if the target is allready pregnant:
+            {                                                                                   // if the target is allready pregnant:
                 GetComponent<hareCollider>().potentialSexPartnerList.Remove(closestSexPartner); // remove it from potentialSexPartnerList
             }
             else
