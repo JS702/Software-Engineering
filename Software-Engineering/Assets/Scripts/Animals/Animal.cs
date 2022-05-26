@@ -12,10 +12,10 @@ public abstract class Animal : Food
     public delegate void gotKilled();
     public static event gotKilled OnGotKilled;
 
-    public int health = 100;
-    public int hunger = 100;
-    public int thirst = 100;
-    public int reproductionDrive = 5;
+    public int health;
+    public int hunger;
+    public int thirst;
+    public int reproductionDrive;
 
     public int generation = 0;
 
@@ -32,6 +32,7 @@ public abstract class Animal : Food
     public bool isPregnant;
     public bool isLookingForSex;
     public bool isHavingAReallyGoodTime;
+    public bool isChild;
 
     public int speed;
 
@@ -43,6 +44,14 @@ public abstract class Animal : Food
     public int currentThirst;
     public int currentHorny;
 
+    public int hungerLoss;
+    public int thirstLoss;
+    public int hornyLoss;
+
+    public int hungerGain;
+    public int thirstGain;
+   
+
     public Bars healthBar;
     public Bars hungerBar;
     public Bars thirstBar;
@@ -53,10 +62,10 @@ public abstract class Animal : Food
     public float eatTimer = 0f;
     public float drinkTimer = 0f;
     public float sexTimer = 0f;
-    public float pregnancyTimer = 0f;
+    public float ageTimer = 0f;
     public GameObject babyPrefab; //Prefab vom Hare (manuell über die grafische Oberfläche reinziehen)
 
-    public ParticleSystem heartParticel;
+    public ParticleSystem heartParticle;
 
     public string animalName;
     private string[] namesMale = { "Bob", "Dave", "Ted", "Marvin", "Oscar", "Victor" };
@@ -64,14 +73,14 @@ public abstract class Animal : Food
 
     protected void Update()
     {
-
+        /*
         if ((isHungry || isThirsty) && !isHavingAReallyGoodTime)
         {
             hornyBar.slider.value = 0;
             currentHorny = 0;
             isHorny = false;
             isLookingForSex = false;
-        }
+        }*/
 
         if (!updatingBars)
         {
@@ -125,10 +134,10 @@ public abstract class Animal : Food
             die(false);
         }
 
-        changeBar(hungerBar, 5, ref currentHunger, "minus");
-        changeBar(thirstBar, 5, ref currentThirst, "minus");
+        changeBar(hungerBar, hungerLoss, ref currentHunger, "minus");
+        changeBar(thirstBar, thirstLoss, ref currentThirst, "minus");
 
-        if (!isPregnant && currentHorny < reproductionDrive && !isHungry && !isThirsty)
+        if (!isPregnant && !isChild && currentHorny < reproductionDrive && !isHungry && !isThirsty)
         {
             changeBar(hornyBar, 1, ref currentHorny, "plus");
         }
@@ -144,12 +153,10 @@ public abstract class Animal : Food
     {
         currentThirst += water;
     }
-
     public void haveSex(int endurance)
     {
         currentHorny -= endurance;
     }
-
     public int getHunger()
     {
         return hunger;
@@ -158,33 +165,49 @@ public abstract class Animal : Food
     private int mutate()
     {
         int mutation = Random.Range(0, 100);
+        Debug.Log("MUTATION" + mutation);
         return mutation > 1 ? 0 : mutation == 1 ? Random.Range(1, 3) : Random.Range(-3, 0);
     }
 
-    private GameObject setBabyValues(Hare male, Hare female, GameObject child)
+    private GameObject setBabyValues(Animal male, Animal female, GameObject child)
     {
         GameObject baby = child;
-        Debug.Log("VERMEHRUNG: male: " + male);
-        Debug.Log("VERMEHRUNG: female: " + female);
-        Debug.Log("VERMEHRUNG: child: " + child);
-
         
-        baby.GetComponent<Animal>().health = (male.health + female.health) / 2 + mutate();
-        baby.GetComponent<Animal>().hunger = (male.hunger + female.hunger) / 2 + mutate();
-        baby.GetComponent<Animal>().thirst = (male.thirst + female.thirst) / 2 + mutate();
-        baby.GetComponent<Animal>().reproductionDrive = (male.reproductionDrive + female.reproductionDrive) / 2 + mutate();
+        baby.GetComponent<Animal>().generation = male.generation >= female.generation ? male.generation + 1 : female.generation + 1;
+        baby.GetComponent<Animal>().isPregnant = false;
+        baby.GetComponent<Animal>().isChild = true;
 
-        baby.GetComponent<Movement>().normalSpeed = (male.GetComponent<Movement>().normalSpeed + female.GetComponent<Movement>().normalSpeed) / 2 + mutate();
-        baby.GetComponent<Movement>().sprintSpeed = (male.GetComponent<Movement>().sprintSpeed + female.GetComponent<Movement>().sprintSpeed) / 2 + mutate();
+        baby.GetComponent<Animal>().health = (male.health + female.health) / 2 + mutate() < 1 ? 1 : (male.health + female.health) / 2 + mutate();
+        baby.GetComponent<Animal>().hunger = (male.hunger + female.hunger) / 2 + mutate() < 1 ? 1 : (male.hunger + female.hunger) / 2 + mutate();
+        baby.GetComponent<Animal>().thirst = (male.thirst + female.thirst) / 2 + mutate() < 1 ? 1 : (male.thirst + female.thirst) / 2 + mutate();
+        baby.GetComponent<Animal>().reproductionDrive = (male.reproductionDrive + female.reproductionDrive) / 2 + mutate() < 1 ? 1 : (male.reproductionDrive + female.reproductionDrive) / 2 + mutate();
 
+        baby.GetComponent<Movement>().normalSpeed = (male.GetComponent<Movement>().normalSpeed + female.GetComponent<Movement>().normalSpeed) / 2 + mutate() < 1 ? 1 : (male.GetComponent<Movement>().normalSpeed + female.GetComponent<Movement>().normalSpeed) / 2 + mutate();
+        baby.GetComponent<Movement>().sprintSpeed = (male.GetComponent<Movement>().sprintSpeed + female.GetComponent<Movement>().sprintSpeed) / 2 + mutate() < 1 ? 1 : (male.GetComponent<Movement>().sprintSpeed + female.GetComponent<Movement>().sprintSpeed);
+
+        baby.GetComponent<Animal>().hungerLoss = (male.hungerLoss + female.hungerLoss) / 2 + mutate() < 1 ? 1 : (male.hungerLoss + female.hungerLoss) / 2 + mutate();
+        baby.GetComponent<Animal>().thirstLoss = (male.thirstLoss + female.thirstLoss) / 2 + mutate() < 1 ? 1 : (male.thirstLoss + female.thirstLoss) / 2 + mutate();
+        baby.GetComponent<Animal>().hornyLoss = (male.hornyLoss + female.hornyLoss) / 2 + mutate() < 1 ? 1 : (male.hornyLoss + female.hornyLoss) / 2 + mutate();
+
+        baby.GetComponent<Animal>().hungerGain = (male.hungerGain + female.hungerGain) / 2 + mutate() < 1 ? 1 : (male.hungerGain + female.hungerGain) / 2 + mutate();
+        baby.GetComponent<Animal>().thirstGain = (male.thirstGain + female.thirstGain) / 2 + mutate() < 1 ? 1 : (male.thirstGain + female.thirstGain) / 2 + mutate();
+        
+        baby.GetComponentInChildren<SphereCollider>().radius = (male.GetComponentInChildren<SphereCollider>().radius + female.GetComponentInChildren<SphereCollider>().radius) / 2 + mutate() < 1 ? 1 : (male.GetComponentInChildren<SphereCollider>().radius + female.GetComponentInChildren<SphereCollider>().radius) / 2 + mutate();
+        
         baby.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         
         return baby;
     }
     
+    protected IEnumerator grow(){
+        
+        yield return new WaitForSeconds(15);
+        transform.localScale += new Vector3(0.5f,0.5f,0.5f);
+        isChild = false;
+    }
     public bool isHavingFun()
     {
-        
+       
         isHavingAReallyGoodTime = true;
         GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isHavingAReallyGoodTime = true;
 
@@ -194,8 +217,8 @@ public abstract class Animal : Food
 
         if (sexTimer > 0.5f)
         {
-            haveSex(1);
-            GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().haveSex(1);
+            haveSex(hornyLoss);
+            GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().haveSex(hornyLoss);
             sexTimer = 0f;
 
             hornyBar.setValue(currentHorny);
@@ -218,23 +241,23 @@ public abstract class Animal : Food
 
             
             GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isPregnant = true;
-            GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().pregnancy(this.GetComponent<Hare>());
+            GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().pregnancy(this.GetComponent<Hare>(), GetComponent<HareMovement>().closestSexPartner);
             Debug.Log("VERMEHRUNG -> Pregnant" + GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isPregnant);
 
         }
         return isHavingAReallyGoodTime;
     }
 
-    IEnumerator spawnChild(Hare male)
+    IEnumerator spawnChild(Animal male, Animal female)
     {
-        //isPregnant = false;
+         Vector3 pos = GetComponent<Movement>().transform.position;
         GetComponent<Movement>().agent.isStopped = true;
+        //isPregnant = false;
         Debug.Log("VERMEHRUNG: Try to spawn child");
         int childCounter = Random.Range(1, 4); //Random Integer zwischen 1 und 3, der die Anzahl der zu spawnenden Kinder angibt
-        Vector3 pos = GetComponent<Movement>().transform.position;
-
         yield return new WaitForSeconds(5f);
 
+       
         for (int i = 1; i <= childCounter; i++) //Entsprechende Anzahl von Kindern wird gespawnt
         {
             /**
@@ -242,7 +265,8 @@ public abstract class Animal : Food
             hareBaby.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); //Test, funktioniert so
             Instantiate(hareBaby, pos + new Vector3(i, 0, i), Quaternion.identity); //Jedes gespawnte Kind wird um eine Einheit weiter auf der x- und z-Achse verschoben, um Kollisionen zu verhindern
             */
-            Instantiate(setBabyValues(male, this.GetComponent<Hare>(), babyPrefab), pos + new Vector3(i, 0, i), Quaternion.identity);
+            
+            Instantiate(setBabyValues(male, female, babyPrefab), pos + new Vector3(i, 0, i), Quaternion.identity);
 
             Debug.Log("VERMEHRUNG: child spawned");
         }
@@ -252,9 +276,9 @@ public abstract class Animal : Food
         GetComponent<Movement>().agent.isStopped = false;
     }
 
-    public void pregnancy(Hare male)
+    public void pregnancy(Animal male, Animal female)
     {
-        StartCoroutine(spawnChild(male));
+        StartCoroutine(spawnChild(male, female));
     }
 
     public bool drinkWater()
@@ -262,7 +286,7 @@ public abstract class Animal : Food
         isDrinking = true;
         if (drinkTimer > 0.5f)
         {
-            drink(20);
+            drink(thirstGain);
             drinkTimer = 0f;
             thirstBar.setValue(currentThirst);
         }
@@ -272,6 +296,22 @@ public abstract class Animal : Food
             isDrinking = false;
         }
         return isDrinking;
+    }
+
+    protected void setGenerationZeroValues(){
+
+        GetComponentInChildren<SphereCollider>().radius = Random.Range(5,10);
+        health = Random.Range(100, 200);
+        hunger = Random.Range(100, 200);
+        thirst = Random.Range(100, 200);
+        reproductionDrive = Random.Range(3,8);
+        
+        hungerLoss = Random.Range(2, 6);
+        thirstLoss = Random.Range(2, 6);
+        hornyLoss = Random.Range(1, 5);
+
+        hungerGain = Random.Range(5, 16);
+        thirstGain = Random.Range(5, 16);
     }
 
     public void getKilled()

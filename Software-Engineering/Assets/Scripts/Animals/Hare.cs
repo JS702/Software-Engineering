@@ -49,11 +49,11 @@ public class Hare : Animal
         isEating = true;
         if (eatTimer > 0.5f)
         {
-            eat(20);
+            eat(GetComponent<Animal>().hungerGain);
             eatTimer = 0f;
             hungerBar.setValue(currentHunger);
         }
-        if (currentHunger > 99)
+        if (currentHunger > hunger -1)
         {
             isHungry = false;
             isEating = false;
@@ -63,15 +63,22 @@ public class Hare : Animal
 
     void Start()
     {
+        if(isChild){
+             StartCoroutine(grow());
+        }
+       
         gender = Random.Range(0,2) == 1 ? "male" : "female";
-
+        if(generation == 0){
+            setGenerationZeroValues();
+        }
+       
         setRandomName();
 
         setBar(ref currentHealth, health, healthBar);
         setBar(ref currentHunger, hunger, hungerBar);
         setBar(ref currentThirst, thirst, thirstBar);
 
-        hornyBar.slider.maxValue = 5;
+        hornyBar.slider.maxValue = reproductionDrive;
         hornyBar.slider.value = 0;
         currentHorny = 0;
 
@@ -98,7 +105,7 @@ public class Hare : Animal
         drinkTimer += Time.deltaTime;
         sexTimer += Time.deltaTime;
 
-        if (currentHorny == 5)
+        if (currentHorny == reproductionDrive)
         {
             isHorny = true;
         }

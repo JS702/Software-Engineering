@@ -8,7 +8,7 @@ public class HareMovement : Movement
 
     //reference to the hare itself
     public Hare hare;
-   
+
     //reference to the closest Fox
     public GameObject closestFox;
     //
@@ -31,79 +31,61 @@ public class HareMovement : Movement
     private void Update()
     {
 
-        if(hare.isAlive){
+        if (hare.isAlive)
+        {
             if (inDanger)
-        {
-            escape();
-        }
-        else
-        {     
-            //HUNGRY
-            if (hare.isHungry && hare.hasFoundGrass() && !isFleeing && !hare.isDrinking && !hare.isUnderwater && !hare.isThirsty)
             {
-                agent.SetDestination(hare.moveToNearestGrass());
-                if (hare.isInGrassArea)
+                escape();
+            }
+            else
+            {
+                //HUNGRY
+                if (hare.isHungry && hare.hasFoundGrass() && !isFleeing && !hare.isDrinking && !hare.isUnderwater && !hare.isThirsty)
                 {
-                    agent.isStopped = hare.eatGrass();
+                    agent.SetDestination(hare.moveToNearestGrass());
+                    if (hare.isInGrassArea)
+                    {
+                        agent.isStopped = hare.eatGrass();
+                    }
                 }
-            }
-            
-            //THIRSTY
-            if (hare.isThirsty && !isFleeing && !hare.isEating && !hare.isUnderwater)
-            {
-                agent.SetDestination(hare.waterPosition);
-                if (hare.isInWaterArea)
+
+                //THIRSTY
+                if (hare.isThirsty && !isFleeing && !hare.isEating && !hare.isUnderwater)
                 {
-                    agent.isStopped = hare.drinkWater();
+                    agent.SetDestination(hare.waterPosition);
+                    if (hare.isInWaterArea)
+                    {
+                        agent.isStopped = hare.drinkWater();
+                    }
                 }
-            }
 
-            //DROWNING
-            if (hare.isUnderwater)
-            {
-                //Debug.Log("hare is underwater");
-                //Vector3 direction = agent.destination;
-                //agent.SetDestination(-direction);
-                //Debug.Log("hare is underwater" + direction + " " + -direction);
-                //agent.isStopped = true;
-                StartCoroutine(getOutOfWater());
-            }
-            
-            //HORNY
-            if (hare.isHorny && !isFleeing && !hare.isHungry && !hare.isThirsty && !hare.isUnderwater)
-            {
-                reproduce();
-            }
-         
-            //JUST WANDER
-            if (!isWandering && !isFleeing && !hare.isUnderwater && !hare.isHungry && !hare.isThirsty)
-            {
-                StartCoroutine(setWanderDestination());
-            }
+                //DROWNING
+                if (hare.isUnderwater)
+                {
+                    //Debug.Log("hare is underwater");
+                    //Vector3 direction = agent.destination;
+                    //agent.SetDestination(-direction);
+                    //Debug.Log("hare is underwater" + direction + " " + -direction);
+                    //agent.isStopped = true;
+                    StartCoroutine(getOutOfWater());
+                }
 
-            GetComponent<Animal>().TestInputs();
-        }
+                //HORNY
+                if (hare.isHorny && !isFleeing && !hare.isHungry && !hare.isThirsty && !hare.isUnderwater)
+                {
+                    reproduce();
+                }
 
+                //JUST WANDER
+                if (!isWandering && !isFleeing && !hare.isUnderwater && !hare.isHungry && !hare.isThirsty)
+                {
+                    StartCoroutine(setWanderDestination());
+                }
 
-
-
-        //Stefans Code
-        /**
-        if (hare.isThirsty && hare.hasFoundWaterSource() && !isFleeing &&!hare.isEating)
-        {
-            agent.SetDestination(hare.moveToNearestWaterSource());
-            if (agent.remainingDistance < 0.1)
-            {
-                hare.drinkWater();
+                GetComponent<Animal>().TestInputs();
             }
         }
-        */
 
-        //Dieser Code > Stefans Code
-
-
-        }
-        
     }
 
 
@@ -193,17 +175,20 @@ public class HareMovement : Movement
 
         //welches ist der naechste hase
         setLowestDistanceSexPartner(harePosition);
-        
+
 
         if (closestSexPartner != null)
-        {   
+        {
             if (Vector3.Distance(harePosition, closestSexPartner.transform.position) < 2                        // in range of a potential sex Partner
                                 && hare.gender.Equals("male")                                                   // the active hare is male
                                 && closestSexPartner.GetComponent<Hare>().isHorny                               // the target hare isHorny
                                 && !closestSexPartner.GetComponent<Hare>().isPregnant                           // the target hare is NOT pregnant
                                 && closestSexPartner.GetComponent<HareMovement>().closestSexPartner == hare     //the target of my closest sex partner is me
+
                                 )
             {
+                hare.GetComponentInChildren<ParticleSystem>().Play();
+                closestSexPartner.GetComponentInChildren<ParticleSystem>().Play();
                 hare.isLookingForSex = false;
                 agent.isStopped = hare.isHavingFun();                                       // start to have sex
                 //Debug.Log("IM HAVING A REALLY GOOD TIME");
