@@ -76,8 +76,7 @@ public abstract class Animal : Food
         if (!updatingBars)
         {
             StartCoroutine(updateBars());
-            isHorny = stillHorny();
-            isLookingForSex = stillHorny();
+            stillHorny();
         }
 
 
@@ -327,12 +326,12 @@ public abstract class Animal : Food
         thirst = Random.Range(100, 200);
         reproductionDrive = Random.Range(11,21);
         
-        hungerLoss = Random.Range(2, 6);
-        thirstLoss = Random.Range(2, 6);
+        hungerLoss = Random.Range(5, 11);
+        thirstLoss = Random.Range(5, 11);
         hornyLoss = Random.Range(1, 5);
 
-        hungerGain = Random.Range(5, 16);
-        thirstGain = Random.Range(5, 16);
+        hungerGain = Random.Range(16, 21);
+        thirstGain = Random.Range(16, 21);
     }
 
     public void getKilled()
@@ -389,13 +388,11 @@ public abstract class Animal : Food
 
     }
 
-     bool stillHorny(){
+    void stillHorny(){
         if(isHungry || isThirsty){
-            //hornyBar.slider.value = 0;
             currentHorny = 0;
             isHorny = false;
+            isLookingForSex = false;
         }
-        return isHorny;
     }
-
 }
