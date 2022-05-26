@@ -65,6 +65,8 @@ public class Hare : Animal
     {
         gender = Random.Range(0,2) == 1 ? "male" : "female";
 
+        setRandomName();
+
         setBar(ref currentHealth, health, healthBar);
         setBar(ref currentHunger, hunger, hungerBar);
         setBar(ref currentThirst, thirst, thirstBar);
@@ -89,7 +91,6 @@ public class Hare : Animal
 
     void Update()
     {
-        
         
         base.Update();// updates the bars
 

@@ -11,6 +11,10 @@ public class Fox : Animal
     public int killRange = 4;
     void Start()
     {
+        gender = Random.Range(0, 2) == 1 ? "male" : "female";
+
+        setRandomName();
+
         movement = gameObject.GetComponent<Movement>();
         setBar(ref currentHealth, health, healthBar);
         setBar(ref currentHunger, hunger, hungerBar);

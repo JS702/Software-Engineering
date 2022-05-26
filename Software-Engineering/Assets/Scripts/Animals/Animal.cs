@@ -57,7 +57,10 @@ public abstract class Animal : Food
     public GameObject babyPrefab; //Prefab vom Hare (manuell über die grafische Oberfläche reinziehen)
 
     public ParticleSystem heartParticel;
- 
+
+    public string animalName;
+    private string[] namesMale = { "Bob", "Dave", "Ted", "Marvin", "Oscar", "Victor" };
+    private string[] namesFemale = { "Alice", "Carol", "Eve", "Mallory", "Peggy", "Trudy" };
 
     protected void Update()
     {
@@ -75,6 +78,18 @@ public abstract class Animal : Food
             StartCoroutine(updateBars());
         }
 
+    }
+
+    protected void setRandomName()
+    {
+        if (gender.Equals("male"))
+        {
+            animalName = namesMale[Random.Range(0, namesMale.Length)];
+        }
+        else
+        {
+            animalName = namesFemale[Random.Range(0, namesFemale.Length)];
+        }
     }
 
     public void changeBar(Bars bar, int damage, ref int currentNumber, string operations)
