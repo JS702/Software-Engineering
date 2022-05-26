@@ -64,15 +64,16 @@ public class StatsWindow : MonoBehaviour
     private void foxStats()
     {
         //TODO fox stats
-        this.animalName.text = "Fox: " + animal1.name;
+        this.animalName.text = "Fuchs: " + animal1.animalName;
         Fox fox = (Fox)animal1;
-        typeSpecificText.text = "Killed Hares: " + fox.killedHares.ToString();
+        typeSpecificText.text = fox.getAnimalInfo();
     }
     
     private void hareStats()
     {
         //TODO hare stats
-        this.animalName.text = "Hare: " + animal1.name;
+        this.animalName.text = "Hase: " + animal1.animalName;
         Hare hare = (Hare)animal1;
+        typeSpecificText.text = hare.getAnimalInfo();
     }
 }

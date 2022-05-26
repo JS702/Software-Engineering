@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
+
 
 public class Hare : Animal
 {
@@ -98,7 +100,6 @@ public class Hare : Animal
 
     void Update()
     {
-        
         base.Update();// updates the bars
 
         eatTimer += Time.deltaTime;
@@ -122,5 +123,17 @@ public class Hare : Animal
         isLookingForSex = stillHorny();
     }
 
+    public override string getAnimalInfo()
+    {
+        StringBuilder sb = new StringBuilder("Infos: ", 50);
+        string format = "{0}: {1}";
+        sb.AppendLine();
+        sb.AppendFormat(format, "Geschlecht", gender);
+        sb.AppendLine();
+        sb.AppendFormat(format, "Generation", generation);
+        sb.AppendLine();
+        sb.AppendFormat(format, "Geschwindigkeit", speed);
+        return sb.ToString();
 
+    }
 }

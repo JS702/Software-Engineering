@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 
 
 public class Fox : Animal
@@ -86,6 +87,23 @@ public class Fox : Animal
         {
             isHungry = true;
         }
+    }
+
+    public override string getAnimalInfo()
+    {
+        StringBuilder sb = new StringBuilder("Infos: ", 50);
+        string format = "{0}: {1}";
+        sb.AppendLine();
+        sb.AppendFormat(format, "Geschlecht", gender);
+        sb.AppendLine();
+        sb.AppendFormat(format, "Generation", generation);
+        sb.AppendLine();
+        sb.AppendFormat(format, "Geschwindigkeit", speed);
+        sb.AppendLine();
+        sb.AppendFormat(format, "Getötete Hasen", killedHares);
+
+        return sb.ToString();
+
     }
 }
 

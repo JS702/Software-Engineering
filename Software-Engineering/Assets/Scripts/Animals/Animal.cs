@@ -336,6 +336,9 @@ public abstract class Animal : Food
         isAlive = false;
     }
 
+    public abstract string getAnimalInfo();
+    
+
 
     public void TestInputs()
     {

@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         maxTime = Timeslider.timef;
-        Debug.Log(maxTime);
     }
     private void Update()
     {
