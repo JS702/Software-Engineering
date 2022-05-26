@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     //Timer
     public float currentTime = 0f;
-    float maxTime = 100f;
+    float maxTime;
 
     private int statsTrackingIntervall = 10;
     private int nextStatsTrackingIntervall = 10;
@@ -22,7 +22,11 @@ public class GameManager : MonoBehaviour
     //UI
     [SerializeField] GameObject panel;
 
-
+    private void Start()
+    {
+        maxTime = Timeslider.timef;
+        Debug.Log(maxTime);
+    }
     private void Update()
     {
         if (currentTime < maxTime)

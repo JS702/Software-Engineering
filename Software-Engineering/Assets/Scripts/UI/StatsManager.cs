@@ -19,7 +19,7 @@ public class StatsManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        
+        initStats();
     }
     //Subscribe to Event Methods
     private void OnEnable()
@@ -75,5 +75,17 @@ public class StatsManager : MonoBehaviour
         lineRenderer.updateScale();
     }
 
+    private void initStats()
+    {
+        uiLineRenderer.Find(renderer => renderer.diagramName.Equals("foxesAlive")).points.Add(new Vector2(0, SettingsmenuFox.fox));
+        uiLineRenderer.Find(renderer => renderer.diagramName.Equals("foxesAlive")).updateScale();
+
+        uiLineRenderer.Find(renderer => renderer.diagramName.Equals("haresAlive")).points.Add(new Vector2(0, SettingsmenuBunny.bunny));
+        uiLineRenderer.Find(renderer => renderer.diagramName.Equals("haresAlive")).updateScale();
+
+        uiLineRenderer.Find(renderer => renderer.diagramName.Equals("animalsAlive")).points.Add(new Vector2(0, SettingsmenuBunny.bunny + SettingsmenuFox.fox));
+        uiLineRenderer.Find(renderer => renderer.diagramName.Equals("animalsAlive")).updateScale();
+
+    }
 }
 

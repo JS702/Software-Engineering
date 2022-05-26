@@ -87,9 +87,9 @@ public class UILineRenderer : Graphic
 
         for (int i = 0; i < points.Count; i++)
         {
-            if (points[i].y > max)
+            if (!shouldUpdateScale && points[i].y > max)
             {
-                scale = Mathf.CeilToInt(points[i].y / max);
+                scale += Mathf.CeilToInt(points[i].y / max);
                 shouldUpdateScale = true;
             }
         }

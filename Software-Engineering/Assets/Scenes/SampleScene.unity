@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -407,8 +407,7 @@ MonoBehaviour:
   diagramName: haresAlive
   diagramManager: {fileID: 1495832323}
   gridSize: {x: 24, y: 10}
-  points:
-  - {x: 0, y: 0}
+  points: []
   scale: 1
   min: 1
   mid: 5
@@ -8992,8 +8991,7 @@ MonoBehaviour:
   diagramName: foxesAlive
   diagramManager: {fileID: 1495832323}
   gridSize: {x: 24, y: 10}
-  points:
-  - {x: 0, y: 0}
+  points: []
   scale: 1
   min: 1
   mid: 5
@@ -17167,8 +17165,7 @@ MonoBehaviour:
   diagramName: generations
   diagramManager: {fileID: 1495832323}
   gridSize: {x: 24, y: 10}
-  points:
-  - {x: 0, y: 1}
+  points: []
   scale: 1
   min: 1
   mid: 5
@@ -23338,8 +23335,7 @@ MonoBehaviour:
   diagramName: 
   diagramManager: {fileID: 0}
   gridSize: {x: 24, y: 10}
-  points:
-  - {x: 0, y: 0}
+  points: []
   scale: 1
   min: 1
   mid: 5
@@ -24591,8 +24587,7 @@ MonoBehaviour:
   diagramName: animalsAlive
   diagramManager: {fileID: 1495832323}
   gridSize: {x: 24, y: 10}
-  points:
-  - {x: 0, y: 0}
+  points: []
   scale: 1
   min: 1
   mid: 5
@@ -38476,7 +38471,6 @@ GameObject:
   - component: {fileID: 1422885045}
   - component: {fileID: 1422885047}
   - component: {fileID: 1422885048}
-  - component: {fileID: 1422885049}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Environment
@@ -38574,18 +38568,6 @@ MonoBehaviour:
   foxPrefab: {fileID: 6189034732971714835, guid: e33137b67707f9d438dd72a72e8769d2, type: 3}
   bunnynum: 0
   foxnum: 0
---- !u!114 &1422885049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422885043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72d0c9c2837a198419dbb7053d56b75c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1423208847 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3356751432537613521, guid: ffbddc4ef9676cc419e81e06aaa836d8, type: 3}
