@@ -65,16 +65,19 @@ public class Hare : Animal
 
     void Start()
     {
+        
         if(isChild){
-             StartCoroutine(grow());
+            StartCoroutine(grow());
         }
        
         gender = Random.Range(0,2) == 1 ? "male" : "female";
+
         if(generation == 0){
             setGenerationZeroValues();
         }
        
         setRandomName();
+        
 
         setBar(ref currentHealth, health, healthBar);
         setBar(ref currentHunger, hunger, hungerBar);
@@ -87,14 +90,7 @@ public class Hare : Animal
     }
 
     
-    bool stillHorny(){
-        if(isHungry || isThirsty){
-            //hornyBar.slider.value = 0;
-            currentHorny = 0;
-            isHorny = false;
-        }
-        return isHorny;
-    }
+   
     
     
 
@@ -118,9 +114,6 @@ public class Hare : Animal
         {
             isThirsty = true;
         }
-
-        isHorny = stillHorny();
-        isLookingForSex = stillHorny();
     }
 
     public override string getAnimalInfo()

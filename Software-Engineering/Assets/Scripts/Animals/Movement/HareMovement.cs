@@ -9,7 +9,6 @@ public class HareMovement : Movement
     //reference to the hare itself
     public Hare hare;
 
-    //reference to the closest Fox
     public GameObject closestFox;
     //
     public Hare closestSexPartner;
@@ -23,6 +22,8 @@ public class HareMovement : Movement
 
     private void Start()
     {
+        isWandering = false;
+        agent.isStopped = false;
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         hare = GetComponent<Hare>();
@@ -30,7 +31,6 @@ public class HareMovement : Movement
 
     private void Update()
     {
-
         if (hare.isAlive)
         {
             if (inDanger)
@@ -48,8 +48,7 @@ public class HareMovement : Movement
                         agent.isStopped = hare.eatGrass();
                     }
                 }
-
-                //THIRSTY
+                //THIRSY
                 if (hare.isThirsty && !isFleeing && !hare.isEating && !hare.isUnderwater)
                 {
                     agent.SetDestination(hare.waterPosition);
@@ -58,16 +57,17 @@ public class HareMovement : Movement
                         agent.isStopped = hare.drinkWater();
                     }
                 }
-
                 //DROWNING
                 if (hare.isUnderwater)
                 {
-                    //Debug.Log("hare is underwater");
-                    //Vector3 direction = agent.destination;
-                    //agent.SetDestination(-direction);
-                    //Debug.Log("hare is underwater" + direction + " " + -direction);
-                    //agent.isStopped = true;
                     StartCoroutine(getOutOfWater());
+                }
+
+
+                if (hare.isChild)
+                {
+                    //isWandering = false;
+                    agent.SetDestination(GetComponent<Animal>().myFather.transform.position);
                 }
 
                 //HORNY
@@ -75,12 +75,15 @@ public class HareMovement : Movement
                 {
                     reproduce();
                 }
-
-                //JUST WANDER
+                //WANDER
                 if (!isWandering && !isFleeing && !hare.isUnderwater && !hare.isHungry && !hare.isThirsty)
                 {
                     StartCoroutine(setWanderDestination());
                 }
+
+
+
+
 
                 GetComponent<Animal>().TestInputs();
             }

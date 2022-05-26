@@ -1375,8 +1375,8 @@ MonoBehaviour:
   drinkTimer: 0
   sexTimer: 0
   ageTimer: 0
-  babyPrefab: {fileID: 7366081109373987059}
-  heartParticle: {fileID: 0}
+  babyPrefab: {fileID: 6659974764481406242, guid: 45cc0d8cb388dac4c84f41e6dc7f391c, type: 3}
+  heartParticle: {fileID: 5543885163217281524}
   animalName: 
   isInGrassArea: 0
   grassPositionList: []
@@ -1748,6 +1748,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+--- !u!198 &5543885163217281524 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198369014103302028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+  m_PrefabInstance: {fileID: 5633837931565006456}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5638218778417914324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
