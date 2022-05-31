@@ -13,6 +13,7 @@ public class HareMovement : Movement
     //
     public Hare closestSexPartner;
 
+    public Animal closestSexPartnerAnimal;
     //public List<GameObject> foxList
     public bool inDanger = false;
     public bool isFleeing = false;
@@ -66,7 +67,6 @@ public class HareMovement : Movement
 
                 if (hare.isChild)
                 {
-                    //isWandering = false;
                     agent.SetDestination(GetComponent<Animal>().myFather.transform.position);
                 }
 
@@ -80,11 +80,6 @@ public class HareMovement : Movement
                 {
                     StartCoroutine(setWanderDestination());
                 }
-
-
-
-
-
                 GetComponent<Animal>().TestInputs();
             }
         }
@@ -178,6 +173,7 @@ public class HareMovement : Movement
 
         //welches ist der naechste hase
         setLowestDistanceSexPartner(harePosition);
+        closestSexPartnerAnimal = GetComponent<AnimalCollider>().lowestDistanceAnimal(hare.GetComponent<Animal>(), GetComponent<AnimalCollider>().potentialSexPartnerList);
 
 
         if (closestSexPartner != null)

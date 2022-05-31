@@ -173,24 +173,24 @@ public abstract class Animal : Food
 
         baby.myFather = male;
 
-        baby.GetComponent<Animal>().generation = male.generation >= female.generation ? male.generation + 1 : female.generation + 1;
-        baby.GetComponent<Animal>().isPregnant = false;
-        baby.GetComponent<Animal>().isChild = true;
+        baby.generation = male.generation >= female.generation ? male.generation + 1 : female.generation + 1;
+        baby.isPregnant = false;
+        baby.isChild = true;
 
-        baby.GetComponent<Animal>().health = (male.health + female.health) / 2 + mutate() < 1 ? 1 : (male.health + female.health) / 2 + mutate();
-        baby.GetComponent<Animal>().hunger = (male.hunger + female.hunger) / 2 + mutate() < 1 ? 1 : (male.hunger + female.hunger) / 2 + mutate();
-        baby.GetComponent<Animal>().thirst = (male.thirst + female.thirst) / 2 + mutate() < 1 ? 1 : (male.thirst + female.thirst) / 2 + mutate();
-        baby.GetComponent<Animal>().reproductionDrive = (male.reproductionDrive + female.reproductionDrive) / 2 + mutate() < 1 ? 1 : (male.reproductionDrive + female.reproductionDrive) / 2 + mutate();
+        baby.health = (male.health + female.health) / 2 + mutate() < 1 ? 1 : (male.health + female.health) / 2 + mutate();
+        baby.hunger = (male.hunger + female.hunger) / 2 + mutate() < 1 ? 1 : (male.hunger + female.hunger) / 2 + mutate();
+        baby.thirst = (male.thirst + female.thirst) / 2 + mutate() < 1 ? 1 : (male.thirst + female.thirst) / 2 + mutate();
+        baby.reproductionDrive = (male.reproductionDrive + female.reproductionDrive) / 2 + mutate() < 1 ? 1 : (male.reproductionDrive + female.reproductionDrive) / 2 + mutate();
 
         baby.GetComponent<Movement>().normalSpeed = (male.GetComponent<Movement>().normalSpeed + female.GetComponent<Movement>().normalSpeed) / 2 + mutate() < 1 ? 1 : (male.GetComponent<Movement>().normalSpeed + female.GetComponent<Movement>().normalSpeed) / 2 + mutate();
         baby.GetComponent<Movement>().sprintSpeed = (male.GetComponent<Movement>().sprintSpeed + female.GetComponent<Movement>().sprintSpeed) / 2 + mutate() < 1 ? 1 : (male.GetComponent<Movement>().sprintSpeed + female.GetComponent<Movement>().sprintSpeed);
 
-        baby.GetComponent<Animal>().hungerLoss = (male.hungerLoss + female.hungerLoss) / 2 + mutate() < 1 ? 1 : (male.hungerLoss + female.hungerLoss) / 2 + mutate();
-        baby.GetComponent<Animal>().thirstLoss = (male.thirstLoss + female.thirstLoss) / 2 + mutate() < 1 ? 1 : (male.thirstLoss + female.thirstLoss) / 2 + mutate();
-        baby.GetComponent<Animal>().hornyLoss = (male.hornyLoss + female.hornyLoss) / 2 + mutate() < 1 ? 1 : (male.hornyLoss + female.hornyLoss) / 2 + mutate();
+        baby.hungerLoss = (male.hungerLoss + female.hungerLoss) / 2 + mutate() < 1 ? 1 : (male.hungerLoss + female.hungerLoss) / 2 + mutate();
+        baby.thirstLoss = (male.thirstLoss + female.thirstLoss) / 2 + mutate() < 1 ? 1 : (male.thirstLoss + female.thirstLoss) / 2 + mutate();
+        baby.hornyLoss = (male.hornyLoss + female.hornyLoss) / 2 + mutate() < 1 ? 1 : (male.hornyLoss + female.hornyLoss) / 2 + mutate();
 
-        baby.GetComponent<Animal>().hungerGain = (male.hungerGain + female.hungerGain) / 2 + mutate() < 1 ? 1 : (male.hungerGain + female.hungerGain) / 2 + mutate();
-        baby.GetComponent<Animal>().thirstGain = (male.thirstGain + female.thirstGain) / 2 + mutate() < 1 ? 1 : (male.thirstGain + female.thirstGain) / 2 + mutate();
+        baby.hungerGain = (male.hungerGain + female.hungerGain) / 2 + mutate() < 1 ? 1 : (male.hungerGain + female.hungerGain) / 2 + mutate();
+        baby.thirstGain = (male.thirstGain + female.thirstGain) / 2 + mutate() < 1 ? 1 : (male.thirstGain + female.thirstGain) / 2 + mutate();
         
         baby.GetComponentInChildren<SphereCollider>().radius = (male.GetComponentInChildren<SphereCollider>().radius + female.GetComponentInChildren<SphereCollider>().radius) / 2 + mutate() < 1 ? 1 : (male.GetComponentInChildren<SphereCollider>().radius + female.GetComponentInChildren<SphereCollider>().radius) / 2 + mutate();
         
@@ -324,7 +324,7 @@ public abstract class Animal : Food
         health = Random.Range(100, 200);
         hunger = Random.Range(100, 200);
         thirst = Random.Range(100, 200);
-        reproductionDrive = Random.Range(11,21);
+        reproductionDrive = Random.Range(5,11);
         
         hungerLoss = Random.Range(5, 11);
         thirstLoss = Random.Range(5, 11);
@@ -362,7 +362,6 @@ public abstract class Animal : Food
 
     public void TestInputs()
     {
-
         //Debug-Tool, bis der Hase hunger bekommen und fressen kann
         if (Input.GetKeyDown("h"))
         {
@@ -379,13 +378,11 @@ public abstract class Animal : Food
             //Denkt daran den Agent zu stoppen wenn ihr die die-Methode aufruft, ich konnte aus Animal nicht darauf zugreifen
             GetComponent<Movement>().agent.isStopped = true;
             die(false);
-
         }
         if (Input.GetKeyDown("l"))
         {
             currentThirst = 10;
         }
-
     }
 
     void stillHorny(){
@@ -393,6 +390,7 @@ public abstract class Animal : Food
             currentHorny = 0;
             isHorny = false;
             isLookingForSex = false;
+            hornyBar.slider.value = 0;
         }
     }
 }

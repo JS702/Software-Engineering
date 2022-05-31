@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoxCollider : MonoBehaviour
+public class FoxCollider : AnimalCollider
 {
     // a list of foxes around the hare
          

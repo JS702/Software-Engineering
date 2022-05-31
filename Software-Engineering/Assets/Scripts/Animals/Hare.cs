@@ -89,11 +89,6 @@ public class Hare : Animal
 
     }
 
-    
-   
-    
-    
-
     void Update()
     {
         base.Update();// updates the bars
