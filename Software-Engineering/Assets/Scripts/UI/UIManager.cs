@@ -8,13 +8,29 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject diagramPanel;
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject aimDot;
+    [SerializeField] GameObject endScreen;
+    GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             bool isActive = diagramPanel.activeInHierarchy;
             diagramPanel.SetActive(!isActive);
-            aimDot.SetActive(isActive);
+            if (gameManager.gameOver)
+            {
+                endScreen.SetActive(!endScreen.activeSelf);
+            }
+            else
+            {
+                aimDot.SetActive(isActive);
+            }
+
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -35,5 +51,6 @@ public class UIManager : MonoBehaviour
                 aimDot.SetActive(true);
             }
         }
+
     }
 }

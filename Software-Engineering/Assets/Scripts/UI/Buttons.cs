@@ -15,4 +15,10 @@ public class Buttons : MonoBehaviour
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FreeFlyCamera>().enabled = true;
         pausePanel.SetActive(false);
     }
+
+    public void diagrammeAnzeigen(GameObject diagramme)
+    {
+        GameObject.FindGameObjectWithTag("EndScreen").SetActive(false);
+        diagramme.SetActive(true);
+    }
 }

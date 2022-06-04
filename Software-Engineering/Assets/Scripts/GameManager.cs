@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     private int statsTrackingIntervall = 10;
     private int nextStatsTrackingIntervall = 10;
     public int currentStatsTrackingIntervall = 1;
-    bool gameOver = false;
+    public bool gameOver = false;
 
 
     //UI
@@ -48,8 +48,10 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                //TODO implement end screen
                 Debug.Log("Ende");
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FreeFlyCamera>().enabled = false;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 endScreen.SetActive(true);
                 gameOver = true;
                 Time.timeScale = 0;
