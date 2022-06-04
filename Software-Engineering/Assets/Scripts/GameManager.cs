@@ -18,9 +18,13 @@ public class GameManager : MonoBehaviour
     private int statsTrackingIntervall = 10;
     private int nextStatsTrackingIntervall = 10;
     public int currentStatsTrackingIntervall = 1;
+    bool gameOver = false;
+
 
     //UI
     [SerializeField] GameObject panel;
+    [SerializeField] GameObject endScreen;
+
 
     private void Start()
     {
@@ -28,50 +32,57 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (currentTime < maxTime)
+        if (!gameOver)
         {
-            if (currentTime > nextStatsTrackingIntervall)
+            if (currentTime < maxTime)
             {
-                hareAlives = new List<GameObject>(GameObject.FindGameObjectsWithTag("Prey"));
-                foxAlives = new List<GameObject>(GameObject.FindGameObjectsWithTag("Fox"));
-                onStatTracking?.Invoke();
-                nextStatsTrackingIntervall += statsTrackingIntervall;
-                currentStatsTrackingIntervall++;
+                if (currentTime > nextStatsTrackingIntervall)
+                {
+                    hareAlives = new List<GameObject>(GameObject.FindGameObjectsWithTag("Prey"));
+                    foxAlives = new List<GameObject>(GameObject.FindGameObjectsWithTag("Fox"));
+                    onStatTracking?.Invoke();
+                    nextStatsTrackingIntervall += statsTrackingIntervall;
+                    currentStatsTrackingIntervall++;
+                }
+                currentTime += 1 * Time.deltaTime;
             }
-            currentTime += 1 * Time.deltaTime;
-        }
-        if (!panel.activeSelf)
-        {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            else
             {
-                float timeScale = Time.timeScale;
-                if (timeScale >= 16)
+                //TODO implement end screen
+                Debug.Log("Ende");
+                endScreen.SetActive(true);
+                gameOver = true;
+                Time.timeScale = 0;
+            }
+            if (!panel.activeSelf)
+            {
+                if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    Time.timeScale = 0.5f;
-                }
-                else
-                {
-                    Time.timeScale *= 2;
-                }
+                    float timeScale = Time.timeScale;
+                    if (timeScale >= 16)
+                    {
+                        Time.timeScale = 0.5f;
+                    }
+                    else
+                    {
+                        Time.timeScale *= 2;
+                    }
 
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                float timeScale = Time.timeScale;
-
-                if (timeScale <= 0.5)
-                {
-                    Time.timeScale = 16f;
                 }
-                else
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    Time.timeScale /= 2;
+                    float timeScale = Time.timeScale;
+
+                    if (timeScale <= 0.5)
+                    {
+                        Time.timeScale = 16f;
+                    }
+                    else
+                    {
+                        Time.timeScale /= 2;
+                    }
                 }
             }
         }
-        else
-        {
-            //TODO implement end screen
-        }  
     }
 }
