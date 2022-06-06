@@ -324,7 +324,7 @@ public abstract class Animal : Food
         health = Random.Range(100, 200);
         hunger = Random.Range(100, 200);
         thirst = Random.Range(100, 200);
-        reproductionDrive = Random.Range(1,3);
+        reproductionDrive = Random.Range(5,11);
         
         hungerLoss = Random.Range(5, 11);
         thirstLoss = Random.Range(5, 11);

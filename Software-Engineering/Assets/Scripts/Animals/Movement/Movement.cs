@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class Movement : MonoBehaviour
 {
     public float range = 10.0f;
+    protected float rangeToHaveSex;
 
     public bool isWandering = false;
     protected bool isRotatingLeft = false;
@@ -50,7 +51,7 @@ public class Movement : MonoBehaviour
 
         if (closestSexPartnerAnimal != null)
         {
-            if (Vector3.Distance(thisPosition, closestSexPartnerAnimal.transform.position) < 2                        // in range of a potential sex Partner
+            if (Vector3.Distance(thisPosition, closestSexPartnerAnimal.transform.position) < rangeToHaveSex                        // in range of a potential sex Partner
                                 && GetComponent<Animal>().gender.Equals("male")                                                   // the active hare is male
                                 && closestSexPartnerAnimal.GetComponent<Animal>().isHorny                               // the target hare isHorny
                                 && !closestSexPartnerAnimal.GetComponent<Animal>().isPregnant                           // the target hare is NOT pregnant

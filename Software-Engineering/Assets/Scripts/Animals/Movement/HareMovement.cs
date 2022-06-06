@@ -23,6 +23,7 @@ public class HareMovement : Movement
 
     private void Start()
     {
+        rangeToHaveSex = 2;
         isWandering = false;
         agent.isStopped = false;
         rb = GetComponent<Rigidbody>();

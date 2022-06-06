@@ -27,6 +27,7 @@ public class foxMovement : Movement
         rb = GetComponent<Rigidbody>();
         fox = GetComponent<Fox>();
         agent = GetComponent<NavMeshAgent>();
+        rangeToHaveSex = 3;
     }
 
     private void Update()
