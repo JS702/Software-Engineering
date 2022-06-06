@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimalCollider : MonoBehaviour
 {
+    public List<Animal> potentialSexPartnerList;
     public void removeMissingObjectsFromAnimalList(List<Animal> animalList)
     {
         for (var i = animalList.Count - 1; i > -1; i--)
@@ -36,5 +37,5 @@ public class AnimalCollider : MonoBehaviour
         }
         return null;
     }
-    public List<Animal> potentialSexPartnerList;
+    
 }

@@ -2,19 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hareCollider : MonoBehaviour
+public class hareCollider : AnimalCollider
 {
     //private Hare hare;
     public List<GameObject> foxList;
-    public List<Hare> potentialSexPartnerList;
-    public void checkPotentialSexPartnerList()
-    {
-        for(var i = potentialSexPartnerList.Count - 1; i > -1; i--)
-        {   
-        if (potentialSexPartnerList[i] == null)
-        potentialSexPartnerList.RemoveAt(i);
-        }
-    }
+    //public List<Hare> potentialSexPartnerList;
+   
       private void OnTriggerEnter(Collider col)
     {
         //if a fox enters the Sight of the hare, the hare add this Fox to his list of Foxes nearby
@@ -35,7 +28,7 @@ public class hareCollider : MonoBehaviour
             && col.GetComponent<Hare>().gender != gameObject.GetComponent<Hare>().gender 
             && col.GetComponent<Animal>().isAlive
             && !col.GetComponent<Animal>().isChild){
-            potentialSexPartnerList.Add(col.GetComponent<Hare>());
+            potentialSexPartnerList.Add(col.GetComponent<Animal>());
         }
 
         if (col.tag == "Grass")
@@ -67,10 +60,10 @@ public class hareCollider : MonoBehaviour
             }
         }
         if(col.tag == "Prey"){
-            if(potentialSexPartnerList.Count == 0){
+            if( GetComponent<AnimalCollider>().potentialSexPartnerList.Count == 0){
                 GetComponent<HareMovement>().closestSexPartner = null;
             }
-            potentialSexPartnerList.Remove(col.GetComponent<Hare>());
+             GetComponent<AnimalCollider>().potentialSexPartnerList.Remove(col.GetComponent<Animal>());
         }
         
     }

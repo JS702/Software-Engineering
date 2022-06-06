@@ -108,8 +108,7 @@ public class HareMovement : Movement
 
     public void setLowestDistanceSexPartner(Vector3 harePosition)
     {
-
-        List<Hare> potentialSexPartnerList = GetComponent<hareCollider>().potentialSexPartnerList;
+        List<Animal> potentialSexPartnerList = GetComponent<AnimalCollider>().potentialSexPartnerList;
         float _distanceToSexPartner;
         float lowestDistance = 100;
         foreach (Hare sexPartner in potentialSexPartnerList)
@@ -167,13 +166,13 @@ public class HareMovement : Movement
     private void reproduce()
     {
         hare.isLookingForSex = true;
-        GetComponent<hareCollider>().checkPotentialSexPartnerList();
+        GetComponent<AnimalCollider>().removeMissingObjectsFromAnimalList(GetComponent<AnimalCollider>().potentialSexPartnerList);
         //meine position
         Vector3 harePosition = transform.position;
 
         //welches ist der naechste hase
         setLowestDistanceSexPartner(harePosition);
-        closestSexPartnerAnimal = GetComponent<AnimalCollider>().lowestDistanceAnimal(hare.GetComponent<Animal>(), GetComponent<AnimalCollider>().potentialSexPartnerList);
+        closestSexPartnerAnimal = GetComponent<AnimalCollider>().lowestDistanceAnimal(GetComponent<Animal>(), GetComponent<AnimalCollider>().potentialSexPartnerList);
 
 
         if (closestSexPartner != null)
@@ -195,7 +194,7 @@ public class HareMovement : Movement
 
             if (closestSexPartner.GetComponent<Hare>().isPregnant)
             {                                                                                   // if the target is allready pregnant:
-                GetComponent<hareCollider>().potentialSexPartnerList.Remove(closestSexPartner); // remove it from potentialSexPartnerList
+                GetComponent<AnimalCollider>().potentialSexPartnerList.Remove(closestSexPartner); // remove it from potentialSexPartnerList
             }
             else
             {

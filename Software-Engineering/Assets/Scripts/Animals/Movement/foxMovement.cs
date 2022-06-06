@@ -24,8 +24,6 @@ public class foxMovement : Movement
 
     private void Start()
     {
-
-        
         rb = GetComponent<Rigidbody>();
         fox = GetComponent<Fox>();
         agent = GetComponent<NavMeshAgent>();
@@ -37,7 +35,6 @@ public class foxMovement : Movement
         {
             if(GetComponent<FoxCollider>().preyList.Count > 0){
                 isWandering = false;
-                
                 hunt();
             }
         }
