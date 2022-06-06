@@ -12,37 +12,38 @@ public class Fox : Animal
     public int killRange = 4;
     void Start()
     {
-        gender = Random.Range(0, 2) == 1 ? "male" : "female";
+        if(isChild){
+            StartCoroutine(grow());
+        }
+        if(generation == 0){
+            setGenerationZeroValues();
+        }
 
+        getGender();
         setRandomName();
+       
 
         movement = gameObject.GetComponent<Movement>();
         setBar(ref currentHealth, health, healthBar);
         setBar(ref currentHunger, hunger, hungerBar);
         setBar(ref currentThirst, thirst, thirstBar);
 
-        hornyBar.slider.maxValue = 5;
+        hornyBar.slider.maxValue = reproductionDrive;
         hornyBar.slider.value = 0;
         currentHorny = 0;
     }
 
     public void kill(GameObject hare)
     {
-        
         //if(!hare.GetComponent<Movement>().agent.isStopped){
         hare.GetComponent<HareMovement>().agent.isStopped = true;
         // }
         hare.GetComponent<Hare>().isAlive = false;
         hare.GetComponent<Hare>().die(false);
-
-       
-
-
     }
     public IEnumerator fillStomach(GameObject hare)
-    {
-        
-        while (currentHunger < 100)
+    {  
+        while (currentHunger < hunger)
         {
             GetComponent<foxMovement>().isHunting = false;
             if (hare != null)
@@ -53,17 +54,13 @@ public class Fox : Animal
                 }
 
             }
-
-            currentHunger += 10;
-
+            currentHunger += hungerGain;
             yield return new WaitForSeconds(1.0f);
         }
         isEating = false;
         isHungry = false;
         movement.agent.isStopped = false;
-        gameObject.GetComponent<FoxCollider>().preyList.Remove(hare);
-
-
+        gameObject.GetComponent<FoxCollider>().preyList.Remove(hare.GetComponent<Animal>());
     }
 
     public void eatHare(GameObject hare)
@@ -77,15 +74,20 @@ public class Fox : Animal
     void Update()
     {
         base.Update();
-
+        TestInputs();
         drinkTimer += Time.deltaTime;
-        if (currentThirst < 50)
+        sexTimer += Time.deltaTime;
+        if (currentThirst < Mathf.Floor(thirst/2))
         {
             isThirsty = true;
         }
-        if (currentHunger < 50)
+        if (currentHunger < Mathf.Floor(hunger/2))
         {
             isHungry = true;
+        }
+        if (currentHorny == reproductionDrive)
+        {
+            isHorny = true;
         }
     }
 
@@ -100,7 +102,7 @@ public class Fox : Animal
         sb.AppendLine();
         sb.AppendFormat(format, "Geschwindigkeit", speed);
         sb.AppendLine();
-        sb.AppendFormat(format, "Getötete Hasen", killedHares);
+        sb.AppendFormat(format, "Getï¿½tete Hasen", killedHares);
 
         return sb.ToString();
 

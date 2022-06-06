@@ -7,7 +7,7 @@ public class FoxCollider : AnimalCollider
     // a list of foxes around the hare
          
     //private Fox fox;
-    public List<GameObject> preyList;
+    public List<Animal> preyList;
     //public Collider col;
 
     
@@ -26,9 +26,17 @@ public class FoxCollider : AnimalCollider
         {
             //isWandering = false;
             //agent.speed = sprintSpeed;
-            GetComponent<foxMovement>().hare = col.gameObject;
-            preyList.Add(GetComponent<foxMovement>().hare);
+            preyList.Add(col.GetComponent<Animal>());
             //isHunting = true;
+        }
+
+       if(     col.tag.Equals("Fox") 
+            && col.GetComponent<Animal>().gender != GetComponent<Animal>().gender 
+            && col.GetComponent<Animal>().isAlive
+            && !col.GetComponent<Animal>().isChild){
+
+            GetComponent<Movement>().closestSexPartnerAnimal = lowestDistanceAnimal(GetComponent<Animal>(), potentialSexPartnerList);    
+            potentialSexPartnerList.Add(col.GetComponent<Animal>());
         }
     }
 
@@ -36,7 +44,13 @@ public class FoxCollider : AnimalCollider
     {  
         if(col.gameObject.tag == "Prey")
         {
-            preyList.Remove(col.gameObject);
+            preyList.Remove(col.GetComponent<Animal>());
+        }
+         if(col.tag == "Fox"){
+            if(GetComponent<AnimalCollider>().potentialSexPartnerList.Count == 0){
+                GetComponent<Movement>().closestSexPartnerAnimal = null;
+            }
+             GetComponent<AnimalCollider>().potentialSexPartnerList.Remove(col.GetComponent<Animal>());
         }
         /**
         if (col.tag == "WaterSource")

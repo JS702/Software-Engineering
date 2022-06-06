@@ -70,7 +70,7 @@ public class Hare : Animal
             StartCoroutine(grow());
         }
        
-        gender = Random.Range(0,2) == 1 ? "male" : "female";
+        getGender();
 
         if(generation == 0){
             setGenerationZeroValues();

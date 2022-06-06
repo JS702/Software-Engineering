@@ -63,6 +63,8 @@ public abstract class Animal : Food
     public float drinkTimer = 0f;
     public float sexTimer = 0f;
     public float ageTimer = 0f;
+
+  
     public GameObject babyPrefab; //Prefab vom Hare (manuell über die grafische Oberfläche reinziehen)
     public Animal myFather;
     public ParticleSystem heartParticle;
@@ -78,8 +80,6 @@ public abstract class Animal : Food
             StartCoroutine(updateBars());
             stillHorny();
         }
-
-
     }
 
     protected void setRandomName()
@@ -97,7 +97,6 @@ public abstract class Animal : Food
 
     public void changeBar(Bars bar, int damage, ref int currentNumber, string operations)
     {
-
         currentNumber = operations.Equals("plus") ? currentNumber += damage : currentNumber -= damage;
         bar.setValue(currentNumber);
         if (currentNumber < 0)
@@ -167,9 +166,9 @@ public abstract class Animal : Food
     {
         Animal baby = child.GetComponent<Animal>();
         
-        Debug.Log("FAMILIEN PAPA: " + male.animalName);
-        Debug.Log("FAMILIEN MAMA: " + female.animalName);
-        Debug.Log("FAMILIEN ICH: " + baby.animalName);
+        //Debug.Log("FAMILIEN PAPA: " + male.animalName);
+        //Debug.Log("FAMILIEN MAMA: " + female.animalName);
+        //Debug.Log("FAMILIEN ICH: " + baby.animalName);
 
         baby.myFather = male;
 
@@ -208,7 +207,7 @@ public abstract class Animal : Food
     public bool isHavingFun()
     {
         Animal male = this;
-        Animal myFemale = GetComponent<HareMovement>().closestSexPartner;
+        Animal myFemale = GetComponent<Movement>().closestSexPartnerAnimal;
 
         Debug.Log("SexMale: " + male);
         Debug.Log("SexFemale" + myFemale);
@@ -268,16 +267,17 @@ public abstract class Animal : Food
         return isHavingAReallyGoodTime;
     }
 
+    // ABstract?
     IEnumerator spawnChild(Animal male, Animal female)
     {
-         Vector3 pos = GetComponent<Movement>().transform.position;
-        GetComponent<Movement>().agent.isStopped = true;
+         Vector3 pos = female.transform.position;
+       
         //isPregnant = false;
         Debug.Log("VERMEHRUNG: Try to spawn child");
         int childCounter = Random.Range(3, 8); //Random Integer zwischen 1 und 3, der die Anzahl der zu spawnenden Kinder angibt
         yield return new WaitForSeconds(5f);
 
-       
+        GetComponent<Movement>().agent.isStopped = true;
         for (int i = 1; i <= childCounter; i++) //Entsprechende Anzahl von Kindern wird gespawnt
         {
             /**
@@ -324,7 +324,7 @@ public abstract class Animal : Food
         health = Random.Range(100, 200);
         hunger = Random.Range(100, 200);
         thirst = Random.Range(100, 200);
-        reproductionDrive = Random.Range(5,11);
+        reproductionDrive = Random.Range(1,3);
         
         hungerLoss = Random.Range(5, 11);
         thirstLoss = Random.Range(5, 11);
@@ -370,7 +370,7 @@ public abstract class Animal : Food
         }
         if (Input.GetKeyDown("t"))
         {
-            currentHunger = 100;
+            currentHunger += 100;
             //Debug.Log(currentHunger);
         }
         if (Input.GetKeyDown("k"))
@@ -385,12 +385,17 @@ public abstract class Animal : Food
         }
     }
 
+    protected string getGender(){
+        gender = Random.Range(0, 2) == 1 ? "male" : "female";
+        return gender;
+    }
+
     void stillHorny(){
         if(isHungry || isThirsty){
-            currentHorny = 0;
+            currentHorny = currentHorny - 1;
             isHorny = false;
             isLookingForSex = false;
-            hornyBar.slider.value = 0;
+            hornyBar.slider.value = hornyBar.slider.value -1;
         }
     }
 }

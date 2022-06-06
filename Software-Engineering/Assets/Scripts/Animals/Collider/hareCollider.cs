@@ -61,7 +61,7 @@ public class hareCollider : AnimalCollider
         }
         if(col.tag == "Prey"){
             if( GetComponent<AnimalCollider>().potentialSexPartnerList.Count == 0){
-                GetComponent<HareMovement>().closestSexPartner = null;
+                GetComponent<Movement>().closestSexPartnerAnimal = null;
             }
              GetComponent<AnimalCollider>().potentialSexPartnerList.Remove(col.GetComponent<Animal>());
         }

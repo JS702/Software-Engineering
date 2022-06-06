@@ -13,7 +13,7 @@ public class HareMovement : Movement
     //
     public Hare closestSexPartner;
 
-    public Animal closestSexPartnerAnimal;
+    //public Animal closestSexPartnerAnimal;
     //public List<GameObject> foxList
     public bool inDanger = false;
     public bool isFleeing = false;
@@ -73,7 +73,7 @@ public class HareMovement : Movement
                 //HORNY
                 if (hare.isHorny && !isFleeing && !hare.isHungry && !hare.isThirsty && !hare.isUnderwater)
                 {
-                    reproduce();
+                   reproduce();
                 }
                 //WANDER
                 if (!isWandering && !isFleeing && !hare.isUnderwater && !hare.isHungry && !hare.isThirsty)
@@ -162,47 +162,49 @@ public class HareMovement : Movement
         }
     }
 
-
+   /*
     private void reproduce()
     {
         hare.isLookingForSex = true;
         GetComponent<AnimalCollider>().removeMissingObjectsFromAnimalList(GetComponent<AnimalCollider>().potentialSexPartnerList);
         //meine position
-        Vector3 harePosition = transform.position;
+        Vector3 thisPosition = transform.position;
 
         //welches ist der naechste hase
-        setLowestDistanceSexPartner(harePosition);
+        //setLowestDistanceSexPartner(thisPosition);
         closestSexPartnerAnimal = GetComponent<AnimalCollider>().lowestDistanceAnimal(GetComponent<Animal>(), GetComponent<AnimalCollider>().potentialSexPartnerList);
 
 
-        if (closestSexPartner != null)
+        if (closestSexPartnerAnimal != null)
         {
-            if (Vector3.Distance(harePosition, closestSexPartner.transform.position) < 2                        // in range of a potential sex Partner
+            if (Vector3.Distance(thisPosition, closestSexPartnerAnimal.transform.position) < 2                        // in range of a potential sex Partner
                                 && hare.gender.Equals("male")                                                   // the active hare is male
-                                && closestSexPartner.GetComponent<Hare>().isHorny                               // the target hare isHorny
-                                && !closestSexPartner.GetComponent<Hare>().isPregnant                           // the target hare is NOT pregnant
-                                && closestSexPartner.GetComponent<HareMovement>().closestSexPartner == hare     //the target of my closest sex partner is me
+                                && closestSexPartnerAnimal.GetComponent<Animal>().isHorny                               // the target hare isHorny
+                                && !closestSexPartnerAnimal.GetComponent<Animal>().isPregnant                           // the target hare is NOT pregnant
+                                && closestSexPartnerAnimal.GetComponent<HareMovement>().closestSexPartnerAnimal == hare     //the target of my closest sex partner is me
 
                                 )
             {
                 hare.GetComponentInChildren<ParticleSystem>().Play();
-                closestSexPartner.GetComponentInChildren<ParticleSystem>().Play();
+                closestSexPartnerAnimal.GetComponentInChildren<ParticleSystem>().Play();
                 hare.isLookingForSex = false;
                 agent.isStopped = hare.isHavingFun();                                       // start to have sex
                 //Debug.Log("IM HAVING A REALLY GOOD TIME");
             }
 
-            if (closestSexPartner.GetComponent<Hare>().isPregnant)
+            if (closestSexPartnerAnimal.GetComponent<Hare>().isPregnant)
             {                                                                                   // if the target is allready pregnant:
-                GetComponent<AnimalCollider>().potentialSexPartnerList.Remove(closestSexPartner); // remove it from potentialSexPartnerList
+                GetComponent<AnimalCollider>().potentialSexPartnerList.Remove(closestSexPartnerAnimal); // remove it from potentialSexPartnerList
             }
             else
             {
-                agent.SetDestination(closestSexPartner.transform.position);                     // else: run to the closestSexPartner
+                agent.SetDestination(closestSexPartnerAnimal.transform.position);                     // else: run to the closestSexPartner
             }
 
         }
     }
+    */
+    
     IEnumerator getOutOfWater()
     {
         //Vector3 direction = agent.destination;

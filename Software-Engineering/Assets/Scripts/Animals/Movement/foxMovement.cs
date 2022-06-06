@@ -31,42 +31,21 @@ public class foxMovement : Movement
 
     private void Update()
     {
+        if (isUnderwater)
+        {
+            StartCoroutine(getOutOfWater());
+        }
+        //HUNTING
         if (fox.isHungry && !fox.isEating && !isUnderwater)
         {
-            if(GetComponent<FoxCollider>().preyList.Count > 0){
+            if (GetComponent<FoxCollider>().preyList.Count > 0)
+            {
                 isWandering = false;
                 hunt();
             }
         }
-        else if (!isWandering && !isHunting && !fox.isEating && !isUnderwater)
-        {
-            StartCoroutine(setWanderDestination());
-        }
-
-        if (Input.GetKeyDown("k"))
-        {
-            fox.die(true);
-            //Denkt daran den Agent zu stoppen wenn ihr die die-Methode aufruft, ich konnte aus Animal nicht darauf zugreifen
-            agent.isStopped = true;
-        }
-
-        if(Input.GetKeyDown("o")){
-            GetComponent<Fox>().currentHunger -= 50;
-        }
-        //Stefans Code
-        /**
-        if (fox.isThirsty && fox.hasFoundWaterSource() && !isHunting)
-        {
-            agent.SetDestination(fox.moveToNearestWaterSource());
-            if (agent.remainingDistance < 0.1)
-            {
-                fox.drinkWater();
-            }
-        }
-        */
-
-        //Dieser Code > Stefans Code
-        if (fox.isThirsty && !isHunting)
+        //DRINKING
+        if (fox.isThirsty && !isHunting && !fox.isEating)
         {
             agent.SetDestination(fox.waterPosition);
             if (fox.isInWaterArea)
@@ -74,68 +53,43 @@ public class foxMovement : Movement
                 agent.isStopped = fox.drinkWater();
             }
         }
-
-        if(isUnderwater)
+        //HORNY
+        if (fox.isHorny && !fox.isHungry && !fox.isThirsty && !fox.isUnderwater)
         {
-            StartCoroutine(getOutOfWater());
+            reproduce();
         }
 
-        IEnumerator getOutOfWater()
+        if (!isWandering && !isHunting && !fox.isEating && !isUnderwater && !fox.isDrinking)
         {
-            if (fox.transform.position.z > 71)
-            {
-                if (fox.transform.position.x > 43)
-                {
-                    //Fuchs ist im rechten oberen Viertel
-                    agent.SetDestination(new Vector3(100f, 0f, 100f));
-                }
-                else
-                {
-                    //Fuchs ist im linken oberen Viertel
-                    agent.SetDestination(new Vector3(0f, 0f, 100f));
-                }
-            }
-            else
-            {
-                if (fox.transform.position.x > 43)
-                {
-                    //Fuchs ist im rechten unteren Viertel
-                    agent.SetDestination(new Vector3(100f, 0f, 0f));
-                }
-                else
-                {
-                    //Fuchs ist im linken unteren Viertel
-                    agent.SetDestination(new Vector3(0f, 0f, 0f));
-                }
-            }
-
-            yield return new WaitForSeconds(2.0f);
-            isUnderwater = false;
+            StartCoroutine(setWanderDestination());
         }
 
     }
 
 
-    public void setLowestDistanceHare(Vector3 foxPosition)
+    /*
+        public void setLowestDistanceHare(Vector3 foxPosition)
+        {
+            List<GameObject> preyList = gameObject.GetComponent<FoxCollider>().preyList;
+            float lowestDistance = 100;
+            foreach (GameObject hare in preyList)
+            {
+                Vector3 harePosition = hare.transform.position;
+                _distanceToPrey = Vector3.Distance(foxPosition, harePosition);
+
+                if (_distanceToPrey < lowestDistance)
+                {
+                    //Der Fox der am dichtesten ist wird zum gameObject Fox vor dem der Hase wegrennt
+                    this.hare = hare;
+                    lowestDistance = _distanceToPrey;
+                }
+            }
+
+        }
+        */
+
+    public Vector3 runToHare(Vector3 foxPosition, Animal hare)
     {
-        List<GameObject> preyList = gameObject.GetComponent<FoxCollider>().preyList;
-        float lowestDistance = 100;
-        foreach (GameObject hare in preyList)
-        {
-            Vector3 harePosition = hare.transform.position;
-            _distanceToPrey = Vector3.Distance(foxPosition, harePosition);
-
-            if (_distanceToPrey < lowestDistance)
-            {
-                //Der Fox der am dichtesten ist wird zum gameObject Fox vor dem der Hase wegrennt
-                this.hare = hare;
-                lowestDistance = _distanceToPrey;
-            }
-        }
-
-    }
-
-    public Vector3 runToHare(Vector3 foxPosition){
         //Look for nearest Fox
         Vector3 dirToHare = foxPosition - hare.transform.position;
         // Escape direction
@@ -154,38 +108,42 @@ public class foxMovement : Movement
             Vector3 foxPosition = transform.position;
 
             //get the distance to the nearest fox
-            setLowestDistanceHare(foxPosition);
+            //setLowestDistanceHare(foxPosition);
+
+            Animal closestHare = GetComponent<AnimalCollider>().lowestDistanceAnimal(fox, GetComponent<FoxCollider>().preyList);
 
             // If the Hunted Animal is allready dead -> stop hunting and remove it from preyList
-            if (hare.GetComponent<Animal>().isAlive == false)
+            if (closestHare.isAlive == false)
             {
-                gameObject.GetComponent<FoxCollider>().preyList.Remove(hare);
+                GetComponent<FoxCollider>().preyList.Remove(closestHare);
                 isHunting = false;
-            }  
+            }
 
-             // is there anything to hunt?
-            if (gameObject.GetComponent<FoxCollider>().preyList.Count == 0)
+            // is there anything to hunt?
+            if (GetComponent<FoxCollider>().preyList.Count == 0)
             {
                 isHunting = false;
             }
-            nearestHarePosition = hare.transform.position;
+
+            nearestHarePosition = closestHare.transform.position;
             _distanceToPrey = Vector3.Distance(foxPosition, nearestHarePosition);
             //Debug.DrawLine(foxPosition, nearestHarePosition, Color.black);
             if (_distanceToPrey < fox.killRange)
             {
                 isHunting = false;
-                
-                if(hare.GetComponent<Hare>().isAlive){
-                    fox.kill(hare);
+
+                if (closestHare.isAlive)
+                {
+                    fox.kill(closestHare.gameObject);
                     //StartCoroutine(runToDeadHare());
-                      // TODO hier laufe zum hasen einfuegen
-                    fox.eatHare(hare);
+                    // TODO hier laufe zum hasen einfuegen
+                    fox.eatHare(closestHare.gameObject);
                 }
-              
-                
+
+
             }
             //Tell Agent where to go
-            agent.SetDestination(runToHare(foxPosition));  
+            agent.SetDestination(runToHare(foxPosition, closestHare));
         }
         catch (MissingReferenceException)
         {
@@ -199,16 +157,38 @@ public class foxMovement : Movement
 
     }
 
-    /*
-    public IEnumerator runToDeadHare(){
-        if(hare != null){
-            agent.SetDestination(hare.transform.position);
+    IEnumerator getOutOfWater()
+    {
+        if (fox.transform.position.z > 71)
+        {
+            if (fox.transform.position.x > 43)
+            {
+                //Fuchs ist im rechten oberen Viertel
+                agent.SetDestination(new Vector3(100f, 0f, 100f));
+            }
+            else
+            {
+                //Fuchs ist im linken oberen Viertel
+                agent.SetDestination(new Vector3(0f, 0f, 100f));
+            }
         }
-        yield return new WaitForSeconds(1f);
+        else
+        {
+            if (fox.transform.position.x > 43)
+            {
+                //Fuchs ist im rechten unteren Viertel
+                agent.SetDestination(new Vector3(100f, 0f, 0f));
+            }
+            else
+            {
+                //Fuchs ist im linken unteren Viertel
+                agent.SetDestination(new Vector3(0f, 0f, 0f));
+            }
+        }
 
-        fox.eatHare(hare);   
+        yield return new WaitForSeconds(2.0f);
+        isUnderwater = false;
     }
-    */
 }
 
 

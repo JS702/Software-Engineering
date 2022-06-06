@@ -180,6 +180,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1433070495105501682}
+--- !u!1 &3384629821969693406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6614861385211920587}
+  m_Layer: 0
+  m_Name: ParticleSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6614861385211920587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3384629821969693406}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2373876670442993428}
+  m_Father: {fileID: 6189034732971714832}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3775755135334555903
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +705,7 @@ Transform:
   - {fileID: 5938391044750524983}
   - {fileID: 2188469228723943683}
   - {fileID: 3872832081593381709}
+  - {fileID: 6614861385211920587}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -705,25 +738,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nutritionalValue: 0
+  animal: {fileID: 0}
   health: 100
   hunger: 100
   thirst: 100
   reproductionDrive: 5
+  generation: 0
+  gender: 
   isAlive: 1
   isEating: 0
   isHungry: 0
+  isThirsty: 0
+  isDrinking: 0
+  isInWaterArea: 0
+  isUnderwater: 0
+  isHorny: 0
+  isPregnant: 0
+  isLookingForSex: 0
+  isHavingAReallyGoodTime: 0
+  isChild: 0
   speed: 0
+  waterPosition: {x: 43.8, y: 1.3, z: 71.4}
   currentHealth: 0
   currentHunger: 0
   currentThirst: 0
   currentHorny: 0
+  hungerLoss: 0
+  thirstLoss: 0
+  hornyLoss: 0
+  hungerGain: 0
+  thirstGain: 0
   healthBar: {fileID: 9040828220337567268}
   hungerBar: {fileID: 4983374725502423437}
   thirstBar: {fileID: 5639208040364727676}
   hornyBar: {fileID: 2993167932771041258}
   timePassed: 0
   eatTimer: 0
+  drinkTimer: 0
+  sexTimer: 0
+  ageTimer: 0
+  babyPrefab: {fileID: 1054290663930537920, guid: f704274c575dade4fa401f2c69b338a1, type: 3}
+  myFather: {fileID: 0}
+  heartParticle: {fileID: 2459133024734934836}
+  animalName: 
   killedHares: 0
+  killRange: 4
 --- !u!114 &5665828050681723460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -738,11 +797,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 10
   isWandering: 0
+  normalSpeed: 2
+  sprintSpeed: 8
   agent: {fileID: 0}
+  closestSexPartnerAnimal: {fileID: 0}
   fox: {fileID: 0}
   hare: {fileID: 0}
-  thisHare: {fileID: 0}
   isHunting: 0
+  isUnderwater: 0
 --- !u!195 &4307038512871931671
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -835,13 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2390862e18f90428a02a74878c04f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
-  isWandering: 0
-  agent: {fileID: 4307038512871931671}
-  fox: {fileID: 0}
-  hare: {fileID: 0}
-  thisHare: {fileID: 0}
-  isHunting: 0
+  potentialSexPartnerList: []
   preyList: []
 --- !u!1 &6767507912596128942
 GameObject:
@@ -1397,6 +1453,113 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 7644879897327396689}
+--- !u!1001 &2368937271833635000
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6614861385211920587}
+    m_Modifications:
+    - target: {fileID: 1854558839678092, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_Name
+      value: Herzchen.particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17954183
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198369014103302028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: lengthInSec
+      value: 3.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 198369014103302028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198369014103302028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198369014103302028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: InitialModule.startSizeY.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198369014103302028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: InitialModule.startSizeZ.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198369014103302028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 199448701263060138, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+--- !u!4 &2373876670442993428 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4947411021914028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+  m_PrefabInstance: {fileID: 2368937271833635000}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2459133024734934836 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198369014103302028, guid: 7ab9264685b95414a89249ede0d884bf, type: 3}
+  m_PrefabInstance: {fileID: 2368937271833635000}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6189034732161476060
 PrefabInstance:
   m_ObjectHideFlags: 0
