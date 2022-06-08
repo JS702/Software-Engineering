@@ -4,10 +4,35 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+     //Animals
+    public static float averageFoxSpeed;
+    public static float averageFoxSight;
+    public static int animalsAlive = foxesAlive + haresAlive;
+    
+
+    // Foxes
+    public static int foxGeneration;
+    public static int foxMalesAlive;
+    public static int foxFemalesAlive;
+    public static int foxesAlive;
+    public static int foxesStarved;
+
+
+    // Hares
+    public static float averageHareSpeed;
+    public static float averageHareSight;
+    public static int hareGeneration;
+    public static int hareFemalesAlive;
+    public static int hareMalesAlive;
+    public static int haresAlive;
+    public static int haresStarved;
+    public static int haresKilled;
+
     //Event Methods 
     public delegate void statTracking();
     public static event statTracking onStatTracking;
 
+   
     public List<GameObject> hareAlives;
     public List<GameObject> foxAlives;
 
@@ -40,6 +65,25 @@ public class GameManager : MonoBehaviour
                 {
                     hareAlives = new List<GameObject>(GameObject.FindGameObjectsWithTag("Prey"));
                     foxAlives = new List<GameObject>(GameObject.FindGameObjectsWithTag("Fox"));
+
+                    float tempAverageFoxSpeed = 0;
+                    float tempAverageFoxSight = 0;
+                    foreach(GameObject fox in foxAlives){
+                        tempAverageFoxSpeed += fox.GetComponent<Movement>().normalSpeed;
+                        tempAverageFoxSight += fox.GetComponentInChildren<SphereCollider>().radius;
+                    }
+                    averageFoxSpeed = tempAverageFoxSpeed / foxAlives.Count;
+                    averageFoxSight = tempAverageFoxSight / foxAlives.Count;
+
+                    float tempAverageHareSpeed = 0;
+                    float tempAverageHareSight = 0;
+                    foreach(GameObject hare in hareAlives){
+                        tempAverageHareSpeed += hare.GetComponent<Movement>().normalSpeed;
+                        tempAverageHareSight += hare.GetComponentInChildren<SphereCollider>().radius;
+                    }
+                    averageHareSpeed = tempAverageHareSpeed / hareAlives.Count;
+                    averageHareSight = tempAverageHareSight / hareAlives.Count;
+
                     onStatTracking?.Invoke();
                     nextStatsTrackingIntervall += statsTrackingIntervall;
                     currentStatsTrackingIntervall++;

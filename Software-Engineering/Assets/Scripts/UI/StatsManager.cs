@@ -7,15 +7,8 @@ public class StatsManager : MonoBehaviour
     [SerializeField] List<UILineRenderer> uiLineRenderer;
     GameManager gameManager;
 
-    private int foxesAlive;
-    private int haresAlive;
    
-
-
-    private int haresKilled;
-    private int haresStarved;
-    private int foxesStarved;
-
+    
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -47,7 +40,7 @@ public class StatsManager : MonoBehaviour
     {
         UILineRenderer line = uiLineRenderer.Find(renderer => renderer.diagramName.Equals("animalsAlive"));
         int count = gameManager.hareAlives.Count + gameManager.foxAlives.Count;
-        Debug.Log(count);
+        //Debug.Log(count);
         drawPoint(count, line);
     }
 
@@ -62,12 +55,6 @@ public class StatsManager : MonoBehaviour
         UILineRenderer line = uiLineRenderer.Find(renderer => renderer.diagramName.Equals("foxesAlive"));
         drawPoint(gameManager.foxAlives.Count, line);
     }
-
-    private int getAnimalsStarved()
-    {
-        return foxesStarved + haresStarved;
-    }
-
 
     private void drawPoint(float value, UILineRenderer lineRenderer)
     {

@@ -65,7 +65,7 @@ public class Hare : Animal
 
     void Start()
     {
-        
+        base.Start();
         if(isChild){
             StartCoroutine(grow());
         }

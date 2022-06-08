@@ -12,6 +12,7 @@ public class Fox : Animal
     public int killRange = 4;
     void Start()
     {
+        base.Start();
         if(isChild){
             StartCoroutine(grow());
         }
@@ -39,7 +40,7 @@ public class Fox : Animal
         hare.GetComponent<HareMovement>().agent.isStopped = true;
         // }
         hare.GetComponent<Hare>().isAlive = false;
-        hare.GetComponent<Hare>().die(false);
+        hare.GetComponent<Hare>().die(false,true);
     }
     public IEnumerator fillStomach(GameObject hare)
     {  
