@@ -5,12 +5,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
      //Animals
-    public static float averageFoxSpeed;
-    public static float averageFoxSight;
-    public static int animalsAlive = foxesAlive + haresAlive;
-    
+    public static int animalsAlive;
 
     // Foxes
+    public static float averageFoxSpeed;
+    public static float averageFoxSight;
     public static int foxGeneration;
     public static int foxMalesAlive;
     public static int foxFemalesAlive;
