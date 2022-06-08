@@ -75,7 +75,7 @@ public abstract class Animal : Food
     protected void Start()
     {
 
-
+        //GameManager.animalsAlive += 1;
         //FUCHS
         if (GetComponent<Hare>() != null)
         {

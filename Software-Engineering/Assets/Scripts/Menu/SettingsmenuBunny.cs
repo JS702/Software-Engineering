@@ -17,9 +17,6 @@ public class SettingsmenuBunny : MonoBehaviour
     void Update()
     {
         bunny = (int)slider.value;
-        bunnynumber.text = slider.value.ToString();
-        
-       
-        
+        bunnynumber.text = slider.value.ToString();        
     }
 }

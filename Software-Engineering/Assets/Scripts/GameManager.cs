@@ -65,21 +65,46 @@ public class GameManager : MonoBehaviour
                     hareAlives = new List<GameObject>(GameObject.FindGameObjectsWithTag("Prey"));
                     foxAlives = new List<GameObject>(GameObject.FindGameObjectsWithTag("Fox"));
 
+                    animalsAlive = foxAlives.Count + hareAlives.Count;
+
+                    //Fox-Data
                     float tempAverageFoxSpeed = 0;
                     float tempAverageFoxSight = 0;
+                    int tempFoxFemaleAlive = 0;
+                    int tempFoxMaleAlive = 0;
+
                     foreach(GameObject fox in foxAlives){
+
+                        if(fox.GetComponent<Animal>().gender.Equals("female")){
+                            tempFoxFemaleAlive += 1;
+                        }else{
+                            tempFoxMaleAlive += 1;
+                        }
                         tempAverageFoxSpeed += fox.GetComponent<Movement>().normalSpeed;
                         tempAverageFoxSight += fox.GetComponentInChildren<SphereCollider>().radius;
                     }
+                    foxFemalesAlive = tempFoxFemaleAlive;
+                    foxMalesAlive = tempFoxMaleAlive;
                     averageFoxSpeed = tempAverageFoxSpeed / foxAlives.Count;
                     averageFoxSight = tempAverageFoxSight / foxAlives.Count;
 
+
+                    //Hare Data
                     float tempAverageHareSpeed = 0;
                     float tempAverageHareSight = 0;
+                    int tempHareMaleAlive = 0;
+                    int tempHareFemaleAlive = 0;
                     foreach(GameObject hare in hareAlives){
+                        if(hare.GetComponent<Animal>().gender.Equals("female")){
+                            tempHareFemaleAlive += 1;
+                        }else{
+                            tempHareMaleAlive += 1;
+                        }
                         tempAverageHareSpeed += hare.GetComponent<Movement>().normalSpeed;
                         tempAverageHareSight += hare.GetComponentInChildren<SphereCollider>().radius;
                     }
+                    hareMalesAlive = tempHareMaleAlive;
+                    hareFemalesAlive = tempHareFemaleAlive;
                     averageHareSpeed = tempAverageHareSpeed / hareAlives.Count;
                     averageHareSight = tempAverageHareSight / hareAlives.Count;
 
