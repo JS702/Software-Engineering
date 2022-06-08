@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     private int statsTrackingIntervall = 10;
     private int nextStatsTrackingIntervall = 10;
-    public int currentStatsTrackingIntervall = 1;
+    public int currentStatsTrackingIntervall = 0;
     public bool gameOver = false;
 
 
@@ -83,9 +83,10 @@ public class GameManager : MonoBehaviour
                     averageHareSpeed = tempAverageHareSpeed / hareAlives.Count;
                     averageHareSight = tempAverageHareSight / hareAlives.Count;
 
+                    currentStatsTrackingIntervall++;
+
                     onStatTracking?.Invoke();
                     nextStatsTrackingIntervall += statsTrackingIntervall;
-                    currentStatsTrackingIntervall++;
                 }
                 currentTime += 1 * Time.deltaTime;
             }
