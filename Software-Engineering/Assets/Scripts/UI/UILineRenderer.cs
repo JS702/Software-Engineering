@@ -64,6 +64,7 @@ public class UILineRenderer : Graphic
     private void DrawVerticesForPoint(Vector2 point, VertexHelper vh, float angle)
     {
         point.y /= scale; // set point corresponding to scale
+
         UIVertex vertex = UIVertex.simpleVert;
         vertex.color = color;
 
@@ -85,19 +86,19 @@ public class UILineRenderer : Graphic
     {
         bool shouldUpdateScale = false;
 
-        for (int i = 0; i < points.Count; i++)
+        float newPoint = points[points.Count - 1].y;
+
+        if (newPoint > max)
         {
-            if (!shouldUpdateScale && points[i].y > max)
-            {
-                scale += Mathf.CeilToInt(points[i].y / max);
-                shouldUpdateScale = true;
-            }
+            scale = Mathf.CeilToInt(newPoint / 10);
+            shouldUpdateScale = true;
         }
+
         if (shouldUpdateScale)
         {
-            min *= scale;
-            mid *= scale;
-            max *= scale;
+            min = 1 * scale;
+            mid = 5 * scale;
+            max = 10 * scale;
             Debug.Log("updated Scale, new Scale = " + scale);
             diagramManager.setAxis(this);
         }
