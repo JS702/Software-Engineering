@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
             }
             else
             {
-                aimDot.SetActive(isActive);
+                aimDot.SetActive(!aimDot.activeSelf);
             }
 
         }
