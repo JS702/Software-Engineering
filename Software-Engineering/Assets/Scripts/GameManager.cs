@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -48,6 +49,8 @@ public class GameManager : MonoBehaviour
     //UI
     [SerializeField] GameObject panel;
     [SerializeField] GameObject endScreen;
+    [SerializeField] TextMeshProUGUI timeScaleText;
+
 
 
     private void Start()
@@ -138,7 +141,14 @@ public class GameManager : MonoBehaviour
                     {
                         Time.timeScale *= 2;
                     }
-
+                    if(Time.timeScale != 1)
+                    {
+                        timeScaleText.text = Time.timeScale.ToString() + "X";
+                    }
+                    else
+                    {
+                        timeScaleText.text = "";
+                    }
                 }
                 else if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
@@ -151,6 +161,14 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         Time.timeScale /= 2;
+                    }
+                    if (Time.timeScale != 1)
+                    {
+                        timeScaleText.text = Time.timeScale.ToString() + "X";
+                    }
+                    else
+                    {
+                        timeScaleText.text = "";
                     }
                 }
             }
