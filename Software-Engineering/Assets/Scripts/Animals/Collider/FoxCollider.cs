@@ -35,7 +35,10 @@ public class FoxCollider : AnimalCollider
             && col.GetComponent<Animal>().isAlive
             && !col.GetComponent<Animal>().isChild){
 
-            GetComponent<Movement>().closestSexPartnerAnimal = lowestDistanceAnimal(GetComponent<Animal>(), potentialSexPartnerList);    
+            if(lowestDistanceAnimal(GetComponent<Animal>(), potentialSexPartnerList) != null){
+                GetComponent<Movement>().closestSexPartnerAnimal = lowestDistanceAnimal(GetComponent<Animal>(), potentialSexPartnerList);   
+            }
+             
             potentialSexPartnerList.Add(col.GetComponent<Animal>());
         }
     }

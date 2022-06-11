@@ -13,16 +13,18 @@ public class Fox : Animal
     void Start()
     {
         base.Start();
-        if(isChild){
+        if (isChild)
+        {
             StartCoroutine(grow());
         }
-        if(generation == 0){
+        if (generation == 0)
+        {
             setGenerationZeroValues();
         }
 
         getGender();
         setRandomName();
-       
+
 
         movement = gameObject.GetComponent<Movement>();
         setBar(ref currentHealth, health, healthBar);
@@ -40,10 +42,10 @@ public class Fox : Animal
         hare.GetComponent<HareMovement>().agent.isStopped = true;
         // }
         hare.GetComponent<Hare>().isAlive = false;
-        hare.GetComponent<Hare>().die(false,true);
+        hare.GetComponent<Hare>().die(false, true);
     }
     public IEnumerator fillStomach(GameObject hare)
-    {  
+    {
         while (currentHunger < hunger)
         {
             GetComponent<foxMovement>().isHunting = false;
@@ -53,15 +55,20 @@ public class Fox : Animal
                 {
                     break;
                 }
+                hare.GetComponent<Food>().nutritionalValue -= hungerGain;
 
             }
             currentHunger += hungerGain;
+
             yield return new WaitForSeconds(1.0f);
         }
         isEating = false;
         isHungry = false;
         movement.agent.isStopped = false;
-        gameObject.GetComponent<FoxCollider>().preyList.Remove(hare.GetComponent<Animal>());
+        if (hare != null)
+        {
+            gameObject.GetComponent<FoxCollider>().preyList.Remove(hare.GetComponent<Animal>());
+        }
     }
 
     public void eatHare(GameObject hare)
@@ -70,7 +77,7 @@ public class Fox : Animal
         movement.agent.SetDestination(hare.transform.position);
         movement.agent.isStopped = true;
         StartCoroutine(fillStomach(hare));
-       
+
     }
     void Update()
     {
@@ -78,11 +85,11 @@ public class Fox : Animal
         TestInputs();
         drinkTimer += Time.deltaTime;
         sexTimer += Time.deltaTime;
-        if (currentThirst < Mathf.Floor(thirst/2))
+        if (currentThirst < Mathf.Floor(thirst / 2))
         {
             isThirsty = true;
         }
-        if (currentHunger < Mathf.Floor(hunger/2))
+        if (currentHunger < Mathf.Floor(hunger / 2))
         {
             isHungry = true;
         }

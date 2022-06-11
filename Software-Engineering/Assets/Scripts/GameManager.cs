@@ -86,6 +86,8 @@ public class GameManager : MonoBehaviour
                         tempAverageFoxSpeed += fox.GetComponent<Movement>().normalSpeed;
                         tempAverageFoxSight += fox.GetComponentInChildren<SphereCollider>().radius;
                     }
+
+                    foxesAlive = foxAlives.Count;
                     foxFemalesAlive = tempFoxFemaleAlive;
                     foxMalesAlive = tempFoxMaleAlive;
                     averageFoxSpeed = tempAverageFoxSpeed / foxAlives.Count;
@@ -106,6 +108,8 @@ public class GameManager : MonoBehaviour
                         tempAverageHareSpeed += hare.GetComponent<Movement>().normalSpeed;
                         tempAverageHareSight += hare.GetComponentInChildren<SphereCollider>().radius;
                     }
+
+                    haresAlive = hareAlives.Count;
                     hareMalesAlive = tempHareMaleAlive;
                     hareFemalesAlive = tempHareFemaleAlive;
                     averageHareSpeed = tempAverageHareSpeed / hareAlives.Count;
