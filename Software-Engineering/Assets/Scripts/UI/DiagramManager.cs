@@ -63,10 +63,13 @@ public class DiagramManager : MonoBehaviour
 
     public void setAxis(UILineRenderer lineRenderer)
     {
-        int[] numbers = new int[] { lineRenderer.min, lineRenderer.mid, lineRenderer.max };
-        for (int i = 0; i < y_Axis.transform.childCount; i++)
+        if (lineRenderer.transform.parent.gameObject.activeSelf)
         {
-            y_Axis.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = numbers[i].ToString();
+            int[] numbers = new int[] { lineRenderer.min, lineRenderer.mid, lineRenderer.max };
+            for (int i = 0; i < y_Axis.transform.childCount; i++)
+            {
+                y_Axis.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = numbers[i].ToString();
+            }
         }
     }
 
