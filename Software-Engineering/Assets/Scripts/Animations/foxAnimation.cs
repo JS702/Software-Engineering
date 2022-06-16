@@ -18,9 +18,8 @@ public class foxAnimation : MonoBehaviour
     void Update()
     {
         animator.SetBool("isMoving", getIsMoving());
+        animator.SetBool("isEating", getIsEating() || getIsDrinking());
         animator.SetBool("isAlive", getIsAlive());
-        animator.SetBool("isEating", getIsEating());
-        //Debug.Log("IsEating: " + getIsEating());
     }
 
     public bool getIsMoving()
@@ -36,5 +35,10 @@ public class foxAnimation : MonoBehaviour
     public bool getIsEating()
     {
         return movement.fox.isEating;
+    }
+
+    public bool getIsDrinking()
+    {
+        return movement.fox.isDrinking;
     }
 }
