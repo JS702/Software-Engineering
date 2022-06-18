@@ -37,7 +37,7 @@ public class foxMovement : Movement
             StartCoroutine(getOutOfWater());
         }
         //HUNTING
-        if (fox.isHungry && !fox.isEating && !isUnderwater)
+        if (fox.isHungry && !fox.isEating && !isUnderwater && GameManager.haresAlive > 0)
         {
             if (GetComponent<FoxCollider>().preyList.Count > 0)
             {
