@@ -6,7 +6,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
      //Animals
-    public static int animalsAlive;
+    public static int animalsAlive = 5;
 
     // Foxes
     public static float averageFoxSpeed;
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     {
         if (!gameOver)
         {
-            if (currentTime < maxTime)
+            if (currentTime < maxTime && animalsAlive > 0)
             {
                 if (currentTime > nextStatsTrackingIntervall)
                 {
@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
                     foxAlives = new List<GameObject>(GameObject.FindGameObjectsWithTag("Fox"));
 
                     animalsAlive = foxAlives.Count + hareAlives.Count;
+
 
                     //Fox-Data
                     float tempAverageFoxSpeed = 0;

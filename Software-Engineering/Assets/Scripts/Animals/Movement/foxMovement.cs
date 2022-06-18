@@ -32,6 +32,8 @@ public class foxMovement : Movement
 
     private void Update()
     {
+
+        stillHunting();
         if (isUnderwater)
         {
             StartCoroutine(getOutOfWater());
@@ -92,12 +94,25 @@ public class foxMovement : Movement
     public Vector3 runToHare(Vector3 foxPosition, Animal hare)
     {
         //Look for nearest Fox
-        Vector3 dirToHare = foxPosition - hare.transform.position;
-        // Escape direction
-        _huntDirection = foxPosition - (dirToHare).normalized;
+        if (hare != null)
+        {
+            Vector3 dirToHare = foxPosition - hare.transform.position;
+            // Escape direction
+            _huntDirection = foxPosition - (dirToHare).normalized;
+
+
+        }
         return _huntDirection;
+
     }
 
+    private void stillHunting(){
+         // is there anything to hunt?
+            if (GetComponent<FoxCollider>().preyList.Count == 0)
+            {
+                isHunting = false;
+            }
+    }
     private void hunt()
     {
 
@@ -114,7 +129,7 @@ public class foxMovement : Movement
             Animal closestHare = GetComponent<AnimalCollider>().lowestDistanceAnimal(fox, GetComponent<FoxCollider>().preyList);
 
             // If the Hunted Animal is allready dead -> stop hunting and remove it from preyList
-            if (closestHare.isAlive == false)
+            if (closestHare != null && closestHare.isAlive == false)
             {
                 GetComponent<FoxCollider>().preyList.Remove(closestHare);
                 isHunting = false;
@@ -126,14 +141,22 @@ public class foxMovement : Movement
                 isHunting = false;
             }
 
-            nearestHarePosition = closestHare.transform.position;
+            if (closestHare != null)
+            {
+                nearestHarePosition = closestHare.transform.position;
+            }
+
+            if (nearestHarePosition == transform.position)
+            {
+                isHunting = false;
+            }
             _distanceToPrey = Vector3.Distance(foxPosition, nearestHarePosition);
             //Debug.DrawLine(foxPosition, nearestHarePosition, Color.black);
             if (_distanceToPrey < fox.killRange)
             {
                 isHunting = false;
 
-                if (closestHare.isAlive)
+                if (closestHare != null && closestHare.isAlive)
                 {
                     fox.kill(closestHare.gameObject);
                     //StartCoroutine(runToDeadHare());

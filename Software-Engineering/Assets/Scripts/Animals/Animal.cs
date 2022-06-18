@@ -60,7 +60,8 @@ public abstract class Animal : Food
     public float eatTimer = 0f;
     public float drinkTimer = 0f;
     public float sexTimer = 0f;
-    public float ageTimer = 0f;
+    public float lifeTime;
+    bool lifeTimeOver = false;
 
 
     public GameObject babyPrefab; //Prefab vom Hare (manuell über die grafische Oberfläche reinziehen)
@@ -102,6 +103,11 @@ public abstract class Animal : Food
             StartCoroutine(updateBars());
             stillHorny();
         }
+        timePassed += Time.deltaTime;
+        if(timePassed > lifeTime && !isHavingAReallyGoodTime){
+            lifeTimeOver = true;
+            die(true, false);
+        }
     }
 
     protected void setRandomName()
@@ -138,11 +144,11 @@ public abstract class Animal : Food
         updatingBars = true;
         if (thirstBar.slider.value == 0)
         {
-            changeBar(healthBar, 10, ref currentHealth, "minus");
+            changeBar(healthBar, 20, ref currentHealth, "minus");
         }
         if (hungerBar.slider.value == 0)
         {
-            changeBar(healthBar, 10, ref currentHealth, "minus");
+            changeBar(healthBar, 20, ref currentHealth, "minus");
         }
         if (healthBar.slider.value == 0)
         {
@@ -201,7 +207,7 @@ public abstract class Animal : Food
         baby.health = (male.health + female.health) / 2 + mutate() < 1 ? 1 : (male.health + female.health) / 2 + mutate();
         baby.hunger = (male.hunger + female.hunger) / 2 + mutate() < 1 ? 1 : (male.hunger + female.hunger) / 2 + mutate();
         baby.thirst = (male.thirst + female.thirst) / 2 + mutate() < 1 ? 1 : (male.thirst + female.thirst) / 2 + mutate();
-        baby.reproductionDrive = (male.reproductionDrive + female.reproductionDrive) / 2 + mutate() < 1 ? 1 : (male.reproductionDrive + female.reproductionDrive) / 2 + mutate();
+        baby.reproductionDrive =  (male.reproductionDrive + female.reproductionDrive) / 2 + mutate() < 1 ? 1 : (male.reproductionDrive + female.reproductionDrive) / 2 + mutate();
 
         baby.GetComponent<Movement>().normalSpeed = (male.GetComponent<Movement>().normalSpeed + female.GetComponent<Movement>().normalSpeed) / 2 + mutate() < 1 ? 1 : (male.GetComponent<Movement>().normalSpeed + female.GetComponent<Movement>().normalSpeed) / 2 + mutate();
         baby.GetComponent<Movement>().sprintSpeed = (male.GetComponent<Movement>().sprintSpeed + female.GetComponent<Movement>().sprintSpeed) / 2 + mutate() < 1 ? 1 : (male.GetComponent<Movement>().sprintSpeed + female.GetComponent<Movement>().sprintSpeed);
@@ -295,9 +301,18 @@ public abstract class Animal : Food
     {
         Vector3 pos = female.transform.position;
 
+        int minChildren;
+        int maxChildren;
         //isPregnant = false;
         //Debug.Log("VERMEHRUNG: Try to spawn child");
-        int childCounter = Random.Range(3, 8); //Random Integer zwischen 1 und 3, der die Anzahl der zu spawnenden Kinder angibt
+        if(GetComponent<Hare>() != null){
+            minChildren = 5;
+            maxChildren = 10;
+        }else{
+            minChildren = 1;
+            maxChildren = 4;
+        }
+        int childCounter = Random.Range(minChildren, maxChildren); //Random Integer zwischen 1 und 3, der die Anzahl der zu spawnenden Kinder angibt
         yield return new WaitForSeconds(5f);
 
         GetComponent<Movement>().agent.isStopped = true;
@@ -308,8 +323,10 @@ public abstract class Animal : Food
             hareBaby.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); //Test, funktioniert so
             Instantiate(hareBaby, pos + new Vector3(i, 0, i), Quaternion.identity); //Jedes gespawnte Kind wird um eine Einheit weiter auf der x- und z-Achse verschoben, um Kollisionen zu verhindern
             */
-
-            Instantiate(setBabyValues(male, female, babyPrefab), pos + new Vector3(i, 0, i), Quaternion.identity);
+            if(male != null && female != null){
+                Instantiate(setBabyValues(male, female, babyPrefab), pos + new Vector3(i, 0, i), Quaternion.identity);
+            }
+           
 
             //Debug.Log("VERMEHRUNG: child spawned");
         }
@@ -380,7 +397,7 @@ public abstract class Animal : Food
         isAlive = false;
         GameManager.animalsAlive -= 1;
 
-        if (GetComponent<Hare>() == null)
+        if (GetComponent<Hare>() == null && !lifeTimeOver)
         {
             GameManager.foxesAlive -=1;
             GameManager.foxesStarved += 1;
@@ -395,9 +412,9 @@ public abstract class Animal : Food
         }
         else
         { 
-            if(!killed){
+            if(!killed && !lifeTimeOver){
                 GameManager.haresStarved += 1;
-            }else{
+            }else if(!lifeTimeOver){
                 GameManager.haresKilled += 1;
             }
             GameManager.haresAlive -= 1; 
@@ -455,6 +472,7 @@ public abstract class Animal : Food
             currentHorny = currentHorny - 1;
             isHorny = false;
             isLookingForSex = false;
+            isHavingAReallyGoodTime = false;
             hornyBar.slider.value = hornyBar.slider.value - 1;
         }
     }

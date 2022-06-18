@@ -25,17 +25,21 @@ public class AnimalCollider : MonoBehaviour
         {
             foreach (Animal animal in animalList)
             {
-                Vector3 otherAnimalPosition = animal.transform.position;
-                distanceToOther = Vector3.Distance(selfPosition, otherAnimalPosition);
-                if (distanceToOther < lowestDistance)
+                if (animal != null)
                 {
-                    closestAnimal = animal;
-                    lowestDistance = distanceToOther;
+                    Vector3 otherAnimalPosition = animal.transform.position;
+                    distanceToOther = Vector3.Distance(selfPosition, otherAnimalPosition);
+                    if (distanceToOther < lowestDistance)
+                    {
+                        closestAnimal = animal;
+                        lowestDistance = distanceToOther;
+                    }
                 }
+
             }
             return closestAnimal;
         }
         return null;
     }
-    
+
 }

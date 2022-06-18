@@ -66,6 +66,7 @@ public class hareCollider : AnimalCollider
              GetComponent<AnimalCollider>().potentialSexPartnerList.Remove(col.GetComponent<Animal>());
         }
         
+        
     }
   
 }

@@ -20,6 +20,7 @@ public class Plants : Food
         {
             hare = other.GetComponent<Hare>();
             hare.isInGrassArea = false;
+            hare.isEating = false;
         }
     }
 }

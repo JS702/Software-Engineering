@@ -13,6 +13,7 @@ public class Fox : Animal
     void Start()
     {
         base.Start();
+        lifeTime = 300;
         if (isChild)
         {
             StartCoroutine(grow());
@@ -85,11 +86,14 @@ public class Fox : Animal
         TestInputs();
         drinkTimer += Time.deltaTime;
         sexTimer += Time.deltaTime;
+
+
         if (currentThirst < Mathf.Floor(thirst / 2))
         {
             isThirsty = true;
+            isHungry = false;
         }
-        if (currentHunger < Mathf.Floor(hunger / 2))
+        if (currentHunger < Mathf.Floor(hunger / 2) && !isThirsty)
         {
             isHungry = true;
         }

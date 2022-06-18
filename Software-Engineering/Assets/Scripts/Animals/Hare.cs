@@ -8,6 +8,7 @@ public class Hare : Animal
 {
     //public bool isHungry;
 
+    
     public bool isInGrassArea;
     public List<Vector3> grassPositionList;
 
@@ -66,6 +67,7 @@ public class Hare : Animal
     void Start()
     {
         base.Start();
+        lifeTime = 180;
         if(isChild){
             StartCoroutine(grow());
         }
@@ -107,7 +109,10 @@ public class Hare : Animal
         }
         if (currentThirst < Mathf.Floor(thirst / 2))
         {
-            isThirsty = true;
+            if(!isInGrassArea){
+                isThirsty = true;
+            }
+           
         }
     }
 
