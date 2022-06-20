@@ -8,6 +8,6 @@ public class Menü : MonoBehaviour
    public void Quit ()
     {
         Debug.Log("Quit!");
-       // Application.Quit();
+        Application.Quit();
     }
 }
