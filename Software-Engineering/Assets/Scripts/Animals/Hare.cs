@@ -63,7 +63,7 @@ public class Hare : Animal
     void Start()
     {
         base.Start();
-        lifeTime = 180;
+        lifeTime = 300;
         if (isChild)
         {
             StartCoroutine(grow());
@@ -122,6 +122,8 @@ public class Hare : Animal
         sb.AppendFormat(format, "Geschlecht", gender);
         sb.AppendLine();
         sb.AppendFormat(format, "Generation", generation);
+        sb.AppendLine();
+        sb.AppendFormat(format, "Geschwindigkeit", GetComponent<Movement>().normalSpeed);
         sb.AppendLine();
         sb.AppendFormat(format, "Sprintgeschwindigkeit", GetComponent<Movement>().sprintSpeed);
         return sb.ToString();

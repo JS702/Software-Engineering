@@ -84,6 +84,7 @@ public class FoxMovement : Movement
 
         isHunting = true;
         agent.speed = sprintSpeed;
+        agent.acceleration = sprintSpeed;
 
         try
         {

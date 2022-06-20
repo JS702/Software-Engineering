@@ -13,7 +13,7 @@ public class Fox : Animal
     void Start()
     {
         base.Start();
-        lifeTime = 300;
+        lifeTime = 600;
         if (isChild)
         {
             StartCoroutine(grow());
@@ -108,7 +108,10 @@ public class Fox : Animal
         sb.AppendLine();
         sb.AppendFormat(format, "Generation", generation);
         sb.AppendLine();
+        sb.AppendFormat(format, "Geschwindigkeit", GetComponent<Movement>().normalSpeed);
+        sb.AppendLine();
         sb.AppendFormat(format, "Sprintgeschwindigkeit", GetComponent<Movement>().sprintSpeed);
+
         sb.AppendLine();
         sb.AppendFormat(format, "Getoetete Hasen", killedHares);
 

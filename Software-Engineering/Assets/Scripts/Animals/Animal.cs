@@ -95,7 +95,7 @@ public abstract class Animal : Food
         timePassed += Time.deltaTime;
         if(timePassed > lifeTime && !isHavingAReallyGoodTime){
             lifeTimeOver = true;
-            die(true, false);
+            die(false, false);
         }
     }
 
@@ -171,7 +171,7 @@ public abstract class Animal : Food
     private int mutate()
     {
         int mutation = Random.Range(0, 100);
-        return mutation > 1 ? 0 : mutation == 1 ? Random.Range(1, 3) : Random.Range(-3, 0);
+        return mutation > 5 ? 0 : mutation > 2 ? Random.Range(1, 5) : Random.Range(-4, 0);
     }
 
     private Animal setBabyValues(Animal male, Animal female, GameObject child)
@@ -306,6 +306,7 @@ public abstract class Animal : Food
     protected void setGenerationZeroValues()
     {
 
+
         GetComponentInChildren<SphereCollider>().radius = Random.Range(5, 10);
         health = Random.Range(100, 200);
         hunger = Random.Range(100, 200);
@@ -318,6 +319,9 @@ public abstract class Animal : Food
 
         hungerGain = Random.Range(16, 21);
         thirstGain = Random.Range(16, 21);
+
+        GetComponent<Movement>().normalSpeed = Random.Range(1,4);
+        GetComponent<Movement>().sprintSpeed = Random.Range(4,10);
     }
 
     
@@ -339,7 +343,7 @@ public abstract class Animal : Food
         isAlive = false;
         GameManager.animalsAlive -= 1;
 
-        if (GetComponent<Hare>() == null && !lifeTimeOver)
+        if (GetComponent<Fox>() != null && !lifeTimeOver)
         {
             GameManager.foxesAlive -=1;
             GameManager.foxesStarved += 1;
@@ -376,7 +380,7 @@ public abstract class Animal : Food
 
     public void TestInputs()
     {
-
+            
         if (Input.GetKeyDown("h"))
         {
             currentHunger = 10;

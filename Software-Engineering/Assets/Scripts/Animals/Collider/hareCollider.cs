@@ -40,6 +40,7 @@ public class HareCollider : AnimalCollider
             if (foxList.Count == 0)
             {
                 GetComponent<HareMovement>().agent.speed = GetComponent<Movement>().normalSpeed;
+                GetComponent<HareMovement>().agent.acceleration = GetComponent<Movement>().normalSpeed;
                 GetComponent<HareMovement>().inDanger = false;
                 GetComponent<HareMovement>().isFleeing = false;
             }
