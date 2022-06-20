@@ -83,7 +83,6 @@ public class Fox : Animal
     void Update()
     {
         base.Update();
-        TestInputs();
         drinkTimer += Time.deltaTime;
         sexTimer += Time.deltaTime;
 
