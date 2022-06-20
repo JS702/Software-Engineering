@@ -10,7 +10,6 @@ public class FreeFlyCamera : MonoBehaviour
 {
     #region UI
 
-  
     [SerializeField]
     [Tooltip("Movement Region")]
     private float _xMin = 1f;
@@ -25,7 +24,7 @@ public class FreeFlyCamera : MonoBehaviour
     
     [SerializeField]
     [Tooltip("Movement Region")]
-    private float _yMax = 30f;
+    private float _yMax = 60f;
     
     [SerializeField]
     [Tooltip("Movement Region")]

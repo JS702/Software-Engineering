@@ -11,7 +11,7 @@ public class Food : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //Z�hlt den N�hrwert pro Sekunde um 1 runter und despawnt dann das GameObject
+    //Zaehlt den Naehrwert pro Sekunde um 1 runter und despawnt dann das GameObject
     public IEnumerator decreaseNutritionalValue()
     {
         while (nutritionalValue > 0)

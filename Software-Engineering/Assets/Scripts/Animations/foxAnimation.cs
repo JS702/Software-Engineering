@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class foxAnimation : MonoBehaviour
+public class FoxAnimation : MonoBehaviour
 {
-    private foxMovement movement;
+    private FoxMovement movement;
     Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        movement = GetComponentInParent<foxMovement>();
+        movement = GetComponentInParent<FoxMovement>();
         animator = GetComponent<Animator>();
     }
 

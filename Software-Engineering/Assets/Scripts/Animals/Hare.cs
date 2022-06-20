@@ -6,9 +6,6 @@ using System.Text;
 
 public class Hare : Animal
 {
-    //public bool isHungry;
-
-    
     public bool isInGrassArea;
     public List<Vector3> grassPositionList;
 
@@ -45,7 +42,6 @@ public class Hare : Animal
         return grassPositionList.Count > 0;
     }
 
-    //W�hrend der Hase hungrig ist (Hunger < 50), frisst er jede halbe Sekunde einen Nahrungspunkt
 
     public bool eatGrass()
     {
@@ -56,7 +52,7 @@ public class Hare : Animal
             eatTimer = 0f;
             hungerBar.setValue(currentHunger);
         }
-        if (currentHunger > hunger -1)
+        if (currentHunger > hunger - 1)
         {
             isHungry = false;
             isEating = false;
@@ -68,18 +64,19 @@ public class Hare : Animal
     {
         base.Start();
         lifeTime = 180;
-        if(isChild){
+        if (isChild)
+        {
             StartCoroutine(grow());
         }
-       
+
         getGender();
 
-        if(generation == 0){
+        if (generation == 0)
+        {
             setGenerationZeroValues();
         }
-       
+
         setRandomName();
-        
 
         setBar(ref currentHealth, health, healthBar);
         setBar(ref currentHunger, hunger, hungerBar);
@@ -93,7 +90,7 @@ public class Hare : Animal
 
     void Update()
     {
-        base.Update();// updates the bars
+        base.Update();
 
         eatTimer += Time.deltaTime;
         drinkTimer += Time.deltaTime;
@@ -109,10 +106,11 @@ public class Hare : Animal
         }
         if (currentThirst < Mathf.Floor(thirst / 2))
         {
-            if(!isInGrassArea){
+            if (!isInGrassArea)
+            {
                 isThirsty = true;
             }
-           
+
         }
     }
 
@@ -125,7 +123,7 @@ public class Hare : Animal
         sb.AppendLine();
         sb.AppendFormat(format, "Generation", generation);
         sb.AppendLine();
-        sb.AppendFormat(format, "Geschwindigkeit", speed);
+        sb.AppendFormat(format, "Sprintgeschwindigkeit", GetComponent<Movement>().sprintSpeed);
         return sb.ToString();
 
     }

@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SettingsmenuFox : MonoBehaviour
+public class SettingsMenuFox : MonoBehaviour
 {
     public Slider slider;
     public static int fox;
-    public TextMeshProUGUI foxnumber;
+    public TextMeshProUGUI foxNumber;
     
     // Update is called once per frame
     void Update()
     {
         fox = (int)slider.value;
-        foxnumber.text= slider.value.ToString();
+        foxNumber.text= slider.value.ToString();
 
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bunnyAnimation : MonoBehaviour
+public class HareAnimation : MonoBehaviour
 {
     private HareMovement movement;
     Animator animator;

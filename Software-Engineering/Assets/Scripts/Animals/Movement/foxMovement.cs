@@ -3,21 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class foxMovement : Movement
+public class FoxMovement : Movement
 {
     public Fox fox;
-
-    //public NavMeshAgent _agent;
-    // Hunting Variables
-
-    //the Hare that the fox is Hunting
-    public GameObject hare;
     private Vector3 nearestHarePosition;
-
-    private Vector3 _huntDirection;
-
-    private float _distanceToPrey;
-    //Vector3 foxPosition = transform.position;
+    private Vector3 huntDirection;
+    private float distanceToPrey;
     public bool isHunting = false;
     public bool isUnderwater;
 
@@ -32,7 +23,6 @@ public class foxMovement : Movement
 
     private void Update()
     {
-
         stillHunting();
         if (isUnderwater)
         {
@@ -69,28 +59,6 @@ public class foxMovement : Movement
 
     }
 
-
-    /*
-        public void setLowestDistanceHare(Vector3 foxPosition)
-        {
-            List<GameObject> preyList = gameObject.GetComponent<FoxCollider>().preyList;
-            float lowestDistance = 100;
-            foreach (GameObject hare in preyList)
-            {
-                Vector3 harePosition = hare.transform.position;
-                _distanceToPrey = Vector3.Distance(foxPosition, harePosition);
-
-                if (_distanceToPrey < lowestDistance)
-                {
-                    //Der Fox der am dichtesten ist wird zum gameObject Fox vor dem der Hase wegrennt
-                    this.hare = hare;
-                    lowestDistance = _distanceToPrey;
-                }
-            }
-
-        }
-        */
-
     public Vector3 runToHare(Vector3 foxPosition, Animal hare)
     {
         //Look for nearest Fox
@@ -98,11 +66,9 @@ public class foxMovement : Movement
         {
             Vector3 dirToHare = foxPosition - hare.transform.position;
             // Escape direction
-            _huntDirection = foxPosition - (dirToHare).normalized;
-
-
+            huntDirection = foxPosition - (dirToHare).normalized;
         }
-        return _huntDirection;
+        return huntDirection;
 
     }
 
@@ -150,9 +116,9 @@ public class foxMovement : Movement
             {
                 isHunting = false;
             }
-            _distanceToPrey = Vector3.Distance(foxPosition, nearestHarePosition);
+            distanceToPrey = Vector3.Distance(foxPosition, nearestHarePosition);
             //Debug.DrawLine(foxPosition, nearestHarePosition, Color.black);
-            if (_distanceToPrey < fox.killRange)
+            if (distanceToPrey < fox.killRange)
             {
                 isHunting = false;
 

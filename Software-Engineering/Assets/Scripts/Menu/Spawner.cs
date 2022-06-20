@@ -33,8 +33,8 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     
     void Update()
-    {   bunnynum = SettingsmenuBunny.bunny;
-        foxnum = SettingsmenuFox.fox;
+    {   bunnynum = SettingsMenuHare.hareNumber;
+        foxnum = SettingsMenuFox.fox;
 
         while ( i < bunnynum) {
             int q = Random.Range(0, list.Count);

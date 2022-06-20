@@ -6,10 +6,10 @@ using System.Text;
 
 public class Fox : Animal
 {
-
     private Movement movement;
     public int killedHares = 0;
     public int killRange = 4;
+
     void Start()
     {
         base.Start();
@@ -22,11 +22,8 @@ public class Fox : Animal
         {
             setGenerationZeroValues();
         }
-
         getGender();
         setRandomName();
-
-
         movement = gameObject.GetComponent<Movement>();
         setBar(ref currentHealth, health, healthBar);
         setBar(ref currentHunger, hunger, hungerBar);
@@ -39,17 +36,16 @@ public class Fox : Animal
 
     public void kill(GameObject hare)
     {
-        //if(!hare.GetComponent<Movement>().agent.isStopped){
         hare.GetComponent<HareMovement>().agent.isStopped = true;
-        // }
         hare.GetComponent<Hare>().isAlive = false;
         hare.GetComponent<Hare>().die(false, true);
     }
+
     public IEnumerator fillStomach(GameObject hare)
     {
         while (currentHunger < hunger)
         {
-            GetComponent<foxMovement>().isHunting = false;
+            GetComponent<FoxMovement>().isHunting = false;
             if (hare != null)
             {
                 if (hare.GetComponent<Hare>().nutritionalValue == 1)
@@ -112,9 +108,9 @@ public class Fox : Animal
         sb.AppendLine();
         sb.AppendFormat(format, "Generation", generation);
         sb.AppendLine();
-        sb.AppendFormat(format, "Geschwindigkeit", speed);
+        sb.AppendFormat(format, "Sprintgeschwindigkeit", GetComponent<Movement>().sprintSpeed);
         sb.AppendLine();
-        sb.AppendFormat(format, "Get�tete Hasen", killedHares);
+        sb.AppendFormat(format, "Getoetete Hasen", killedHares);
 
         return sb.ToString();
 

@@ -6,19 +6,11 @@ public class Movement : MonoBehaviour
 {
     public float range = 10.0f;
     protected float rangeToHaveSex;
-
     public bool isWandering = false;
-    protected bool isRotatingLeft = false;
-    protected bool isRotatingRight = false;
-    protected bool isWalking = false;
-
     public int normalSpeed = 2;
     public int sprintSpeed = 8;
-
     public NavMeshAgent agent;
-
     protected Rigidbody rb;
-
     public Animal closestSexPartnerAnimal;
 
 
@@ -30,7 +22,6 @@ public class Movement : MonoBehaviour
         NavMeshHit hit;
         if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
         {
-            //Debug.Log(hit.position);
             agent.destination = hit.position;
             yield return new WaitForSeconds(3f);
         }
@@ -45,18 +36,14 @@ public class Movement : MonoBehaviour
         Vector3 thisPosition = transform.position;
 
         //welches ist der naechste hase
-        //setLowestDistanceSexPartner(thisPosition);
         closestSexPartnerAnimal = GetComponent<AnimalCollider>().lowestDistanceAnimal(GetComponent<Animal>(), GetComponent<AnimalCollider>().potentialSexPartnerList);
-
-
         if (closestSexPartnerAnimal != null)
         {
-            if (Vector3.Distance(thisPosition, closestSexPartnerAnimal.transform.position) < rangeToHaveSex                        // in range of a potential sex Partner
-                                && GetComponent<Animal>().gender.Equals("male")                                                   // the active hare is male
+            if (Vector3.Distance(thisPosition, closestSexPartnerAnimal.transform.position) < rangeToHaveSex             // in range of a potential sex Partner
+                                && GetComponent<Animal>().gender.Equals("male")                                         // the active hare is male
                                 && closestSexPartnerAnimal.GetComponent<Animal>().isHorny                               // the target hare isHorny
                                 && !closestSexPartnerAnimal.GetComponent<Animal>().isPregnant                           // the target hare is NOT pregnant
                                 && closestSexPartnerAnimal.GetComponent<Movement>().closestSexPartnerAnimal == GetComponent<Animal>()     //the target of my closest sex partner is me
-
                                 )
             {
                 GetComponent<Animal>().GetComponentInChildren<ParticleSystem>().Play();
@@ -77,16 +64,4 @@ public class Movement : MonoBehaviour
 
         }
     }
-
-    /**
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "WaterSource")
-        {
-            Debug.Log("Collision with Water detected");
-            Vector3 destination = agent.destination;
-            agent.SetDestination(-destination);
-        }
-    }
-    */
 }

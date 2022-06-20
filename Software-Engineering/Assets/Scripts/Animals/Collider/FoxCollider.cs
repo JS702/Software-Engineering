@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class FoxCollider : AnimalCollider
 {
-    // a list of foxes around the hare
-         
-    //private Fox fox;
+ 
     public List<Animal> preyList;
-    //public Collider col;
 
-    
     public void checkPreyList()
     {
         for(var i = preyList.Count - 1; i > -1; i--)
@@ -24,21 +20,18 @@ public class FoxCollider : AnimalCollider
          //if a fox enters the Sight of the hare, the hare add this Fox to his list of Foxes nearby
         if(col.tag == "Prey")
         {
-            //isWandering = false;
-            //agent.speed = sprintSpeed;
             preyList.Add(col.GetComponent<Animal>());
-            //isHunting = true;
         }
 
-       if(     col.tag.Equals("Fox") 
-            && col.GetComponent<Animal>().gender != GetComponent<Animal>().gender 
-            && col.GetComponent<Animal>().isAlive
-            && !col.GetComponent<Animal>().isChild){
+       if(  col.tag.Equals("Fox") 
+        &&  col.GetComponent<Animal>().gender != GetComponent<Animal>().gender 
+        &&  col.GetComponent<Animal>().isAlive
+        && !col.GetComponent<Animal>().isChild)     
+        {
 
             if(lowestDistanceAnimal(GetComponent<Animal>(), potentialSexPartnerList) != null){
                 GetComponent<Movement>().closestSexPartnerAnimal = lowestDistanceAnimal(GetComponent<Animal>(), potentialSexPartnerList);   
             }
-             
             potentialSexPartnerList.Add(col.GetComponent<Animal>());
         }
     }
@@ -55,11 +48,5 @@ public class FoxCollider : AnimalCollider
             }
              GetComponent<AnimalCollider>().potentialSexPartnerList.Remove(col.GetComponent<Animal>());
         }
-        /**
-        if (col.tag == "WaterSource")
-        {
-            fox.addWaterSourceToList(col);
-        }
-        */
     }
 }

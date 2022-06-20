@@ -10,16 +10,10 @@ public class HareMovement : Movement
     public Hare hare;
 
     public GameObject closestFox;
-    //
-    public Hare closestSexPartner;
 
-    //public Animal closestSexPartnerAnimal;
-    //public List<GameObject> foxList
+    public Hare closestSexPartner;
     public bool inDanger = false;
     public bool isFleeing = false;
-
-
-
 
     private void Start()
     {
@@ -28,7 +22,6 @@ public class HareMovement : Movement
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         hare = GetComponent<Hare>();
-        //agent.isStopped = false;
     }
 
     private void Update()
@@ -46,7 +39,7 @@ public class HareMovement : Movement
                 {
                     agent.SetDestination(hare.moveToNearestGrass());
                     if (hare.isInGrassArea)
-                    {   
+                    {
                         agent.isStopped = hare.eatGrass();
                     }
                 }
@@ -68,16 +61,17 @@ public class HareMovement : Movement
 
                 if (hare.isChild)
                 {
-                    if(GetComponent<Animal>().myFather != null){
+                    if (GetComponent<Animal>().myFather != null)
+                    {
                         agent.SetDestination(GetComponent<Animal>().myFather.transform.position);
                     }
-                    
+
                 }
 
                 //HORNY
-                if (hare.isHorny && !isFleeing /*&& !hare.isHungry && !hare.isThirsty*/ && !hare.isUnderwater)
+                if (hare.isHorny && !isFleeing && !hare.isUnderwater)
                 {
-                   reproduce();
+                    reproduce();
                 }
                 //WANDER
                 if (!isWandering && !isFleeing && !hare.isUnderwater && !hare.isHungry && !hare.isThirsty)
@@ -93,7 +87,7 @@ public class HareMovement : Movement
 
     public void setLowestDistanceFox(Vector3 harePosition)
     {
-        List<GameObject> foxList = GetComponent<hareCollider>().foxList;
+        List<GameObject> foxList = GetComponent<HareCollider>().foxList;
         float _distanceToFox;
         float lowestDistance = 100;
         foreach (GameObject fox in foxList)
@@ -110,25 +104,6 @@ public class HareMovement : Movement
         }
     }
 
-    public void setLowestDistanceSexPartner(Vector3 harePosition)
-    {
-        List<Animal> potentialSexPartnerList = GetComponent<AnimalCollider>().potentialSexPartnerList;
-        float _distanceToSexPartner;
-        float lowestDistance = 100;
-        foreach (Hare sexPartner in potentialSexPartnerList)
-        {
-            Vector3 sexPartnerPosition = hare.transform.position;
-            _distanceToSexPartner = Vector3.Distance(harePosition, sexPartnerPosition);
-
-            if (_distanceToSexPartner < lowestDistance && !sexPartner.GetComponent<Hare>().isPregnant)
-            {
-                //Der Fox der am dichtesten ist wird zum gameObject Fox vor dem der Hase wegrennt
-                closestSexPartner = sexPartner;
-                lowestDistance = _distanceToSexPartner;
-            }
-        }
-    }
-
     private void escape()
     {
         isFleeing = true;
@@ -141,8 +116,9 @@ public class HareMovement : Movement
         hare.isEating = false;
 
         agent.speed = sprintSpeed;
+        agent.acceleration = sprintSpeed;
         //the direction in wich the hare is fleeing if a Fox is around
-        Vector3 _fleeDirection;
+        Vector3 fleeDirection;
         Vector3 harePosition = transform.position;
 
         //set the lowest distance Fox in range as the Fox too flee from
@@ -150,28 +126,25 @@ public class HareMovement : Movement
         {
             setLowestDistanceFox(harePosition);
 
-            //in whoch direction is the nearest Fox?
+            //in which direction is the nearest Fox?
             Vector3 dirToFox = harePosition - closestFox.transform.position;
-            //Debug.DrawLine(harePosition, Fox.transform.position, Color.red);
-
+           
             // Escape direction
-            _fleeDirection = harePosition + (dirToFox).normalized;
-            //Debug.DrawLine(harePosition, _fleeDirection, Color.blue);
+            fleeDirection = harePosition + (dirToFox).normalized;
+           
 
             //Tell Agent where to go  
-            agent.SetDestination(_fleeDirection);
+            agent.SetDestination(fleeDirection);
         }
         catch (MissingReferenceException)
         {
         }
     }
 
-   
-    
+
+
     IEnumerator getOutOfWater()
     {
-        //Vector3 direction = agent.destination;
-        //agent.SetDestination(-direction*5);
         if (transform.position.z > 71)
         {
             if (transform.position.x > 43)
@@ -202,6 +175,4 @@ public class HareMovement : Movement
         yield return new WaitForSeconds(2.0f);
         hare.isUnderwater = false;
     }
-
-
 }
