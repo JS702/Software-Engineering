@@ -63,6 +63,7 @@ public class Movement : MonoBehaviour
                 closestSexPartnerAnimal.GetComponentInChildren<ParticleSystem>().Play();
                 GetComponent<Animal>().isLookingForSex = false;
                 agent.isStopped = GetComponent<Animal>().isHavingFun();                                       // start to have sex
+                //Debug.Log("IM HAVING A REALLY GOOD TIME");
             }
 
             if (closestSexPartnerAnimal.GetComponent<Animal>().isPregnant)
@@ -77,4 +78,15 @@ public class Movement : MonoBehaviour
         }
     }
 
+    /**
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "WaterSource")
+        {
+            Debug.Log("Collision with Water detected");
+            Vector3 destination = agent.destination;
+            agent.SetDestination(-destination);
+        }
+    }
+    */
 }

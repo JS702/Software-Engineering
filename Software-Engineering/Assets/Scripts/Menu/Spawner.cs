@@ -6,8 +6,8 @@ public class Spawner : MonoBehaviour
 {
     public GameObject bunnyPrefab;
     public GameObject foxPrefab;
-    public int bunnyNum;
-    public int foxNum;
+    public int bunnynum;
+    public int foxnum;
     int i = 0;
     int j = 0;
     [SerializeField]
@@ -33,17 +33,17 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     
     void Update()
-    {   bunnyNum = SettingsmenuBunny.bunny;
-        foxNum = SettingsmenuFox.fox;
+    {   bunnynum = SettingsmenuBunny.bunny;
+        foxnum = SettingsmenuFox.fox;
 
-        while ( i < bunnyNum) {
+        while ( i < bunnynum) {
             int q = Random.Range(0, list.Count);
             Vector3 pos= list[q];
             Instantiate(bunnyPrefab, pos, Quaternion.identity);
             i++;
 
                   }
-        while (j < foxNum)
+        while (j < foxnum)
         {
             int q = Random.Range(0, list.Count);
             Vector3 pos = list[q];
