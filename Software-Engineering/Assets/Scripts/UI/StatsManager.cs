@@ -161,8 +161,7 @@ public class StatsManager : MonoBehaviour
     {
         if(lineRenderer == null)
         {
-            Debug.Log("Fehler" + value);
-            return;
+            throw new System.Exception("LineRenderer not Found");
         }
         lineRenderer.points.Add(new Vector2(gameManager.currentStatsTrackingIntervall -1, value));
         lineRenderer.updateScale();

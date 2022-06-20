@@ -28,13 +28,13 @@ public class UIGridRenderer : Graphic
         {
             for (int x = 0; x < gridSize.x; x++)
             {
-                DrawCell(x, y, count, vh);
+                drawCell(x, y, count, vh);
                 count++;
             }
         }
     }
 
-    public void DrawCell(int x, int y, int index, VertexHelper vh)
+    public void drawCell(int x, int y, int index, VertexHelper vh)
     {
         float xPos = cellWidth * x;
         float yPos = cellHeight * y;

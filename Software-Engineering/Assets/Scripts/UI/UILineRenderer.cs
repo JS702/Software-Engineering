@@ -48,10 +48,10 @@ public class UILineRenderer : Graphic
             Vector2 point = points[i];
             if (i < points.Count - 1)
             {
-                angle = GetAngle(points[i], points[i + 1]) + 45f;
+                angle = getAngle(points[i], points[i + 1]) + 45f;
             }
 
-            DrawVerticesForPoint(point, vh, angle);
+            drawVerticesForPoint(point, vh, angle);
         }
 
         for(int i = 0; i<points.Count-1; i++)
@@ -61,7 +61,7 @@ public class UILineRenderer : Graphic
             vh.AddTriangle(index + 3, index + 2, index + 0);
         }
     }
-    private void DrawVerticesForPoint(Vector2 point, VertexHelper vh, float angle)
+    private void drawVerticesForPoint(Vector2 point, VertexHelper vh, float angle)
     {
         point.y /= scale; // set point corresponding to scale
 
@@ -77,7 +77,7 @@ public class UILineRenderer : Graphic
         vh.AddVert(vertex);
     }
 
-    private float GetAngle(Vector2 me, Vector2 target)
+    private float getAngle(Vector2 me, Vector2 target)
     {
         return (float)(Mathf.Atan2(target.y - me.y, target.x - me.x) * (180 / Mathf.PI));
     }
