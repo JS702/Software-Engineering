@@ -84,6 +84,7 @@ public class HareMovement : Movement
                 {
                     StartCoroutine(setWanderDestination());
                 }
+                GetComponent<Animal>().TestInputs();
             }
         }
 
@@ -92,7 +93,7 @@ public class HareMovement : Movement
 
     public void setLowestDistanceFox(Vector3 harePosition)
     {
-        List<GameObject> foxList = GetComponent<HareCollider>().foxList;
+        List<GameObject> foxList = GetComponent<hareCollider>().foxList;
         float _distanceToFox;
         float lowestDistance = 100;
         foreach (GameObject fox in foxList)

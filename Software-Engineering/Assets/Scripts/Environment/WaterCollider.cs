@@ -23,7 +23,7 @@ public class WaterCollider : MonoBehaviour
 
         if (other.tag == "Fox")
         {
-            other.GetComponent<foxMovement>().isUnderwater = true;
+            other.GetComponent<FoxMovement>().isUnderwater = true;
         }
     }
     /**
