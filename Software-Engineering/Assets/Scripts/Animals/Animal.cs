@@ -186,17 +186,12 @@ public abstract class Animal : Food
     private int mutate()
     {
         int mutation = Random.Range(0, 100);
-        //Debug.Log("MUTATION" + mutation);
         return mutation > 1 ? 0 : mutation == 1 ? Random.Range(1, 3) : Random.Range(-3, 0);
     }
 
     private Animal setBabyValues(Animal male, Animal female, GameObject child)
     {
         Animal baby = child.GetComponent<Animal>();
-
-        //Debug.Log("FAMILIEN PAPA: " + male.animalName);
-        //Debug.Log("FAMILIEN MAMA: " + female.animalName);
-        //Debug.Log("FAMILIEN ICH: " + baby.animalName);
 
         baby.myFather = male;
 
@@ -238,73 +233,52 @@ public abstract class Animal : Food
         Animal male = this;
         Animal myFemale = GetComponent<Movement>().closestSexPartnerAnimal;
 
-        Debug.Log("SexMale: " + male);
-        Debug.Log("SexFemale" + myFemale);
 
         isHavingAReallyGoodTime = true;
 
         myFemale.isHavingAReallyGoodTime = true;
-        //GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isHavingAReallyGoodTime = true;
-
-        //GetComponent<HareMovement>().closestSexPartner.GetComponent<HareMovement>().agent.isStopped = true;
         myFemale.GetComponent<Movement>().agent.isStopped = true;
 
 
         if (sexTimer > 0.5f)
         {
             haveSex(hornyLoss);
-            //GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().haveSex(hornyLoss);
             myFemale.haveSex(hornyLoss);
 
             sexTimer = 0f;
 
             hornyBar.setValue(currentHorny);
-            //GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().hornyBar.setMaxValue(currentHorny);
             myFemale.hornyBar.setMaxValue(currentHorny);
         }
 
         if (currentHorny <= 0)
         {
-            //heartParticel.Stop();
             isHavingAReallyGoodTime = false;
-            //GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isHavingAReallyGoodTime = false;
             myFemale.isHavingAReallyGoodTime = false;
 
-
-            //GetComponent<HareMovement>().closestSexPartner.GetComponent<HareMovement>().agent.isStopped = false;
             myFemale.GetComponent<Movement>().agent.isStopped = false;
 
 
             currentHorny = 0;
-            //GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().currentHorny = 0;
             myFemale.currentHorny = 0;
 
             isHorny = false;
-            //GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isHorny = false;
             myFemale.isHorny = false;
 
-            //GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isPregnant = true;
             myFemale.isPregnant = true;
 
-            //GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().pregnancy(this.GetComponent<Hare>(), GetComponent<HareMovement>().closestSexPartner);
-            Debug.Log("SexMale: " + male);
-            Debug.Log("SexFemale" + myFemale);
             myFemale.pregnancy(male, myFemale);
-            //Debug.Log("VERMEHRUNG -> Pregnant" + GetComponent<HareMovement>().closestSexPartner.GetComponent<Hare>().isPregnant);
 
         }
         return isHavingAReallyGoodTime;
     }
 
-    // ABstract?
     IEnumerator spawnChild(Animal male, Animal female)
     {
         Vector3 pos = female.transform.position;
 
         int minChildren;
         int maxChildren;
-        //isPregnant = false;
-        //Debug.Log("VERMEHRUNG: Try to spawn child");
         if(GetComponent<Hare>() != null){
             minChildren = 5;
             maxChildren = 10;
@@ -318,17 +292,10 @@ public abstract class Animal : Food
         GetComponent<Movement>().agent.isStopped = true;
         for (int i = 1; i <= childCounter; i++) //Entsprechende Anzahl von Kindern wird gespawnt
         {
-            /**
-            hareBaby.GetComponent<Animal>().hunger = 500; //Test, funktioniert so
-            hareBaby.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); //Test, funktioniert so
-            Instantiate(hareBaby, pos + new Vector3(i, 0, i), Quaternion.identity); //Jedes gespawnte Kind wird um eine Einheit weiter auf der x- und z-Achse verschoben, um Kollisionen zu verhindern
-            */
+
             if(male != null && female != null){
                 Instantiate(setBabyValues(male, female, babyPrefab), pos + new Vector3(i, 0, i), Quaternion.identity);
             }
-           
-
-            //Debug.Log("VERMEHRUNG: child spawned");
         }
 
         isPregnant = false;
@@ -432,32 +399,6 @@ public abstract class Animal : Food
 
     public abstract string getAnimalInfo();
 
-
-
-    public void TestInputs()
-    {
-        //Debug-Tool, bis der Hase hunger bekommen und fressen kann
-        if (Input.GetKeyDown("h"))
-        {
-            currentHunger = 10;
-            //Debug.Log(currentHunger);
-        }
-        if (Input.GetKeyDown("t"))
-        {
-            currentHunger += 100;
-            //Debug.Log(currentHunger);
-        }
-        if (Input.GetKeyDown("k"))
-        {
-            //Denkt daran den Agent zu stoppen wenn ihr die die-Methode aufruft, ich konnte aus Animal nicht darauf zugreifen
-            GetComponent<Movement>().agent.isStopped = true;
-            die(false, false);
-        }
-        if (Input.GetKeyDown("l"))
-        {
-            currentThirst = 10;
-        }
-    }
 
     protected string getGender()
     {
