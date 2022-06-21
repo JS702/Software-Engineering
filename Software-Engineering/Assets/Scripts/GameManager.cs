@@ -40,8 +40,8 @@ public class GameManager : MonoBehaviour
     public float currentTime = 0f;
     float maxTime;
 
-    private int statsTrackingIntervall = 10;
-    private int nextStatsTrackingIntervall = 10;
+    private float statsTrackingIntervall = Timeslider.timef / 24;
+    private float nextStatsTrackingIntervall = Timeslider.timef / 24;
     public int currentStatsTrackingIntervall = 0;
     public bool gameOver = false;
 
