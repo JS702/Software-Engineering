@@ -59,13 +59,12 @@ public class HareMovement : Movement
                 }
 
 
-                if (hare.isChild)
+                if (hare.isChild && hare.isAlive)
                 {
                     if (GetComponent<Animal>().myFather != null)
                     {
                         if(agent.isActiveAndEnabled){
-                            agent.SetDestination(GetComponent<Animal>().myFather.transform.position);
-
+                            agent.SetDestination(GetComponent<Animal>().myFather ? GetComponent<Animal>().myFather.transform.position  : transform.position);
                         }
                         
                     }
