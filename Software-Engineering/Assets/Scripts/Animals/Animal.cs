@@ -60,7 +60,7 @@ public abstract class Animal : Food
     
 
     public string animalName;
-    private string[] namesMale = { "Bob", "Dave", "Ted", "Marvin", "Oscar", "Victor" };
+    public string[] namesMale = { "Bob", "Dave", "Ted", "Marvin", "Oscar", "Victor" };
     private string[] namesFemale = { "Alice", "Carol", "Eve", "Mallory", "Peggy", "Trudy" };
 
 
@@ -166,7 +166,7 @@ public abstract class Animal : Food
         currentHorny -= endurance;
     }
     
-    private int mutate()
+    public int mutate()
     {
         int mutation = Random.Range(0, 100);
         return mutation > 5 ? 0 : mutation > 2 ? Random.Range(1, 5) : Random.Range(-4, 0);
