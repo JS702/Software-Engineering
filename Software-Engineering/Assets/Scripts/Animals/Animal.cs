@@ -25,8 +25,6 @@ public abstract class Animal : Food
     public bool isChild;
    
 
-    public int speed;  //??????
-
     public Vector3 waterPosition = new Vector3(43.8f, 1.3f, 71.4f);
 
     //BARS Start:
@@ -306,7 +304,6 @@ public abstract class Animal : Food
     protected void setGenerationZeroValues()
     {
 
-
         GetComponentInChildren<SphereCollider>().radius = Random.Range(5, 10);
         health = Random.Range(100, 200);
         hunger = Random.Range(100, 200);
@@ -341,20 +338,14 @@ public abstract class Animal : Food
             StartCoroutine(decreaseNutritionalValue());
         }
         isAlive = false;
-        //GameManager.animalsAlive -= 1;
 
-        if (GetComponent<Fox>() != null && !lifeTimeOver)
+        if (GetComponent<Fox>() != null)
         {
-            GameManager.foxesAlive -=1;
-            GameManager.foxesStarved += 1;
-            if (gender.Equals("female"))
+            if (!lifeTimeOver)
             {
-                GameManager.foxFemalesAlive -= 1;
+                GameManager.foxesStarved += 1;
             }
-            else
-            {
-                GameManager.foxMalesAlive -= 1;
-            }
+
         }
         else
         { 
@@ -363,15 +354,7 @@ public abstract class Animal : Food
             }else if(!lifeTimeOver){
                 GameManager.haresKilled += 1;
             }
-            GameManager.haresAlive -= 1; 
-            if (gender.Equals("female"))
-            {
-                GameManager.hareFemalesAlive -= 1;
-            }
-            else
-            {
-                GameManager.hareMalesAlive -= 1;
-            }
+        
         }
 
     }
