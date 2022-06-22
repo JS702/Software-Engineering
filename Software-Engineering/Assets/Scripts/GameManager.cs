@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         maxTime = Timeslider.timef;
+        Time.timeScale = 1f;
     }
     private void Update()
     {
