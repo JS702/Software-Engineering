@@ -207,7 +207,7 @@ public abstract class Animal : Food
 
     protected IEnumerator grow()
     {
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(45);
         transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
         isChild = false;
     }
@@ -341,7 +341,7 @@ public abstract class Animal : Food
             StartCoroutine(decreaseNutritionalValue());
         }
         isAlive = false;
-        GameManager.animalsAlive -= 1;
+        //GameManager.animalsAlive -= 1;
 
         if (GetComponent<Fox>() != null && !lifeTimeOver)
         {

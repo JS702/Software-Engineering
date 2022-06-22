@@ -61,7 +61,8 @@ public class GameManager : MonoBehaviour
     {
         if (!gameOver)
         {
-            if (currentTime < maxTime   && animalsAlive > 0)
+            Debug.Log("Animalsalive: " + animalsAlive + " currentTime: " + currentTime);
+            if (currentTime < maxTime  && animalsAlive > 0)
             {
                 if (currentTime > nextStatsTrackingIntervall)
                 {
